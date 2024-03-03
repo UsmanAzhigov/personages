@@ -1,0 +1,145 @@
+body {
+  background-color: #f5f5f5;
+  font-family: 'DM Sans', sans-serif;
+}
+.register_block {
+  width: 500px;
+  background-color: #ffffff;
+  margin: 70px auto;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.register_text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.register_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description_register {
+  width: 305px;
+  color: #999ca0;
+  font-weight: 400;
+  line-height: 16px;
+}
+.description_register p {
+  font-size: 12px;
+}
+
+.add_avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_btn {
+  background-color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  color: #595d62;
+}
+
+.register_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.register_inputs input {
+  border: 1px solid #e2e2e2;
+}
+
+.email_name_block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.email_name_block input {
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.password_block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.password_block input {
+  width: 238px;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.conditions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.conditions p {
+  font-size: 12px;
+  color: #999ca0;
+}
+
+.email {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.password_repeat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.register_btn {
+  width: 100%;
+  border: 0;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 8px 150px;
+  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
+}
+
+.forgot_btn {
+  color: #2d81fe;
+}
+
+.forgot_block {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input_password {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.eye_icon {
+  position: absolute;
+  right: 12px;
+}
