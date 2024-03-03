@@ -2,59 +2,20 @@
 
 <head>
   <title>new project</title>
-  <link rel="stylesheet" href="register.css">
+  <link rel="import" href="/modal.html">
 </head>
 
 <body>
-  <div class="register_block">
-    <div class="register_header">
-      <p class="register_text">Регистрация</p>
-      <img width="32px" height="32px" src="closeIcon.svg" />
-    </div>
-    <div class="description_register">
-      <p>Заполните свои данные ниже, чтобы зарегитрироваться</p>
-    </div>
-    <div class="form_register">
-      <div class="add_avatar">
-        <img width="64px" height="64px" src="userIcon.png" />
-        <button class="add_btn">
-          <h4>Добавить фото</h4>
-        </button>
-      </div>
-      <div class="register_inputs">
-        <div class="email_name_block">
-          <div class="email">
-            <label>Email</label>
-            <input type="text" placeholder="Введите ваш Email" />
-          </div>
-          <div class="name">
-            <label>Имя пользователя</label>
-            <input type="text" placeholder="Придумайте имя" />
-          </div>
-        </div>
-        <div class="password_block">
-          <div class="password">
-            <label>Пароль</label>
-            <input type="text" placeholder="Ваш пароль" />
-          </div>
-          <div class="password_repeat">
-            <label>Повторите пароль</label>
-            <div class="input_password">
-              <input type="text" placeholder="Ваш пароль" />
-              <img class="eye_icon" width="24px" height="24px" src="eyeIcon.svg" />
-            </div>
-          </div>
-        </div>
-        <div class="conditions">
-          <input type="checkbox" />
-          <p>Я согласен на обработку и хранение персональных данных</p>
-        </div>
-      </div>
-      <button class="register_btn">
-        Зарегитрироваться
-      </button>
-      <p class="forgot_block">Уже есть аккаунт <span class="forgot_btn">Войти</span></p>
-    </div>
+  <div id="register_block" class="register_block"></div>
+  <script>
+    fetch('/modal.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('register_block').innerHTML = data;
+      });
+  </script>
 </body>
+</body>
+
 
 </html>

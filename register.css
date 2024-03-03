@@ -21,6 +21,10 @@ body {
   align-items: center;
 }
 
+.register_header img {
+  cursor: pointer;
+}
+
 .description_register {
   width: 305px;
   color: #999ca0;
@@ -90,6 +94,10 @@ body {
   color: #999ca0;
 }
 
+.conditions input {
+  cursor: pointer;
+}
+
 .email {
   display: flex;
   flex-direction: column;
@@ -121,10 +129,12 @@ body {
   border-radius: 8px;
   padding: 8px 150px;
   background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
+  cursor: pointer;
 }
 
 .forgot_btn {
   color: #2d81fe;
+  cursor: pointer;
 }
 
 .forgot_block {
@@ -142,4 +152,5 @@ body {
 .eye_icon {
   position: absolute;
   right: 12px;
+  cursor: pointer;
 }
