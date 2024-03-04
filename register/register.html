@@ -66,10 +66,11 @@
       eyeIcon.addEventListener('click', () => {
         if (inputPasswords[index].type === 'password') {
           inputPasswords[index].type = 'text';
-          eyeIcon.src = '/icons/closeEyeIcon.svg';
+          eyeIcon.src = '/icons/eyeIcon.svg';
         } else {
           inputPasswords[index].type = 'password';
-          eyeIcon.src = '/icons/eyeIcon.svg';
+          eyeIcon.src = '/icons/closeEyeIcon.svg';
+
         }
       });
     });
