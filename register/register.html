@@ -16,7 +16,8 @@
     <div class="form_register">
       <div class="add_avatar">
         <img width="64px" height="64px" src="/icons/userIcon.png" />
-        <button class="add_btn">
+        <button class="add_btn" id="add-avatar">
+          <input type="file" class="add-avatar" id="add-avatar-input">
           <h4>Добавить фото</h4>
         </button>
       </div>
@@ -24,25 +25,26 @@
         <div class="email_name_block">
           <div class="email">
             <label>Email</label>
-            <input type="text" placeholder="Введите ваш Email" />
+            <input id="email" type="text" placeholder="Введите ваш Email" />
           </div>
           <div class="name">
             <label>Имя пользователя</label>
-            <input type="text" placeholder="Придумайте имя" />
+            <input id="username" type="text" placeholder="Придумайте имя" />
           </div>
         </div>
         <div class="password_block">
           <div class="password">
             <label>Пароль</label>
-            <div class="input_password"><input type="text" placeholder="Ваш пароль" />
-              <img class="eye_icon" width="24px" height="24px" src="/icons/eyeIcon.svg" />
+            <div class="input_password">
+              <input id="password" type="password" placeholder="Ваш пароль" />
+              <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
             </div>
           </div>
           <div class="password_repeat">
             <label>Повторите пароль</label>
             <div class="input_password">
-              <input type="text" placeholder="Ваш пароль" />
-              <img class="eye_icon" width="24px" height="24px" src="/icons/eyeIcon.svg" />
+              <input id="password_confirm" type="password" placeholder="Ваш пароль" />
+              <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
             </div>
           </div>
         </div>
@@ -57,10 +59,12 @@
       <p class="forgot_block">Уже есть аккаунт <span class="forgot_btn">Войти</span></p>
     </div>
   </div>
+  <script src="../scripts/index.js"></script>
   <script>
-
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
+    const registerBtn = document.querySelector('.register_btn');
+    let image;
 
     eyeIcons.forEach((eyeIcon, index) => {
       eyeIcon.addEventListener('click', () => {
@@ -74,6 +78,32 @@
         }
       });
     });
+
+    function register() {
+      const password = document.querySelector('#password').value;
+      const password_confirm = document.querySelector('#password_confirm').value;
+      const username = document.querySelector('#username').value;
+      const email = document.querySelector('#email').value;
+
+      fetch(`${base_url}accounts/register/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          password,
+          username,
+          email,
+          password_confirm,
+          image: null,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log("Request failed", error));
+    }
+
+    registerBtn.addEventListener('click', register)
 
   </script>
 </body>
