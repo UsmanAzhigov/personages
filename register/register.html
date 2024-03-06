@@ -27,10 +27,12 @@
           <div class="email">
             <label>Email</label>
             <input id="email" type="email" placeholder="Введите ваш Email" />
+            <label id="email-error-label" for="" class="input-error-label none">Введите корректный Email</label>
           </div>
           <div class="name">
             <label>Имя пользователя</label>
             <input id="username" type="text" placeholder="Придумайте имя" />
+            <label id="username-error-label" for="" class="input-error-label none">Введите корректное имя пользователя</label>
           </div>
         </div>
         <div class="password_block">
@@ -40,6 +42,7 @@
               <input id="password" type="password" placeholder="Ваш пароль" />
               <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
             </div>
+            <label id="password-error-label" for="" class="input-error-label none">Длина пароля должна быть не меньше 6 символов</label>
           </div>
           <div class="password_repeat">
             <label>Повторите пароль</label>
@@ -47,6 +50,7 @@
               <input id="password_confirm" type="password" placeholder="Ваш пароль" />
               <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
             </div>
+            <label id="password_confirm-error-label" for="" class="input-error-label none">Пароли не совпадают</label>
           </div>
         </div>
         <div class="conditions">
@@ -61,7 +65,7 @@
     </div>
   </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="/scripts/baseUrl.js"></script>
+  <script src="/scripts/index.js"></script>
   <script>
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
@@ -101,7 +105,7 @@
       const password_confirm = document.querySelector('#password_confirm').value;
       const username = document.querySelector('#username').value;
       const email = document.querySelector('#email').value;
-      const selectedFile = document.querySelector('#add-avatar-input').files[0];
+      const selectedFile = document.querySelector('#add-avatar-input').files[0] || null;
       const formInputs = document.querySelectorAll('.form_register input');
 
       const formData = new FormData();
@@ -111,33 +115,57 @@
       formData.append('username', username);
       formData.append('email', email);
 
+      let status;
+
       fetch(`${base_url}accounts/register/`, {
         method: "POST",
         body: formData,
       })
-        .then((response) => response.json())
+        .then((response) => {
+          status = response.ok
+          return response.json()
+        })
         .then((data) => {
-          if (data.success) {
-            showToast('Registration successful!');
+          if (status) {
+            showToast('Вы успешно зарегистрированы!', 'success');
+            location.reload();
           } else {
-            [data].map((item) => {
-              formInputs.forEach(input => {
-                if (input.value.trim() === '') {
-                  input.style.border = '1px solid red';
-                  const errorMessage = document.createElement('p');
-                  errorMessage.innerText = input.placeholder;
-                  errorMessage.classList.add('error-message');
-                  input.parentNode.appendChild(errorMessage);
-                } else {
-                  input.style.border = '1px solid #ccc';
-                }
-              });
+            const inputs = ['password', 'username', 'email', 'password_confirm', 'image'];
+            const errorInputs = Object.keys(data)
 
-              if (!conditions.checked) {
-                const conditionsErrorMessage = document.createElement('p');
-                conditionsErrorMessage.innerText = 'Please accept the terms and conditions.';
-                conditionsErrorMessage.classList.add('error-message');
-                conditions.parentNode.appendChild(conditionsErrorMessage);
+            inputs.forEach(el => {
+              if (errorInputs.includes(el) && !status) {
+                const errorInput = document.querySelector(`#${el}`);
+                const errorInputLabel = document.querySelector(`#${el}-error-label`);
+                const conditions = document.querySelector('.conditions');
+
+                
+                if (errorInput) {
+                  errorInput.classList.add('error-input')
+                  errorInputLabel?.classList.remove('none')
+                }
+                
+                if (el === 'password' && conditions) {
+                  conditions.style = 'margin-top: 15px;';
+                }
+
+                if (el === 'image') {
+                  showToast('Загрузите фото!')
+                }
+              }else {
+                const errorInput = document.querySelector(`#${el}`);
+                const errorInputLabel = document.querySelector(`#${el}-error-label`);
+                const conditions = document.querySelector('.conditions');
+
+                
+                if (errorInput) {
+                  errorInput?.classList?.remove('error-input')
+                  errorInputLabel?.classList?.add('none')
+                }
+                
+                if (el === 'password' && conditions) {
+                  conditions.style = 'margin-top: 0;';
+                }
               }
             })
           }
