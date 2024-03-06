@@ -131,12 +131,29 @@ body {
 
 .register_btn {
   width: 100%;
+  height: 40px;
   border: 0;
   color: #ffffff;
   border-radius: 8px;
   padding: 8px 150px;
   background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
   cursor: pointer;
+}
+
+.register_btn:hover {
+  border: 4px solid #ccc;
+}
+
+.register_btn:disabled {
+  background: linear-gradient(180deg, #d0e3ff 0%, #b3d1ff 100%);
+  cursor: not-allowed;
+}
+
+.register_btn:active {
+  border: 4px solid #ccc;
+  outline: solid 2px #fff;
+  outline-offset: -6px;
+  padding: 4px;
 }
 
 .forgot_btn {
@@ -188,10 +205,10 @@ body {
   cursor: pointer;
 }
 
-div>div>.error-input {
+div > div > .error-input {
   border: 1px solid rgba(255, 78, 100, 1);
 }
-div>div>.error-input:focus {
+div > div > .error-input:focus {
   outline: none;
 }
 .input-error-label {

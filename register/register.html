@@ -32,7 +32,8 @@
           <div class="name">
             <label>Имя пользователя</label>
             <input id="username" type="text" placeholder="Придумайте имя" />
-            <label id="username-error-label" for="" class="input-error-label none">Введите корректное имя пользователя</label>
+            <label id="username-error-label" for="" class="input-error-label none">Введите корректное имя
+              пользователя</label>
           </div>
         </div>
         <div class="password_block">
@@ -42,7 +43,8 @@
               <input id="password" type="password" placeholder="Ваш пароль" />
               <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
             </div>
-            <label id="password-error-label" for="" class="input-error-label none">Длина пароля должна быть не меньше 6 символов</label>
+            <label id="password-error-label" for="" class="input-error-label none">Длина пароля должна быть не меньше 6
+              символов</label>
           </div>
           <div class="password_repeat">
             <label>Повторите пароль</label>
@@ -58,7 +60,7 @@
           <p>Я согласен на обработку и хранение персональных данных</p>
         </div>
       </div>
-      <button class="register_btn">
+      <button class="register_btn" disabled="true">
         Зарегистрироваться
       </button>
       <p class="forgot_block">Уже есть аккаунт <span class="forgot_btn">Войти</span></p>
@@ -67,11 +69,12 @@
   </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="/scripts/index.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script> 
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
     // В div с id #includedContent будет добавлен файл modal.html
     // $(function(){
-    //   $("#includedContent").load("../components/modal/modal.html"); 
+    //   $("#includedContent").load("../components/modal/modal.html");
     // });
   </script>
   <script>
@@ -106,7 +109,13 @@
       }
     });
 
-
+    conditions.addEventListener('change', () => {
+      if (conditions.checked) {
+        registerBtn.disabled = false;
+      } else {
+        registerBtn.disabled = true;
+      }
+    })
 
     function register() {
       const password = document.querySelector('#password').value;
@@ -131,56 +140,53 @@
       })
         .then((response) => {
           status = response.ok
-          return response.json()
+          if (!response.ok) {
+            return response.json();
+          }
+          return { success: true };
         })
         .then((data) => {
-          if (status) {
+          if (!data.success) {
+            handleErrors(data);
+          } else {
             showToast('Вы успешно зарегистрированы!', 'success');
             location.reload();
-          } else {
-            const inputs = ['password', 'username', 'email', 'password_confirm', 'image'];
-            const errorInputs = Object.keys(data)
-
-            inputs.forEach(el => {
-              if (errorInputs.includes(el) && !status) {
-                const errorInput = document.querySelector(`#${el}`);
-                const errorInputLabel = document.querySelector(`#${el}-error-label`);
-                const conditions = document.querySelector('.conditions');
-
-                
-                if (errorInput) {
-                  errorInput.classList.add('error-input')
-                  errorInputLabel?.classList.remove('none')
-                }
-                
-                if (el === 'password' && conditions) {
-                  conditions.style = 'margin-top: 15px;';
-                }
-
-                if (el === 'image') {
-                  showToast('Загрузите фото!')
-                }
-              }else {
-                const errorInput = document.querySelector(`#${el}`);
-                const errorInputLabel = document.querySelector(`#${el}-error-label`);
-                const conditions = document.querySelector('.conditions');
-
-                
-                if (errorInput) {
-                  errorInput?.classList?.remove('error-input')
-                  errorInputLabel?.classList?.add('none')
-                }
-                
-                if (el === 'password' && conditions) {
-                  conditions.style = 'margin-top: 0;';
-                }
-              }
-            })
           }
         })
         .catch((error) => console.log("Request failed", error));
     }
+    function handleErrors(data) {
+      const inputs = ['password', 'username', 'email', 'password_confirm', 'image'];
 
+      inputs.forEach((el) => {
+        const errorInput = document.querySelector(`#${el}`);
+        const errorInputLabel = document.querySelector(`#${el}-error-label`);
+        const conditions = document.querySelector('.conditions');
+
+        if (data[el]) {
+          if (errorInput) {
+            errorInput.classList.add('error-input');
+            errorInputLabel?.classList.remove('none');
+            errorInputLabel.textContent = data[el][0];
+          }
+
+          if (el === 'password' && conditions) {
+            conditions.style = 'margin-top: 15px;';
+          }
+
+
+        } else {
+          if (errorInput) {
+            errorInput?.classList?.remove('error-input');
+            errorInputLabel?.classList?.add('none');
+          }
+
+          if (el === 'password' && conditions) {
+            conditions.style = 'margin-top: 0;';
+          }
+        }
+      });
+    }
     function showToast(message, type) {
       Toastify({
         text: message,
