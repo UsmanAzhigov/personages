@@ -2,6 +2,7 @@
 
 <head>
   <link rel="stylesheet" href="/register/register.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -15,8 +16,9 @@
     </div>
     <div class="form_register">
       <div class="add_avatar">
-        <img width="64px" height="64px" src="/icons/userIcon.png" />
-        <button class="add_btn">
+        <img src="/icons/userIcon.png" />
+        <button class="add_btn" id="add-avatar">
+          <input type="file" class="add-avatar" id="add-avatar-input" />
           <h4>Добавить фото</h4>
         </button>
       </div>
@@ -24,25 +26,26 @@
         <div class="email_name_block">
           <div class="email">
             <label>Email</label>
-            <input type="text" placeholder="Введите ваш Email" />
+            <input id="email" type="email" placeholder="Введите ваш Email" />
           </div>
           <div class="name">
             <label>Имя пользователя</label>
-            <input type="text" placeholder="Придумайте имя" />
+            <input id="username" type="text" placeholder="Придумайте имя" />
           </div>
         </div>
         <div class="password_block">
           <div class="password">
             <label>Пароль</label>
-            <div class="input_password"><input type="text" placeholder="Ваш пароль" />
-              <img class="eye_icon" width="24px" height="24px" src="/icons/eyeIcon.svg" />
+            <div class="input_password">
+              <input id="password" type="password" placeholder="Ваш пароль" />
+              <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
             </div>
           </div>
           <div class="password_repeat">
             <label>Повторите пароль</label>
             <div class="input_password">
-              <input type="text" placeholder="Ваш пароль" />
-              <img class="eye_icon" width="24px" height="24px" src="/icons/eyeIcon.svg" />
+              <input id="password_confirm" type="password" placeholder="Ваш пароль" />
+              <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
             </div>
           </div>
         </div>
@@ -57,10 +60,17 @@
       <p class="forgot_block">Уже есть аккаунт <span class="forgot_btn">Войти</span></p>
     </div>
   </div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/scripts/baseUrl.js"></script>
   <script>
-
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
+    const registerBtn = document.querySelector('.register_btn');
+    const conditions = document.querySelector('.conditions input');
+    const selectedFile = document.querySelector('#add-avatar-input').files[0];
+    const avatarImage = document.querySelector('.add_avatar img');
+    const addAvatarInput = document.querySelector('#add-avatar-input');
+
 
     eyeIcons.forEach((eyeIcon, index) => {
       eyeIcon.addEventListener('click', () => {
@@ -70,12 +80,86 @@
         } else {
           inputPasswords[index].type = 'password';
           eyeIcon.src = '/icons/closeEyeIcon.svg';
-
         }
       });
     });
+    addAvatarInput.addEventListener('change', () => {
+      const selectedFile = addAvatarInput.files[0];
+      if (selectedFile) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          avatarImage.src = e.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+      }
+    });
 
+
+
+    function register() {
+      const password = document.querySelector('#password').value;
+      const password_confirm = document.querySelector('#password_confirm').value;
+      const username = document.querySelector('#username').value;
+      const email = document.querySelector('#email').value;
+      const selectedFile = document.querySelector('#add-avatar-input').files[0];
+      const formInputs = document.querySelectorAll('.form_register input');
+
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+      formData.append('password', password);
+      formData.append('password_confirm', password_confirm);
+      formData.append('username', username);
+      formData.append('email', email);
+
+      fetch(`${base_url}accounts/register/`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert('Регистрация прошла успешно!');
+          } else {
+            [data].map((item) => {
+              formInputs.forEach(input => {
+                if (input.value.trim() === '') {
+                  input.style.border = '1px solid red';
+
+
+                  const errorMessage = document.createElement('p');
+                  errorMessage.innerText = input.placeholder;
+                  errorMessage.classList.add('error-message');
+                  input.parentNode.appendChild(errorMessage);
+                } else {
+                  input.style.border = '1px solid #ccc';
+                }
+              });
+
+              if (!conditions.checked) {
+                const conditionsErrorMessage = document.createElement('p');
+                conditionsErrorMessage.innerText = 'Please accept the terms and conditions.';
+                conditionsErrorMessage.classList.add('error-message');
+                conditions.parentNode.appendChild(conditionsErrorMessage);
+              }
+            })
+          }
+        })
+        .catch((error) => console.log("Request failed", error));
+    }
+
+    function showToast(message, type) {
+      Toastify({
+        text: message,
+        duration: 3000,
+        gravity: 'bottom',
+        position: 'right',
+        backgroundColor: type === 'success' ? '#4CAF50' : '#FF6347',
+      }).showToast();
+    }
+
+    registerBtn.addEventListener('click', register);
   </script>
+
 </body>
 
 </html>

@@ -43,6 +43,7 @@ body {
 }
 
 .add_btn {
+  position: relative;
   background-color: #ffffff;
   border: 0;
   cursor: pointer;
@@ -153,4 +154,20 @@ body {
   position: absolute;
   right: 12px;
   cursor: pointer;
+}
+
+.add-avatar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.add_avatar img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
 }
