@@ -118,7 +118,7 @@
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            alert('Registration successful!');
+            showToast('Registration successful!');
           } else {
             [data].map((item) => {
               formInputs.forEach(input => {
