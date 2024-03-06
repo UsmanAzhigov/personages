@@ -118,14 +118,12 @@
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            alert('Регистрация прошла успешно!');
+            alert('Registration successful!');
           } else {
             [data].map((item) => {
               formInputs.forEach(input => {
                 if (input.value.trim() === '') {
                   input.style.border = '1px solid red';
-
-
                   const errorMessage = document.createElement('p');
                   errorMessage.innerText = input.placeholder;
                   errorMessage.classList.add('error-message');
