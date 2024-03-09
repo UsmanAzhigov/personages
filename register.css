@@ -48,6 +48,17 @@ body {
   border: 0;
   cursor: pointer;
   color: #595d62;
+  padding: 8px 16px;
+  margin-top: 16px;
+  border-radius: 8px;
+  transition: all .4s;
+}
+.add_btn:hover {
+  background-color: rgba(221, 221, 221, 1);
+}
+.add_btn h4 {
+  margin: 0;
+  font-size: 14px;
 }
 
 .register_inputs {
@@ -76,10 +87,11 @@ body {
   flex-direction: row;
   align-items: center;
   gap: 24px;
+  width: 100%;
 }
 
 .password_block input {
-  width: 238px;
+  width: 100%;
   border-radius: 8px;
   padding: 8px 12px;
 }
@@ -119,6 +131,7 @@ body {
   flex-direction: column;
   gap: 8px;
   position: relative;
+  width: 100%;
 }
 
 .password_repeat {
@@ -126,9 +139,13 @@ body {
   flex-direction: column;
   gap: 8px;
   position: relative;
+  width: 100%;
 }
 
 .register_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 40px;
   border: 0;
@@ -139,15 +156,25 @@ body {
   cursor: pointer;
 }
 
+#add_avatar_space {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .register_btn:hover {
-  border: 4px solid #ccc;
+  border: none;
+  box-shadow: 0 0 0 4px #ccc;
+}
+.register_btn:disabled:hover {
+  border: none;
 }
 
 .register_btn:active {
-  border: 4px solid #ccc;
-  outline: solid 2px #fff;
-  outline-offset: -6px;
-  padding: 4px;
+  border: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
 }
 
 .forgot_btn {
@@ -169,6 +196,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  width: 100%;
 }
 
 .eye_icon {
@@ -210,4 +238,30 @@ div > div > .error-input:focus {
   position: absolute;
   top: 68px;
   left: 12px;
+}
+.none {
+  display: none;
+}
+
+#add-avatar-input {
+  user-select: none;
+}
+#add-avatar, #add-avatar h4, #add-avatar-input {
+  cursor: pointer;
+}
+
+.spinner {
+  display: block;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

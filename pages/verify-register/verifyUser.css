@@ -44,14 +44,11 @@ body {
 }
 
 .main:hover {
-  border: 3px solid #ccc;
+  box-shadow: 0 0 0 4px #ccc;
 }
 
 .main:active {
-  border: 3.6px solid #ccc;
-  outline: solid 2px #fff;
-  outline-offset: -6px;
-  padding: 4px;
+  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
 }
 
 .main a {
