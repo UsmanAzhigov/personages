@@ -1,0 +1,52 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.register_block {
+  width: 500px;
+  background-color: #ffffff;
+  margin: 70px auto;
+  border-radius: 10px;
+  padding: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.check_email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.main {
+  width: 167px;
+  height: 40px;
+  border: 0;
+  color: #ffffff;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
+  cursor: pointer;
+}
+
+.main:hover {
+  border: 3px solid #ccc;
+}
+
+.main:active {
+  border: 3.6px solid #ccc;
+  outline: solid 2px #fff;
+  outline-offset: -6px;
+  padding: 4px;
+}
+
+.main a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #fff;
+}
