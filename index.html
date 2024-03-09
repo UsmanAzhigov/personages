@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="/register.css" />
+  <link rel="stylesheet" href="/index.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
 </head>
 
@@ -61,16 +61,15 @@
           <p>Я согласен на обработку и хранение персональных данных</p>
         </div>
       </div>
-      <button class="register_btn">
-        Зарегистрироваться
-      </button>
+      <button class="register_btn">Зарегистрироваться</button>
       <label id="password_confirm-error-label" for="" class="input-error-label none"></label>
-      <p class="forgot_block">Уже есть аккаунт <span class="forgot_btn">Войти</span></p>
+      <p class="forgot_block">Уже есть аккаунт <a href="/pages/login/login.html"><span
+            class="forgot_btn">Войти</span></a></p>
       <div id="includedContent"></div>
     </div>
   </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="/scripts/index.js"></script>
+  <script src="/js/index.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
@@ -85,7 +84,7 @@
 
     addAvatarDiv.addEventListener('click', () => {
       addAvatarInput.click();
-    })
+    });
 
     eyeIcons.forEach((eyeIcon, index) => {
       eyeIcon.addEventListener('click', () => {
@@ -126,7 +125,7 @@
       let status;
 
       fetch(`${base_url}accounts/register/`, {
-        method: "POST",
+        method: 'POST',
         body: formData,
       })
         .then((response) => {
@@ -144,7 +143,7 @@
             location.reload();
           }
         })
-        .catch((error) => console.log("Request failed", error));
+        .catch((error) => console.log('Request failed', error));
     }
 
     function handleErrors(data) {
@@ -165,8 +164,7 @@
             errorInput?.classList?.remove('error-input');
             errorInputLabel?.classList?.add('none');
             showToast('Загрузите изображение', 'error');
-          }
-          else {
+          } else {
             errorInput?.classList?.remove('error-input');
             errorInputLabel?.classList?.add('none');
           }
@@ -182,14 +180,12 @@
             conditionsBlock.style = 'margin-top: 0;';
           }
         }
-
       });
 
       if (!conditions.checked) {
         showToast('Чтобы продолжить регистрацию, необходимо согласиться с условиями', 'error');
         return;
       }
-
     }
     function showToast(message, type) {
       Toastify({
@@ -203,7 +199,6 @@
 
     registerBtn.addEventListener('click', register);
   </script>
-
 </body>
 
 </html>
