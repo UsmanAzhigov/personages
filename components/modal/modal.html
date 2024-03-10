@@ -2,11 +2,35 @@
   <div class="content">
     <div class="register_header">
       <p class="register_text">Добавить фото</p>
-      <img width="32px" height="32px" src="/icons/closeIcon.svg" />
+      <img width="32px" height="32px" src="/icons/closeIcon.svg" id="close-avatar-modal" />
     </div>
     <div class="description_register">
       <p>Выберите область для отображения</p>
     </div>
-    <img src="../../icons/userIcon.png" alt="" id="testImg">
+
+    <div class="image">
+      <img src="../../icons/userIcon.png" alt="" id="cropImage">
+      <div class="image-info">
+        <div class="image-name">
+          <img src="../../icons/icon-attachment.svg" alt="">
+          <p></p>
+        </div>
+
+        <div class="image-remove">
+          <img src="../../icons/icon-remove.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <button class="crop-image-btn">
+      Сохранить изменения
+    </button>
   </div>
 </div>
+
+<script>
+  document.querySelector('#close-avatar-modal').addEventListener('click', (e) => {document.querySelector('#avatarCropModal').innerHTML = ''})
+  document.querySelector('.modal').addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal')) document.querySelector('#avatarCropModal').innerHTML = ''
+  })
+</script>

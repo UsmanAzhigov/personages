@@ -23,7 +23,7 @@
               <img width="64px" height="64px" id="avatar" src="/icons/userIcon.png" />
               <button class="add_btn" id="add-avatar">
                 <input type="file" class="add-avatar" id="add-avatar-input" />
-                <h4>Добавить фото</h4>
+                <h4 id="add_avatar_title">Добавить фото</h4>
               </button>
           </div>
       </div>
@@ -84,21 +84,57 @@
   </script> -->
 
   <script>
-    function cropAvatar(src) {
-      const image = document.getElementById('testImg');
+    let source;
+    let fileName;
+
+    function cropAvatar(src, fileName) {
+      const avatarImage = document.querySelector('.add_avatar img');
+      const image = document.getElementById('cropImage');
       image.src = src
+      document.querySelector('.image-name p').innerHTML = fileName;
       var cropper = new Cropper(image, {
         aspectRatio: 1,
+        autoCropArea: 1,
         viewMode: 1,
+        width: 300,
         ready: function () {
           croppable = true;
         },
       });
-      document.getElementById('testImg').addEventListener('click', function() {
-        cropper.crop();
+
+      function handleClick(e) {
+        e.preventDefault();
+        $(function(){
+          $("#avatarCropModal").load("../components/modal/modal.html");
+        });
+
+        setTimeout(() => {
+          cropAvatar(source, fileName)
+        }, 200)
+
+        document.querySelector('#add-avatar-input').removeEventListener('click', handleClick);
+      }
+
+      document.querySelector('.crop-image-btn').addEventListener('click', function() {
+        var croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
+        avatarImage.src = croppedImageDataURL;
+        image.src = croppedImageDataURL;
+
+        document.querySelector('#add_avatar_title').innerHTML = 'Обновить фото'
+        document.querySelector('#avatarCropModal').innerHTML = ''
+
+        document.querySelector('#add-avatar-input').addEventListener('click', handleClick);
       });
+
+      document.querySelector('.image-remove').addEventListener('click', () => {
+        source = ''
+        fileName = ''
+        document.querySelector('.add_avatar img').src = '/icons/userIcon.png'
+        document.querySelector('#avatarCropModal').innerHTML = ''
+        document.querySelector('#add_avatar_title').innerHTML = 'Добавить фото'
+      })
     }
-    </script>
+  </script>
   <script>
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
@@ -108,7 +144,9 @@
     const avatarImage = document.querySelector('.add_avatar img');
     const addAvatarInput = document.querySelector('#add-avatar-input');
     const addAvatarDiv = document.querySelector('.add_avatar');
-
+    const addAvatarTitle = document.querySelector('#add_avatar_title');
+    let newSelectedFile;
+    
     addAvatarDiv.addEventListener('click', (e) => {
       if(!e.target.classList.contains('add-avatar')) addAvatarInput.click();
     });
@@ -132,21 +170,26 @@
         }
       });
     });
+
     addAvatarInput.addEventListener('change', () => {
       const selectedFile = addAvatarInput.files[0];
+      newSelectedFile = selectedFile
       if (selectedFile) {
-        // $(function(){
-        //   $("#avatarCropModal").load("../components/modal/modal.html");
-        // });
+        $(function(){
+          $("#avatarCropModal").load("../components/modal/modal.html");
+        });
         const reader = new FileReader();
         reader.onload = (e) => {
-          avatarImage.src = e.target.result;
-          // setTimeout(() => {
-          //   cropAvatar(e.target.result);
-          // }, 200)
+          source = e.target.result
+          fileName =  selectedFile.name.length > 15 ? selectedFile.name.substr(0, 15) + "..." : selectedFile.name;
+          setTimeout(() => {
+            cropAvatar(source, fileName);
+          }, 200)
         };
         reader.readAsDataURL(selectedFile);
       }
+
+      addAvatarInput.value = '';
     });
 
     function register() {
@@ -156,8 +199,10 @@
       const password_confirm = document.querySelector('#password_confirm').value;
       const username = document.querySelector('#username').value;
       const email = document.querySelector('#email').value;
-      const selectedFile = document.querySelector('#add-avatar-input').files[0] || null;
       const formInputs = document.querySelectorAll('.form_register input');
+      newSelectedFile.src = document.querySelector('#avatar').src
+      const selectedFile = newSelectedFile || null;
+
       const formData = new FormData();
       formData.append('image', selectedFile);
       formData.append('password', password);

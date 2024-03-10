@@ -137,7 +137,8 @@ body {
   width: 100%;
 }
 
-.register_btn {
+.register_btn,
+.crop-image-btn {
   width: 100%;
   height: 40px;
   border: 0;
@@ -148,20 +149,24 @@ body {
   cursor: pointer;
 }
 
-.register_btn:disabled {
+.register_btn:disabled,
+.crop-image-btn:disabled {
   background: linear-gradient(180deg, #d0e3ff 0%, #b3d1ff 100%);
   cursor: not-allowed;
 }
 
-.register_btn:disabled:hover {
+.register_btn:disabled:hover,
+.crop-image-btn:disabled:hover {
   box-shadow: none;
 }
 
-.register_btn:hover {
+.register_btn:hover,
+.crop-image-btn:hover {
   box-shadow: 0 0 0 4px #ccc;
 }
 
-.register_btn:active {
+.register_btn:active,
+.crop-image-btn:active {
   box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
 }
 

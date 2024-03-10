@@ -16,9 +16,30 @@
   border-radius: 10px;
 }
 
-#testImg {
-  max-width: 400px;
-  max-height: 400px;
+.cropper-container {
+  width: 404px;
+  height: 388;
+}
+
+#cropImage {
+  max-width: 350px;
+  max-height: 350px;
+}
+
+.image-name {
+  display: flex;
+  gap: 8px;
+  color: rgba(46, 140, 228, 1);
+  font-size: 14px;
+}
+
+.image-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.image-remove {
+  cursor: pointer;
 }
 
 .cropper-crop-box, .cropper-view-box {
@@ -40,4 +61,12 @@ display:none !important;
 
 .cropper-view-box {
 outline:inherit !important;
+}
+
+.crop-image-btn {
+  margin-top: 24px;
+}
+
+.cropper-wrap-box {
+  background: rgba(245, 245, 245, 1);
 }
