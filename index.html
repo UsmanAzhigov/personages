@@ -129,6 +129,7 @@
       document.querySelector('.image-remove').addEventListener('click', () => {
         source = ''
         fileName = ''
+        newSelectedFile = undefined
         document.querySelector('.add_avatar img').src = '/icons/userIcon.png'
         document.querySelector('#avatarCropModal').innerHTML = ''
         document.querySelector('#add_avatar_title').innerHTML = 'Добавить фото'
@@ -193,6 +194,12 @@
     });
 
     function register() {
+      if (newSelectedFile === undefined) {
+        showToast('Загрузите изображение', 'error');
+
+        return
+      }
+
       registerBtn.innerHTML = ''
       showSpinner();
       const password = document.querySelector('#password').value;
@@ -200,8 +207,9 @@
       const username = document.querySelector('#username').value;
       const email = document.querySelector('#email').value;
       const formInputs = document.querySelectorAll('.form_register input');
-      newSelectedFile.src = document.querySelector('#avatar').src
+      newSelectedFile.src = document.querySelector('#avatar')?.src || null
       const selectedFile = newSelectedFile || null;
+
 
       const formData = new FormData();
       formData.append('image', selectedFile);
@@ -222,6 +230,7 @@
             return response.json();
           }
           showToast('Подтвердите почту!', 'success');
+          window.location.href = '/pages/login/login.html'
           hideSpinner();
           registerBtn.innerHTML = 'Зарегистрироваться'
           return { success: true };
