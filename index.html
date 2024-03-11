@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./index.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="../components/modal/modal.css">
-  <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" rel="stylesheet">
   <title>Personages</title>
 </head>
+
 <body>
   <div class="register_block">
     <div class="register_header">
@@ -19,13 +21,13 @@
     </div>
     <div class="form_register">
       <div class="add_avatar">
-          <div id="add_avatar_space">
-              <img width="64px" height="64px" id="avatar" src="/icons/userIcon.png" />
-              <button class="add_btn" id="add-avatar">
-                <input type="file" class="add-avatar" id="add-avatar-input" />
-                <h4 id="add_avatar_title">Добавить фото</h4>
-              </button>
-          </div>
+        <div id="add_avatar_space">
+          <img width="64px" height="64px" id="avatar" src="/icons/userIcon.png" />
+          <button class="add_btn" id="add-avatar">
+            <input type="file" class="add-avatar" id="add-avatar-input" />
+            <h4 id="add_avatar_title">Добавить фото</h4>
+          </button>
+        </div>
       </div>
       <input type="file" class="add-avatar" id="add-avatar-input" />
 
@@ -68,13 +70,14 @@
       <button class="register_btn" disabled="true">
         Зарегистрироваться
       </button>
-      <p class="forgot_block">Уже есть аккаунт <span class="forgot_btn">Войти</span></p>
+      <p class="forgot_block">Уже есть аккаунт <a href="/login/login.html"><span class="forgot_btn">Войти</span></a></p>
       <div id="avatarCropModal"></div>
     </div>
   </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="/scripts/index.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
   <!-- <script> 
     // В div с id #avatarCropModal будет добавлен файл modal.html
@@ -104,7 +107,7 @@
 
       function handleClick(e) {
         e.preventDefault();
-        $(function(){
+        $(function () {
           $("#avatarCropModal").load("../components/modal/modal.html");
         });
 
@@ -115,7 +118,7 @@
         document.querySelector('#add-avatar-input').removeEventListener('click', handleClick);
       }
 
-      document.querySelector('.crop-image-btn').addEventListener('click', function() {
+      document.querySelector('.crop-image-btn').addEventListener('click', function () {
         var croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
         avatarImage.src = croppedImageDataURL;
         image.src = croppedImageDataURL;
@@ -147,9 +150,9 @@
     const addAvatarDiv = document.querySelector('.add_avatar');
     const addAvatarTitle = document.querySelector('#add_avatar_title');
     let newSelectedFile;
-    
+
     addAvatarDiv.addEventListener('click', (e) => {
-      if(!e.target.classList.contains('add-avatar')) addAvatarInput.click();
+      if (!e.target.classList.contains('add-avatar')) addAvatarInput.click();
     });
 
     conditions.addEventListener('change', () => {
@@ -176,13 +179,13 @@
       const selectedFile = addAvatarInput.files[0];
       newSelectedFile = selectedFile
       if (selectedFile) {
-        $(function(){
+        $(function () {
           $("#avatarCropModal").load("../components/modal/modal.html");
         });
         const reader = new FileReader();
         reader.onload = (e) => {
           source = e.target.result
-          fileName =  selectedFile.name.length > 15 ? selectedFile.name.substr(0, 15) + "..." : selectedFile.name;
+          fileName = selectedFile.name.length > 15 ? selectedFile.name.substr(0, 15) + "..." : selectedFile.name;
           setTimeout(() => {
             cropAvatar(source, fileName);
           }, 200)
@@ -192,13 +195,18 @@
 
       addAvatarInput.value = '';
     });
-
-    function register() {
-      if (newSelectedFile === undefined) {
-        showToast('Загрузите изображение', 'error');
-
-        return
+    function getCSRFToken() {
+      const cookies = document.cookie.split(';');
+      for (const cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'csrftoken') {
+          return value;
+        }
       }
+      return null;
+    }
+    function register() {
+      const csrfToken = getCSRFToken();
 
       registerBtn.innerHTML = ''
       showSpinner();
@@ -207,7 +215,6 @@
       const username = document.querySelector('#username').value;
       const email = document.querySelector('#email').value;
       const formInputs = document.querySelectorAll('.form_register input');
-      newSelectedFile.src = document.querySelector('#avatar')?.src || null
       const selectedFile = newSelectedFile || null;
 
 
@@ -222,6 +229,9 @@
 
       fetch(`${base_url}accounts/register/`, {
         method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken,
+        },
         body: formData,
       })
         .then((response) => {
@@ -229,8 +239,8 @@
           if (!response.ok) {
             return response.json();
           }
+
           showToast('Подтвердите почту!', 'success');
-          window.location.href = '/login/login.html'
           hideSpinner();
           registerBtn.innerHTML = 'Зарегистрироваться'
           return { success: true };
@@ -258,7 +268,7 @@
             errorInput.classList.add("error-input");
             errorInputLabel?.classList.remove('none');
             errorInputLabel.textContent = translateError(data[el][0]);
-          }else if (el === 'image') {
+          } else if (el === 'image') {
             errorInput?.classList?.remove('error-input');
             errorInputLabel?.classList?.add('none');
             showToast('Загрузите изображение', 'error');
@@ -279,16 +289,10 @@
           }
         }
       });
-
-      if (!conditions.checked) {
-        showToast('Чтобы продолжить регистрацию, необходимо согласиться с условиями', 'error');
-        return;
-      }
-    
       hideSpinner();
       registerBtn.innerHTML = 'Зарегистрироваться'
     }
-    
+
     function showToast(message, type) {
       Toastify({
         text: message,
@@ -302,4 +306,5 @@
     registerBtn.addEventListener('click', register);
   </script>
 </body>
+
 </html>
