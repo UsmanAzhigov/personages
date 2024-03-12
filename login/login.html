@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./login.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <title>Вход</title>
 </head>
 
@@ -18,9 +19,9 @@
         <div class="email_name_block">
           <div class="email">
             <label>Email</label>
-            <input id="email" type="email" placeholder="Введите ваш Email" />
+            <input id="login" type="email" placeholder="Введите ваш Email" />
           </div>
-          <label id="email-error-label" for="" class="input-error-label none"></label>
+          <label id="login-error-label" for="" class="input-error-label none"></label>
 
           <div class="password_block">
             <div class="password">
@@ -44,6 +45,8 @@
       <div id="includedContent"></div>
     </div>
   </div>
+  <script src="/scripts/token.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="../scripts/index.js"></script>
   <script>
     const eyeIcons = document.querySelectorAll('.eye_icon');
@@ -61,7 +64,7 @@
     });
 
     function login() {
-      const email = document.querySelector('#email').value;
+      const email = document.querySelector('#login').value;
       const password = document.querySelector('#password').value;
 
       const formData = new FormData();
@@ -71,7 +74,9 @@
 
       fetch(`${base_url}accounts/login/`, {
         method: 'POST',
-
+        headers: {
+          'X-CSRFToken': csrfToken,
+        },
         body: formData,
       })
         .then((response) => {
@@ -84,13 +89,14 @@
         .then((data) => {
           if (!data.success) {
             handleErrors(data);
+            showToast('Неправильный логин или пароль', 'error');
           } else {
             window.location.href = '/home/home.html';
           }
         });
     }
     function handleErrors(data) {
-      const inputs = ['password', 'email'];
+      const inputs = ['password', 'login'];
 
       inputs.forEach((el) => {
         const errorInput = document.querySelector(`#${el}`);
@@ -100,7 +106,7 @@
           if (errorInput) {
             errorInput.classList.add('error-input');
             errorInputLabel?.classList.remove('none');
-            errorInputLabel.textContent = data[el][0];
+            errorInputLabel.textContent = translateError(data[el][0])
           }
         } else {
           if (errorInput) {

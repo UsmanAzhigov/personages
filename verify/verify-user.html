@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./verifyUser.css" />
   <title>Подтверждение почты</title>
+  <script src="/scripts/token.js"></script>
   <script src="../js/index.js"></script>
 </head>
+
 <body>
   <script>
-    function getCSRFToken() {
-      const cookies = document.cookie.split(';');
-      for (const cookie of cookies) {
-        const [name, value] = cookie.trim().split('=');
-        if (name === 'csrftoken') {
-          return value;
-        }
-      }
-      return null;
-    }
-    const csrfToken = getCSRFToken();
-
     const htmlSuccessFragment = `
       <div class="register_block">
         <div class="register_header">
@@ -35,7 +26,7 @@
         </div>
       </div>
     `
-    
+
     const htmlErrorFragment = `
       <div class="register_block">
         <div class="register_header">
@@ -65,23 +56,24 @@
     formData.append('signature', signature);
 
     fetch(`${base_url}accounts/verify-registration/`, {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': csrfToken,
-        },
-        body: formData,
-      })
-        .then((response) => {
-          status = response.ok;
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrfToken,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        status = response.ok;
 
-          console.log(response)
-          if (!response.ok) {
-            document.querySelector('body').innerHTML = htmlErrorFragment
-          }else {
-            document.querySelector('body').innerHTML = htmlSuccessFragment
-          }
-          
-        })
+        console.log(response)
+        if (!response.ok) {
+          document.querySelector('body').innerHTML = htmlErrorFragment
+        } else {
+          document.querySelector('body').innerHTML = htmlSuccessFragment
+        }
+
+      })
   </script>
 </body>
+
 </html>

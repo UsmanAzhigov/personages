@@ -74,6 +74,7 @@
       <div id="avatarCropModal"></div>
     </div>
   </div>
+  <script src="/scripts/token.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="/scripts/index.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -193,18 +194,8 @@
 
       addAvatarInput.value = '';
     });
-    function getCSRFToken() {
-      const cookies = document.cookie.split(';');
-      for (const cookie of cookies) {
-        const [name, value] = cookie.trim().split('=');
-        if (name === 'csrftoken') {
-          return value;
-        }
-      }
-      return null;
-    }
+
     function register() {
-      const csrfToken = getCSRFToken();
 
       registerBtn.innerHTML = ''
       showSpinner();
