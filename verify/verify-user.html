@@ -5,21 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./verifyUser.css" />
   <title>Подтверждение почты</title>
+  <script src="../js/index.js"></script>
 </head>
 <body>
-  <body>
-    <div class="register_block">
-      <div class="register_header">
-        <p class="register_text">Подтверждение аккаунта</p>
+  <script>
+    const htmlSuccessFragment = `
+      <div class="register_block">
+        <div class="register_header">
+          <p class="register_text">Подтверждение аккаунта</p>
+        </div>
+        <div class="check_email">
+          <img width="64px" height="64px" src="/icons/email-verify.png" />
+          <p>Аккаунт успешно подтвержден</p>
+          <button class="main">
+            <a href="/login/login.html">Перейти на главную</a>
+          </button>
+        </div>
       </div>
-      <div class="check_email">
-        <img width="64px" height="64px" src="https://cdn-icons-png.flaticon.com/128/1161/1161751.png" />
-        <p>Аккаунт успешно подтвержден</p>
-        <button class="main">
-          <a href="/login/login.html">Перейти на главную</a>
-        </button>
+    `
+    
+    const htmlErrorFragment = `
+      <div class="register_block">
+        <div class="register_header">
+          <p class="register_text">Подтверждение аккаунта</p>
+        </div>
+        <div class="check_email">
+          <img width="64px" height="64px" src="/icons/email-error.svg" />
+          <p style="margin: 0;">Произошла ошибка</p>
+          <button class="main">
+            <a href="/login/login.html">Перейти на главную</a>
+          </button>
+        </div>
       </div>
-    </div>
-  </body>
+    `
+
+    // Используем URLSearchParams для извлечения параметров из URL
+    const params = new URLSearchParams(window.location.search);
+
+    // Извлекаем значения параметров
+    const user_id = params.get("user_id");
+    const timestamp = params.get("timestamp");
+    const signature = params.get("signature");
+
+    const formData = new FormData();
+    formData.append('user_id', user_id);
+    formData.append('timestamp', timestamp);
+    formData.append('signature', signature);
+
+    fetch(`${base_url}accounts/verify-registration/`, {
+        method: 'POST',
+
+        body: formData,
+      })
+        .then((response) => {
+          status = response.ok;
+
+          console.log(response)
+          if (!response.ok) {
+            document.querySelector('body').innerHTML = htmlErrorFragment
+          }else {
+            document.querySelector('body').innerHTML = htmlSuccessFragment
+          }
+          
+        })
+  </script>
 </body>
 </html>

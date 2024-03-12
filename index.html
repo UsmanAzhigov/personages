@@ -186,9 +186,8 @@
         reader.onload = (e) => {
           source = e.target.result
           fileName = selectedFile.name.length > 15 ? selectedFile.name.substr(0, 15) + "..." : selectedFile.name;
-          setTimeout(() => {
-            cropAvatar(source, fileName);
-          }, 200)
+
+          // cropAvatar(source, fileName);
         };
         reader.readAsDataURL(selectedFile);
       }
