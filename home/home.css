@@ -45,14 +45,18 @@ body {
   gap: 40px;
 }
 
-.content {
-  height: 100%;
+.main_block {
   background-color: #fff;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 24px;
+  height: 100%;
+}
+
+.content {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  margin: 24px;
-  border-radius: 10px;
+  padding-top: 103px;
 }
 
 .title {
