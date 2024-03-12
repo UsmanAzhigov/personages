@@ -213,11 +213,10 @@
       const username = document.querySelector('#username').value;
       const email = document.querySelector('#email').value;
       const formInputs = document.querySelectorAll('.form_register input');
-      const selectedFile = newSelectedFile || null;
 
 
       const formData = new FormData();
-      formData.append('image', selectedFile);
+      selectedFile && formData.append('image', selectedFile);
       formData.append('password', password);
       formData.append('password_confirm', password_confirm);
       formData.append('username', username);

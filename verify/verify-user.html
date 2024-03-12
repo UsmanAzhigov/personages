@@ -9,6 +9,18 @@
 </head>
 <body>
   <script>
+    function getCSRFToken() {
+      const cookies = document.cookie.split(';');
+      for (const cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'csrftoken') {
+          return value;
+        }
+      }
+      return null;
+    }
+    const csrfToken = getCSRFToken();
+
     const htmlSuccessFragment = `
       <div class="register_block">
         <div class="register_header">
@@ -54,7 +66,9 @@
 
     fetch(`${base_url}accounts/verify-registration/`, {
         method: 'POST',
-
+        headers: {
+          'X-CSRFToken': csrfToken,
+        },
         body: formData,
       })
         .then((response) => {
