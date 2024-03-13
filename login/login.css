@@ -113,7 +113,7 @@ body {
   position: relative;
 }
 
-.register_btn {
+.login_btn {
   width: 100%;
   height: 40px;
   border: 0;
@@ -122,17 +122,15 @@ body {
   padding: 8px 150px;
   background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
-.register_btn:hover {
-  border: 4px solid #ccc;
+.login_btn:hover {
+  box-shadow: 0 0 0 4px #ccc;
 }
 
-.register_btn:active {
-  border: 4px solid #ccc;
-  outline: solid 2px #fff;
-  outline-offset: -6px;
-  padding: 4px;
+.login_btn:active {
+  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
 }
 
 .forgot_block {

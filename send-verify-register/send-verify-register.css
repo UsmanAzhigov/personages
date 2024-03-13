@@ -2,7 +2,7 @@ body {
   background-color: #f5f5f5;
   font-family: 'DM Sans', sans-serif;
 }
-.reset_block {
+.verify_block {
   width: 500px;
   background-color: #ffffff;
   margin: 70px auto;
@@ -10,21 +10,21 @@ body {
   padding: 24px;
 }
 
-.reset_text {
+.verify_text {
   width: 414px;
   line-height: 28px;
   font-size: 20px;
   font-weight: 400;
 }
 
-.reset_header {
+.verify_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 0 24px 0;
 }
 
-.btn_reset {
+.btn_verify {
   display: flex;
   justify-content: space-between;
   align-items: center;

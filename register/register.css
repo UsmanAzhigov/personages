@@ -1,0 +1,251 @@
+body {
+  background-color: #f5f5f5;
+  font-family: 'DM Sans', sans-serif;
+}
+.register_block {
+  width: 500px;
+  background-color: #ffffff;
+  margin: 70px auto;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.register_text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.register_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register_header img {
+  cursor: pointer;
+}
+
+.description_register {
+  width: 305px;
+  color: #999ca0;
+  font-weight: 400;
+  line-height: 16px;
+}
+.description_register p {
+  font-size: 12px;
+}
+
+#add_avatar_space {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.add_avatar {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  color: #595d62;
+  width: 144px;
+  height: 40px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.add_btn:hover {
+  background-color: #dddddd;
+}
+
+.register_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.register_inputs input {
+  border: 1px solid #e2e2e2;
+}
+
+.email_name_block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.email_name_block input {
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.password_block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.password_block input {
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.conditions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: -12px;
+}
+
+.conditions p {
+  font-size: 12px;
+  color: #999ca0;
+}
+
+.conditions input {
+  cursor: pointer;
+}
+
+.email {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.password_repeat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.register_btn,
+.crop-image-btn {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 8px 150px;
+  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.register_btn:disabled,
+.crop-image-btn:disabled {
+  background: linear-gradient(180deg, #d0e3ff 0%, #b3d1ff 100%);
+  cursor: not-allowed;
+}
+
+.register_btn:disabled:hover,
+.crop-image-btn:disabled:hover {
+  box-shadow: none;
+}
+
+.register_btn:hover,
+.crop-image-btn:hover {
+  box-shadow: 0 0 0 4px #ccc;
+}
+
+.register_btn:active,
+.crop-image-btn:active {
+  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
+}
+
+.forgot_btn {
+  color: #2d81fe;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.forgot_btn:hover {
+  text-decoration: underline;
+}
+
+.forgot_block {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input_password {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.eye_icon {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+}
+
+.add-avatar {
+  position: absolute;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.avatar {
+  position: relative;
+}
+
+.add_avatar img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+div > div > .error-input {
+  border: 1px solid rgba(255, 78, 100, 1);
+}
+div > div > .error-input:focus {
+  outline: none;
+}
+.input-error-label {
+  font-size: 12px;
+  color: rgba(130, 130, 130, 1);
+  position: absolute;
+  top: 68px;
+  left: 12px;
+}
