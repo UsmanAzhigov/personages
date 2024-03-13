@@ -1,0 +1,67 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная</title>
+  <link rel="stylesheet" href="./home.css" />
+</head>
+
+<body>
+  <div class="header">
+    <div class="menu_block">
+      <img width="86px" height="86px" src="/icons/Logo.png" />
+      <div class="menu">
+        <p>Персонажи</p>
+        <p>О нас</p>
+        <p>Справка</p>
+        <p>Магазин</p>
+        <p>Дополнительно</p>
+      </div>
+    </div>
+    <div class="profile">
+      <img width="32px" height="32px" src="/icons/userIcon.png" />
+      <h5>Иван Иванов</h5>
+      <img class="logOut" src="/icons/logOut.svg" />
+    </div>
+    <div class="line"></div>
+  </div>
+  <div class="home_block">
+    <div class="list_personages">
+      <li class="personage">
+      </li>
+      <li class="personage">
+      </li>
+      <li class="personage">
+      </li>
+      <li class="personage">
+      </li>
+      <li class="personage">
+      </li>
+      <img width="32px" height="32px" src="/icons/addPersonage.png" />
+    </div>
+    <div class="main_block">
+
+    </div>
+  </div>
+  <script>
+    const register = document.querySelector('.register')
+    const login = document.querySelector('.login')
+    const personage = document.querySelectorAll('.personage');
+    const listPersonages = document.querySelector('.list_personages');
+    const personagesList = ['Soldier 76', 'Tracer', 'Roadhog', 'Genji', 'Widowmaker'];
+
+    personagesList.forEach((personageName, index) => {
+      personage[index].innerHTML = personageName;
+    })
+
+    login.addEventListener('click', () => {
+      window.location.href = '/login/login.html';
+    })
+    register.addEventListener('click', () => {
+      window.location.href = '/register/register.html';
+    })
+  </script>
+</body>
+
+</html>
