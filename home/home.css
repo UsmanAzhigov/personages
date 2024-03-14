@@ -71,8 +71,8 @@ body {
 
 .home_block {
   display: flex;
-  justify-content: center;
-  border-radius: 10px;
+  flex-wrap: nowrap;
+  height: 100%;
 }
 
 .menu_block {
@@ -80,11 +80,174 @@ body {
   gap: 40px;
 }
 
-.main_block {
+.change_block {
   width: 100%;
-  height: 64px;
   background-color: #fff;
   border-radius: 10px;
-  background-color: #fff;
   margin: 24px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 24px;
+  align-items: center;
+}
+
+.main_block {
+  width: 80.2%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.personage_block {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 24px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 24px;
+}
+
+.change_personage {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  color: #fff;
+  border: 0;
+  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
+  font-size: 14px;
+  font-weight: 700;
+  width: 296px;
+  cursor: pointer;
+  margin: 12px 0 12px 24px;
+  transition: all 0.2s ease-in-out;
+}
+
+.change_personage:hover {
+  box-shadow: 0 0 0 4px #ccc;
+}
+
+.change_personage:active {
+  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
+}
+
+.personage_image {
+  position: relative;
+  display: flex;
+  margin: 24px;
+  width: 423px;
+  height: 566px;
+  background: linear-gradient(180deg, #e1e1e1 27.78%, #6c6c6c 100%);
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.null_sector {
+  position: absolute;
+  margin-right: 300px;
+  margin-bottom: 503px;
+  color: white;
+  background-color: #2f2f2f;
+  padding: 10px;
+  border: 3px solid #2f2f2f;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(90deg, #dadbdd -0.38%, #8a8d92 99.62%);
+}
+
+.attainment {
+  position: absolute;
+  margin-left: 330px;
+  margin-top: 503px;
+}
+
+.name_personage {
+  font-size: 64px;
+  font-weight: 400;
+  margin-top: 24px;
+}
+
+.activity {
+  margin-bottom: 24px;
+}
+
+.activity label {
+  font-size: 12px;
+  color: #828282;
+}
+
+.place label {
+  font-size: 12px;
+  color: #828282;
+}
+
+.place {
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 24px;
+}
+
+.description {
+  padding-top: 32px;
+  max-width: 456px;
+}
+
+.details {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 24px;
+  height: 100%;
+}
+
+.details_header {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px 10px 0 0;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding-left: 24px;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.date_details {
+  display: flex;
+  gap: 24px;
+}
+
+.date {
+  color: #595d62;
+  border-left: 2px solid #eaeaea;
+  border-right: 2px solid #eaeaea;
+  padding: 0 6px 0 6px;
+}
+
+.details_header img {
+  cursor: pointer;
+  padding-right: 24px;
+}
+
+.details_description {
+  padding: 24px;
+}
+
+.details_img {
+  display: flex;
+  margin-left: 281px;
+  flex-direction: column;
+}
+
+.img_description {
+  padding-top: 24px;
+  font-size: 14px;
+}
+
+.img_description p {
+  color: #595d62;
+}
+
+.add_details {
+  margin: 0 auto;
+  padding-bottom: 24px;
+  cursor: pointer;
 }

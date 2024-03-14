@@ -22,39 +22,106 @@
     <div class="profile">
       <img width="32px" height="32px" src="/icons/userIcon.png" />
       <h5>Иван Иванов</h5>
-      <img class="logOut" src="/icons/logOut.svg" />
+      <a href="/login/login.html">
+        <img class="logOut" src="/icons/logOut.svg" />
+      </a>
     </div>
     <div class="line"></div>
   </div>
   <div class="home_block">
     <div class="list_personages">
-      <li class="personage">
-      </li>
-      <li class="personage">
-      </li>
-      <li class="personage">
-      </li>
-      <li class="personage">
-      </li>
-      <li class="personage">
-      </li>
-      <img width="32px" height="32px" src="/icons/addPersonage.png" />
+      <template id="personage-template">
+        <li class="personage"></li>
+      </template>
     </div>
     <div class="main_block">
-
+      <div class="change_block">
+        <button class="change_personage">
+          <img width="24px" height="24px" src="/icons/changePersonage.svg" />
+          <p>
+            Войти в режим редактирования
+          </p>
+        </button>
+      </div>
+      <div class="personage_block">
+        <div class="personage_image">
+          <div class="null_sector">
+            Null Sector
+          </div>
+          <img width="550px" height="550px" src="/icons/personage.png" />
+          <img class="attainment" width="120px" height="120px" src="/icons/attainment.png" />
+        </div>
+        <div class="personage_info">
+          <p class="name_personage">
+            Rammatra
+          </p>
+          <div class="activity">
+            <label>
+              Период активности
+            </label>
+            <p>27 feb 2020 — 14 nov 2024</p>
+          </div>
+          <div class="place">
+            <label>
+              Место
+            </label>
+            <p>Shambali Monastery, Nepal (formerly)</p>
+          </div>
+          <p class="description">
+            The brutal leader of Null Sector will stop at nothing to see his vision for the world realized. Ramattra was
+            never designed to co-exist with humanity. The Ravager omnic series was
+          </p>
+        </div>
+      </div>
+      <div class="details">
+        <div class="details_header">
+          <div class="date_details">
+            <p>Origin</p>
+            <p class="date">28 Feb. 2024 - 28 Feb. 2024</p>
+          </div>
+          <img width="14px" height="14px" src="/icons/arrowTop.svg" />
+        </div>
+        <p class="details_description">
+          After the Crisis, Ramattra heard rumors of a mysterious omnic named Aurora—the first of their kind. Intrigued
+          and seeking direction, Ramattra embarked on a pilgrimage to the Shambali Monastery in Nepal, a place where
+          Aurora was said to have resided. Ramattra survived the harsh journey and was welcomed by Tekhartha Mondatta.
+          Choosing to become a monk of the Shambali, Ramattra studied under Mondatta for years, learning about the
+          Iris—the mysterious phenomenon at the heart of the monks’ teachings—and the importance of coexisting with
+          humans.
+          Years later, Ramattra began venturing outside the temple seeking enlightenment. It was on one of his journeys
+          that he met an omnic named Zenyatta whom he guided to Shambali, in hopes the omnic would find purpose there as
+          he did. However, as time wore on, Ramattra failed to see true progress in the monks’ mission of peace. The
+          Shambali urged Ramattra to be patient, but all around him, Ramattra saw his people dying . . . and no one
+          taking action.
+        </p>
+        <div class="details_img">
+          <img width="680px" height="360px" src="/icons/detailsImage.png" />
+          <div class="img_description">
+            <label>Shambali Monastery, Nepal</label>
+            <p>28 Feb. 2024</p>
+          </div>
+        </div>
+      </div>
+      <img class="add_details" width="36px" height="36px" src="/icons/addDetails.svg" />
     </div>
   </div>
   <script>
     const register = document.querySelector('.register')
     const login = document.querySelector('.login')
-    const personage = document.querySelectorAll('.personage');
-    const listPersonages = document.querySelector('.list_personages');
     const personagesList = ['Soldier 76', 'Tracer', 'Roadhog', 'Genji', 'Widowmaker'];
+    const listPersonages = document.querySelector('.list_personages');
+    const personageTemplate = document.getElementById('personage-template');
 
-    personagesList.forEach((personageName, index) => {
-      personage[index].innerHTML = personageName;
-    })
+    personagesList.forEach(personageName => {
+      const clone = personageTemplate.content.cloneNode(true);
+      const personageElement = clone.querySelector('.personage');
+      personageElement.textContent = personageName;
+      listPersonages.appendChild(clone);
+    });
+    const addPersonageImg = document.createElement('img');
+    addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
 
+    listPersonages.appendChild(addPersonageImg);
     login.addEventListener('click', () => {
       window.location.href = '/login/login.html';
     })

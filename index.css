@@ -49,6 +49,10 @@ body {
   gap: 40px;
 }
 
+.menu p {
+  cursor: pointer;
+}
+
 .main_block {
   background-color: #fff;
   border-radius: 10px;
