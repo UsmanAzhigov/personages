@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./login.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/global.css" />
   <title>Вход</title>
 </head>
 
@@ -22,7 +23,6 @@
             <input id="login" type="email" placeholder="Введите ваш Email" />
           </div>
           <label id="login-error-label" for="" class="input-error-label none"></label>
-
           <div class="password_block">
             <div class="password">
               <label>Пароль</label>
@@ -30,11 +30,12 @@
                 <input id="password" type="password" placeholder="Ваш пароль" />
                 <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
               </div>
-              <label id="password-error-label" for="" class="input-error-label none"></label>
             </div>
           </div>
         </div>
-        <a href="../password-reset/password-reset.html"><span class="forgot_password">Забыл пароль?</span></a>
+        <a href="../password-reset/password-reset.html"> <label id="password-error-label" for=""
+            class="input-error-label none"></label>
+          <span class="forgot_password">Забыл пароль?</span></a>
       </div>
       <button class="login_btn" onclick="login()">Войти</button>
       <p class="forgot_block">У вас еще нет аккаунта?
@@ -102,12 +103,13 @@
       inputs.forEach((el) => {
         const errorInput = document.querySelector(`#${el}`);
         const errorInputLabel = document.querySelector(`#${el}-error-label`);
-
+        const forgotPassword = document.querySelector('.forgot_password');
         if (data[el]) {
           if (errorInput) {
             errorInput.classList.add('error-input');
             errorInputLabel?.classList.remove('none');
             errorInputLabel.textContent = translateError(data[el][0])
+            forgotPassword.textContent = 'Восстановить'
           }
         } else {
           if (errorInput) {
