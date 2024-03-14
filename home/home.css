@@ -252,14 +252,6 @@ body {
   cursor: pointer;
 }
 
-.details_close {
-  width: 100%;
-  background-color: #fff;
-  border-radius: 10px;
-  margin: 24px;
-  height: 100%;
-}
-
 .details_header_close {
   display: flex;
   justify-content: space-between;
