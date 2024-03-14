@@ -48,32 +48,59 @@
       <h1>
         Новости
       </h1>
-      <div class="news_block">
-        <div>
-          <div class="news_content">
-            <h4>
-              Shambali Monastery, Nepal
-            </h4>
-            <p>
-              The brutal leader of Null Sector will stop at nothing to see his vision for the world realized. Ramattra
-              was
-              never designed to co-exist with humanity. The Ravager omnic series was created early in the Omnic Crisis,
-              part
-              of a commander class of omnics whose role was to guide units into combat and adapt various strategic
-              protocols
-              to battlefield condition changes in real time.
-            </p>
-          </div>
-          <p>24.02.2022</p>
-        </div>
-        <img width="468px" height="294px" src="/icons/Image.png" />
-      </div>
     </div>
   </div>
+  <script src="/scripts/index.js"></script>
   <script>
     const register = document.querySelector('.register')
     const login = document.querySelector('.login')
-
+    const newsTemplate = `
+<div class="news_block">
+  <div class="new">
+    <div class="news_content">
+      <h4 class="title_new"></h4>
+      <p class="description_new"></p>
+    </div>
+    <div class="date_new">
+      <p></p>
+      <p></p>
+    </div>
+  </div>
+  <img class="image_new" width="468px" height="294px" />
+</div>
+`;
+    fetch(`${base_url}news/?limit=5&offset=0`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json()).then(data => {
+      const newsContainer = document.querySelector('.news');
+      data.results.forEach(newsItem => {
+        const dateTime = new Date(newsItem.created_at);
+        const day = dateTime.getDate();
+        const month = dateTime.toLocaleString('default', { month: 'short' });
+        const year = dateTime.getFullYear();
+        const formattedDate = `${day} ${month}. ${year}`;
+        const timeWithoutSeconds = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const newsBlock = document.createElement('div');
+        newsBlock.innerHTML = newsTemplate;
+        const titleElement = newsBlock.querySelector('.title_new');
+        titleElement.textContent = newsItem.title;
+        const descriptionElement = newsBlock.querySelector('.description_new');
+        descriptionElement.textContent = newsItem.content;
+        const dateElements = newsBlock.querySelectorAll('.date_new p');
+        dateElements[0].textContent = timeWithoutSeconds;
+        dateElements[1].textContent = formattedDate;
+        const imageElement = newsBlock.querySelector('.image_new');
+        imageElement.src = newsItem.image;
+        newsBlock.style.display = 'flex';
+        newsBlock.style.paddingTop = '24px';
+        newsBlock.style.width = '100%';
+        newsBlock.style.justifyContent = 'space-between';
+        newsContainer.appendChild(newsBlock);
+      });
+    })
     login.addEventListener('click', () => {
       window.location.href = '/login/login.html';
     })

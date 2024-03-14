@@ -3,10 +3,14 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 .register_block {
-  width: 500px;
+  width: 462px;
+  height: 340px;
   background-color: #ffffff;
   margin: 70px auto;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 24px;
 }
 
@@ -17,8 +21,14 @@ body {
 
 .register_header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+}
+
+.register_header p {
+  font-size: 20px;
+  font-weight: 400;
+  padding-bottom: 48px;
 }
 
 .register_header img {
@@ -41,6 +51,7 @@ body {
   border-radius: 8px;
   background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .main:hover {

@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="./verifyUser.css" />
   <title>Подтверждение почты</title>
   <script src="/scripts/token.js"></script>
-  <script src="../js/index.js"></script>
+  <script src="/scripts/index.js"></script>
 </head>
 
 <body>
@@ -14,11 +14,10 @@
     const htmlSuccessFragment = `
       <div class="register_block">
         <div class="register_header">
-          <p class="register_text">Подтверждение аккаунта</p>
+          <p>Аккаунт успешно подтвержден</p>
         </div>
         <div class="check_email">
-          <img width="64px" height="64px" src="/icons/email-verify.png" />
-          <p>Аккаунт успешно подтвержден</p>
+          <img width="128px" height="128px" src="/icons/email-verify.png" />
           <button class="main">
             <a href="/login/login.html">Перейти на главную</a>
           </button>
@@ -29,11 +28,10 @@
     const htmlErrorFragment = `
       <div class="register_block">
         <div class="register_header">
-          <p class="register_text">Подтверждение аккаунта</p>
+          <p style="margin: 0;">Произошла ошибка</p>
         </div>
         <div class="check_email">
-          <img width="64px" height="64px" src="/icons/email-error.svg" />
-          <p style="margin: 0;">Произошла ошибка</p>
+          <img width="128px" height="128px" src="/icons/email-error.svg" />
           <button class="main">
             <a href="/login/login.html">Перейти на главную</a>
           </button>
