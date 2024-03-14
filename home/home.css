@@ -251,3 +251,26 @@ body {
   padding-bottom: 24px;
   cursor: pointer;
 }
+
+.details_close {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 24px;
+  height: 100%;
+}
+
+.details_header_close {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding-left: 24px;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.details_header_close img {
+  cursor: pointer;
+  padding-right: 24px;
+}
