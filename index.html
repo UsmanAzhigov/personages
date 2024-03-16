@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./index.css" />
+  <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
 </head>
 
 <body>
   <div class="header">
     <div class="menu_block">
-      <img width="86px" height="86px" src="/icons/Logo.png" />
+      <img width="86px" height="86px" src="/icons/Logo.svg" />
       <div class="menu">
         <p>Персонажи</p>
         <p>О нас</p>
@@ -79,7 +80,7 @@
       data.results.forEach(newsItem => {
         const dateTime = new Date(newsItem.created_at);
         const day = dateTime.getDate();
-        const month = dateTime.toLocaleString('default', { month: 'short' });
+        const month = dateTime.toLocaleString('ru-RU', { month: 'short' });
         const year = dateTime.getFullYear();
         const formattedDate = `${day} ${month}. ${year}`;
         const timeWithoutSeconds = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -94,12 +95,16 @@
         dateElements[1].textContent = formattedDate;
         const imageElement = newsBlock.querySelector('.image_new');
         imageElement.src = newsItem.image;
+        if (newsItem.image === null) {
+          imageElement.src = "/icons/Image.png";
+        }
         newsBlock.style.display = 'flex';
         newsBlock.style.paddingTop = '24px';
         newsBlock.style.width = '100%';
         newsBlock.style.justifyContent = 'space-between';
         newsContainer.appendChild(newsBlock);
       });
+
     })
     login.addEventListener('click', () => {
       window.location.href = '/login/login.html';

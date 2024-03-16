@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Главная</title>
   <link rel="stylesheet" href="./home.css" />
+  <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
 </head>
 
 <body>
   <div class="header">
     <div class="menu_block">
-      <img width="86px" height="86px" src="/icons/Logo.png" />
+      <img width="86px" height="86px" src="/icons/Logo.svg" />
       <div class="menu">
         <p>Персонажи</p>
         <p>О нас</p>
@@ -79,26 +80,31 @@
             <p>Origin</p>
             <p class="date">28 Feb. 2024 - 28 Feb. 2024</p>
           </div>
-          <img width="14px" height="14px" src="/icons/arrowTop.svg" />
+          <img class="arrow" width="14px" height="14px" src="/icons/arrowTop.svg" />
         </div>
-        <p class="details_description">
-          After the Crisis, Ramattra heard rumors of a mysterious omnic named Aurora—the first of their kind. Intrigued
-          and seeking direction, Ramattra embarked on a pilgrimage to the Shambali Monastery in Nepal, a place where
-          Aurora was said to have resided. Ramattra survived the harsh journey and was welcomed by Tekhartha Mondatta.
-          Choosing to become a monk of the Shambali, Ramattra studied under Mondatta for years, learning about the
-          Iris—the mysterious phenomenon at the heart of the monks’ teachings—and the importance of coexisting with
-          humans.
-          Years later, Ramattra began venturing outside the temple seeking enlightenment. It was on one of his journeys
-          that he met an omnic named Zenyatta whom he guided to Shambali, in hopes the omnic would find purpose there as
-          he did. However, as time wore on, Ramattra failed to see true progress in the monks’ mission of peace. The
-          Shambali urged Ramattra to be patient, but all around him, Ramattra saw his people dying . . . and no one
-          taking action.
-        </p>
-        <div class="details_img">
-          <img width="680px" height="360px" src="/icons/detailsImage.png" />
-          <div class="img_description">
-            <label>Shambali Monastery, Nepal</label>
-            <p>28 Feb. 2024</p>
+        <div class="details_content">
+          <p class="details_description">
+            After the Crisis, Ramattra heard rumors of a mysterious omnic named Aurora—the first of their kind.
+            Intrigued
+            and seeking direction, Ramattra embarked on a pilgrimage to the Shambali Monastery in Nepal, a place where
+            Aurora was said to have resided. Ramattra survived the harsh journey and was welcomed by Tekhartha Mondatta.
+            Choosing to become a monk of the Shambali, Ramattra studied under Mondatta for years, learning about the
+            Iris—the mysterious phenomenon at the heart of the monks’ teachings—and the importance of coexisting with
+            humans.
+            Years later, Ramattra began venturing outside the temple seeking enlightenment. It was on one of his
+            journeys
+            that he met an omnic named Zenyatta whom he guided to Shambali, in hopes the omnic would find purpose there
+            as
+            he did. However, as time wore on, Ramattra failed to see true progress in the monks’ mission of peace. The
+            Shambali urged Ramattra to be patient, but all around him, Ramattra saw his people dying . . . and no one
+            taking action.
+          </p>
+          <div class="details_img">
+            <img width="680px" height="360px" src="/icons/detailsImage.png" />
+            <div class="img_description">
+              <label>Shambali Monastery, Nepal</label>
+              <p>28 Feb. 2024</p>
+            </div>
           </div>
         </div>
       </div>
@@ -120,6 +126,20 @@
     const personagesList = ['Soldier 76', 'Tracer', 'Roadhog', 'Genji', 'Widowmaker'];
     const listPersonages = document.querySelector('.list_personages');
     const personageTemplate = document.getElementById('personage-template');
+    const arrow = document.querySelector('.arrow');
+
+    // Получаем ссылку на блок деталей
+    const details = document.querySelector('.details_content');
+
+    // Добавляем обработчик события клика на стрелку
+    arrow.addEventListener('click', () => {
+      if (details.classList.contains('closed')) {
+        details.classList.remove('closed');
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        details.classList.add('closed');
+      }
+    });
 
     personagesList.forEach(personageName => {
       const clone = personageTemplate.content.cloneNode(true);
@@ -130,10 +150,20 @@
     const addPersonageImg = document.createElement('img');
     addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
 
+
+
     listPersonages.appendChild(addPersonageImg);
-    login.addEventListener('click', () => {
-      window.location.href = '/login/login.html';
-    })
+    function logout() {
+      fetch(`${base_url}accounts/logout/`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken,
+        },
+      }).then(() => {
+        window.location.href = '/';
+      });
+    }
+    login.addEventListener('click', logout)
     register.addEventListener('click', () => {
       window.location.href = '/register/register.html';
     })
