@@ -14,18 +14,18 @@
       <img width="86px" height="86px" src="/icons/Logo.svg" />
       <div class="menu">
         <p>Персонажи</p>
-        <p>О нас</p>
+        <p class="news">О нас</p>
         <p>Справка</p>
         <p>Магазин</p>
         <p>Дополнительно</p>
       </div>
     </div>
     <div class="profile">
-      <img width="32px" height="32px" src="/icons/userIcon.png" />
-      <h5>Иван Иванов</h5>
-      <a href="/login/login.html">
-        <img class="logOut" src="/icons/logOut.svg" />
-      </a>
+      <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
+      <h5 class="name_user">Иван Иванов</h5>
+      <button class="logOut">
+        <img src="/icons/logOut.svg" />
+      </button>
     </div>
     <div class="line"></div>
   </div>
@@ -119,19 +119,21 @@
       </div>
       <img class="add_details" width="36px" height="36px" src="/icons/addDetails.svg" />
     </div>
+
   </div>
+  <script src="/scripts/index.js"></script>
+  <script src="/scripts/token.js"></script>
   <script>
-    const register = document.querySelector('.register')
-    const login = document.querySelector('.login')
+    const logOut = document.querySelector('.logOut');
     const personagesList = ['Soldier 76', 'Tracer', 'Roadhog', 'Genji', 'Widowmaker'];
     const listPersonages = document.querySelector('.list_personages');
     const personageTemplate = document.getElementById('personage-template');
     const arrow = document.querySelector('.arrow');
-
-    // Получаем ссылку на блок деталей
     const details = document.querySelector('.details_content');
-
-    // Добавляем обработчик события клика на стрелку
+    const news = document.querySelector('.news');
+    news.addEventListener('click', () => {
+      window.location.href = '/';
+    })
     arrow.addEventListener('click', () => {
       if (details.classList.contains('closed')) {
         details.classList.remove('closed');
@@ -139,6 +141,20 @@
       } else {
         details.classList.add('closed');
       }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const nameUser = document.querySelector('.name_user');
+      if (localStorage.getItem('login') && localStorage.getItem('image')) {
+        const login = localStorage.getItem('login');
+        const image = localStorage.getItem('image');
+        const avatar = document.querySelector('.avatar_user');
+        avatar.src = image;
+        nameUser.textContent = login;
+        localStorage.setItem('email', login);
+        localStorage.setItem('avatar', image);
+      }
+
     });
 
     personagesList.forEach(personageName => {
@@ -149,9 +165,6 @@
     });
     const addPersonageImg = document.createElement('img');
     addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
-
-
-
     listPersonages.appendChild(addPersonageImg);
     function logout() {
       fetch(`${base_url}accounts/logout/`, {
@@ -159,14 +172,11 @@
         headers: {
           'X-CSRFToken': csrfToken,
         },
-      }).then(() => {
-        window.location.href = '/';
-      });
+      }).then(() => window.location.href = '/').then(() => showToast('Вы вышли из аккаунта', 'success'));
     }
-    login.addEventListener('click', logout)
-    register.addEventListener('click', () => {
-      window.location.href = '/register/register.html';
-    })
+    logOut.addEventListener('click', () => {
+      logout();
+    });
   </script>
 </body>
 

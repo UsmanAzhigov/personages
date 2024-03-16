@@ -38,7 +38,7 @@
             class="input-error-label none"></label>
           <span class="forgot_password">Забыл пароль?</span></a>
       </div>
-      <button class="login_btn" onclick="login()">Войти</button>
+      <button class="login_btn">Войти</button>
       <p class="forgot_block">У вас еще нет аккаунта?
         <a href="/register/register.html">
           <span class="forgot_btn">Зарегистрироваться</span>
@@ -48,11 +48,13 @@
     </div>
   </div>
   <script src="/scripts/token.js"></script>
+  <script src="../scripts/login.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="../scripts/index.js"></script>
   <script>
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
+    const loginBtn = document.querySelector('.login_btn');
     eyeIcons.forEach((eyeIcon, index) => {
       eyeIcon.addEventListener('click', () => {
         if (inputPasswords[index].type === 'password') {
@@ -68,12 +70,12 @@
     function login() {
       const email = document.querySelector('#login').value;
       const password = document.querySelector('#password').value;
+      let status;
 
       const formData = new FormData();
       formData.append('login', email);
       formData.append('password', password);
-      let status;
-
+      const isLoggedIn = true;
       fetch(`${base_url}accounts/login/`, {
         method: 'POST',
         headers: {
@@ -95,6 +97,8 @@
             showToast('Неправильный логин или пароль', 'error');
           } else {
             window.location.href = '/home/home.html';
+            localStorage.setItem('login', email);
+            localStorage.setItem('isLoggedIn', isLoggedIn);
           }
         });
     }
@@ -129,6 +133,10 @@
         backgroundColor: type === 'success' ? '#4CAF50' : '#FF6347',
       }).showToast();
     }
+
+    loginBtn.addEventListener('click', () => {
+      login();
+    });
   </script>
 </body>
 

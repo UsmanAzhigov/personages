@@ -14,21 +14,17 @@
       <p class="verify_text">Мы отправили письмо на почту для подтверждения регистрации</p>
     </div>
     <div class="btn_verify">
-      <button class="open_mail">
-        Открыть приложение почта
-      </button>
+      <a href="mailto:"> <button class="open_mail">
+          Открыть приложение почта
+        </button></a>
       <button class="back_main">
         Вернуться на главную
       </button>
     </div>
   </div>
   <script>
-    const main = document.querySelector('.open_mail');
     const back = document.querySelector('.back_main');
 
-    main.addEventListener('click', () => {
-      window.open('https://mail.google.com/mail/u/0/#inbox');
-    });
     back.addEventListener('click', () => {
       window.location.href = '/';
     });

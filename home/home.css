@@ -45,6 +45,10 @@ body {
   cursor: pointer;
 }
 
+.avatar_user {
+  border-radius: 50px;
+}
+
 .list_personages li {
   width: 100%;
   text-align: center;
@@ -56,6 +60,10 @@ body {
   display: flex;
   gap: 24px;
   color: #828282;
+}
+
+.menu p {
+  cursor: pointer;
 }
 
 .profile {
@@ -269,4 +277,10 @@ body {
 
 .details_content.closed {
   display: none;
+}
+
+.profile button {
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
 }

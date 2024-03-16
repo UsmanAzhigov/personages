@@ -20,10 +20,6 @@
       </div>
     </div>
     <div class="profile">
-      <button class="login">
-        Вход
-      </button>
-      <button class="register">Регистрация</button>
     </div>
     <div class="line"></div>
   </div>
@@ -52,9 +48,8 @@
     </div>
   </div>
   <script src="/scripts/index.js"></script>
+  <script src="/scripts/token.js"></script>
   <script>
-    const register = document.querySelector('.register')
-    const login = document.querySelector('.login')
     const newsTemplate = `
 <div class="news_block">
   <div class="new">
@@ -70,6 +65,68 @@
   <img class="image_new" width="468px" height="294px" />
 </div>
 `;
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const profile = document.querySelector('.profile');
+      if (localStorage.getItem('email') && localStorage.getItem('avatar')) {
+        const emailUser = localStorage.getItem('email')
+        const image = localStorage.getItem('avatar')
+        const avatar = document.createElement('img');
+        const nameUser = document.createElement('h5');
+        const logout = document.createElement('img');
+        logout.src = '/icons/logOut.svg'
+        logout.style.width = '24px'
+        logout.style.height = '24px'
+        logout.style.cursor = 'pointer'
+        function logOut() {
+          fetch(`${base_url}accounts/logout/`, {
+            method: 'POST',
+            headers: {
+              'X-CSRFToken': csrfToken,
+            },
+          }).then(() => window.location.href = '/').then(() => showToast('Вы вышли из аккаунта', 'success'));
+        }
+        logout.addEventListener('click', () => {
+          localStorage.removeItem('email')
+          localStorage.removeItem('avatar')
+          logOut()
+          window.location.reload()
+        })
+        avatar.style.borderRadius = '50px'
+        avatar.style.width = '32px'
+        avatar.style.height = '32px'
+        avatar.classList.add('avatar_user')
+        nameUser.classList.add('name_user')
+        avatar.src = image
+        nameUser.textContent = emailUser
+        profile.appendChild(avatar);
+        profile.appendChild(nameUser);
+        profile.appendChild(logout)
+      } else {
+        profile.innerHTML = `
+        <button class="login">
+          Вход
+        </button>
+        <button class="register">Регистрация</button>
+        `
+        const loginButton = profile.querySelector('.login');
+        const registerButton = profile.querySelector('.register');
+        if (loginButton) {
+          loginButton.addEventListener('click', () => {
+            window.location.href = '/login/login.html';
+          });
+        }
+
+        if (registerButton) {
+          registerButton.addEventListener('click', () => {
+            window.location.href = '/register/register.html';
+          });
+        }
+      }
+    });
+
+
     fetch(`${base_url}news/?limit=5&offset=0`, {
       method: 'GET',
       headers: {
@@ -104,13 +161,6 @@
         newsBlock.style.justifyContent = 'space-between';
         newsContainer.appendChild(newsBlock);
       });
-
-    })
-    login.addEventListener('click', () => {
-      window.location.href = '/login/login.html';
-    })
-    register.addEventListener('click', () => {
-      window.location.href = '/register/register.html';
     })
   </script>
 </body>

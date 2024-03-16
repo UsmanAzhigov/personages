@@ -88,7 +88,6 @@
       $("#avatarCropModal").load("../components/modal/modal.html");
     });
   </script> -->
-
   <script>
     let source;
     let fileName;
@@ -206,7 +205,7 @@
       const username = document.querySelector('#username').value;
       const email = document.querySelector('#email').value;
       const formInputs = document.querySelectorAll('.form_register input');
-
+      const avatarUser = document.querySelector('.add_avatar img');
 
       const formData = new FormData();
       selectedFile && formData.append('image', selectedFile);
@@ -237,6 +236,7 @@
         })
         .then((data) => {
           handleErrors(data);
+          localStorage.setItem('image', avatarUser.src);
         })
         .catch((error) => {
           hideSpinner();
@@ -247,7 +247,6 @@
 
     function handleErrors(data) {
       const inputs = ['password', 'username', 'email', 'password_confirm', 'image'];
-
       inputs.forEach((el) => {
         const errorInput = document.querySelector(`#${el}`);
         const errorInputLabel = document.querySelector(`#${el}-error-label`);
