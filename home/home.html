@@ -131,6 +131,9 @@
     const arrow = document.querySelector('.arrow');
     const details = document.querySelector('.details_content');
     const news = document.querySelector('.news');
+    const changePersonage = document.querySelector('.change_personage');
+    const detailsHeader = document.querySelector('.details_header');
+
     news.addEventListener('click', () => {
       window.location.href = '/';
     })
@@ -138,24 +141,33 @@
       if (details.classList.contains('closed')) {
         details.classList.remove('closed');
         arrow.style.transform = 'rotate(0deg)';
+        detailsHeader.classList.remove('closed');
       } else {
         details.classList.add('closed');
+        detailsHeader.classList.add('closed');
       }
+
     });
 
     document.addEventListener('DOMContentLoaded', () => {
+      const username = localStorage.getItem('username');
+      const image = localStorage.getItem('avatar');
       const nameUser = document.querySelector('.name_user');
-      if (localStorage.getItem('login') && localStorage.getItem('image')) {
-        const login = localStorage.getItem('login');
-        const image = localStorage.getItem('image');
-        const avatar = document.querySelector('.avatar_user');
+      const avatar = document.querySelector('.avatar_user');
+      const isLoggedOut = false;
+      localStorage.setItem('isLoggedOut', isLoggedOut);
+      if (image) {
         avatar.src = image;
-        nameUser.textContent = login;
-        localStorage.setItem('email', login);
-        localStorage.setItem('avatar', image);
       }
-
+      else {
+        avatar.src = '/icons/userIcon.png';
+      }
+      nameUser.textContent = username;
+      localStorage.setItem('email', username);
+      localStorage.setItem('avatar', image);
     });
+
+
 
     personagesList.forEach(personageName => {
       const clone = personageTemplate.content.cloneNode(true);
@@ -172,11 +184,17 @@
         headers: {
           'X-CSRFToken': csrfToken,
         },
-      }).then(() => window.location.href = '/').then(() => showToast('Вы вышли из аккаунта', 'success'));
+      }).then((response) => {
+        const isLoggedOut = true;
+        response.json();
+        localStorage.setItem('isLoggedOut', isLoggedOut);
+        window.location.href = '/'
+      })
     }
     logOut.addEventListener('click', () => {
       logout();
     });
+
   </script>
 </body>
 

@@ -10,7 +10,6 @@ function handleResetPassword(
   fetch(`${base_url}accounts/reset-password/`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'X-CSRFToken': csrfToken,
     },
     body: JSON.stringify({

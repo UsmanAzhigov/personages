@@ -1,0 +1,180 @@
+.modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addPersonage_text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.content {
+  width: 882px;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 10px;
+}
+
+.addPersonage_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add_image_text {
+  padding-top: 8px;
+}
+
+.image_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  width: 400px;
+  height: 500px;
+  margin-bottom: 16px;
+}
+
+.add_image {
+  padding-bottom: 44px;
+}
+.upload_image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 40px;
+  border: 0;
+  color: #ffffff;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  gap: 8px;
+}
+
+.upload_image:hover {
+  box-shadow: 0 0 0 4px #ccc;
+}
+
+.upload_image:active {
+  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
+}
+
+.upload_image img {
+  padding-bottom: 3px;
+}
+
+.order_text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #595d62;
+}
+
+.addPersonage_block {
+  padding-top: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.addPersonage_block input::placeholder {
+  opacity: 50%;
+}
+
+.addPersonage_form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.namePersonage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.namePersonage input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e2e2e2;
+}
+
+.namePersonage label {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.period {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.period input {
+  width: 185px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e2e2e2;
+}
+
+.period_label {
+  font-size: 16px;
+  font-weight: 400;
+  height: 0;
+}
+
+.period p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.place {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.place input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e2e2e2;
+}
+
+.additional_information {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.additional_information input {
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e2e2e2;
+  height: 206px;
+  padding-bottom: 158px;
+  padding-left: 16px;
+}
+
+.fraction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  height: 12px;
+  font-weight: 400;
+}

@@ -201,11 +201,9 @@ body {
 }
 
 .details {
-  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   margin: 24px;
-  height: 100%;
 }
 
 .details_header {
@@ -241,7 +239,6 @@ body {
 
 .details_img {
   display: flex;
-  margin-left: 281px;
   flex-direction: column;
 }
 
@@ -275,8 +272,17 @@ body {
   padding-right: 24px;
 }
 
+.details_content {
+  background-color: #fff;
+  margin: 24px;
+}
+
 .details_content.closed {
   display: none;
+}
+
+.details_header.closed {
+  border-radius: 10px;
 }
 
 .profile button {

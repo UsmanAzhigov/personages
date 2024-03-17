@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -69,47 +70,25 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       const profile = document.querySelector('.profile');
-      if (localStorage.getItem('email') && localStorage.getItem('avatar')) {
-        const emailUser = localStorage.getItem('email')
-        const image = localStorage.getItem('avatar')
-        const avatar = document.createElement('img');
-        const nameUser = document.createElement('h5');
-        const logout = document.createElement('img');
-        logout.src = '/icons/logOut.svg'
-        logout.style.width = '24px'
-        logout.style.height = '24px'
-        logout.style.cursor = 'pointer'
-        function logOut() {
-          fetch(`${base_url}accounts/logout/`, {
-            method: 'POST',
-            headers: {
-              'X-CSRFToken': csrfToken,
-            },
-          }).then(() => window.location.href = '/').then(() => showToast('Вы вышли из аккаунта', 'success'));
-        }
-        logout.addEventListener('click', () => {
-          localStorage.removeItem('email')
-          localStorage.removeItem('avatar')
-          logOut()
-          window.location.reload()
+      const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
+      function logOut() {
+        fetch(`${base_url}accounts/logout/`, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrfToken,
+          },
+        }).then((response) => {
+          response.json();
+          const isLoggedOut = true;
+          localStorage.setItem('isLoggedOut', isLoggedOut);
+          window.location.href = '/';
         })
-        avatar.style.borderRadius = '50px'
-        avatar.style.width = '32px'
-        avatar.style.height = '32px'
-        avatar.classList.add('avatar_user')
-        nameUser.classList.add('name_user')
-        avatar.src = image
-        nameUser.textContent = emailUser
-        profile.appendChild(avatar);
-        profile.appendChild(nameUser);
-        profile.appendChild(logout)
-      } else {
+      }
+      if (isLoggedOut) {
         profile.innerHTML = `
-        <button class="login">
-          Вход
-        </button>
-        <button class="register">Регистрация</button>
-        `
+      <button class="login">Вход</button>
+      <button class="register">Регистрация</button>
+    `;
         const loginButton = profile.querySelector('.login');
         const registerButton = profile.querySelector('.register');
         if (loginButton) {
@@ -123,14 +102,59 @@
             window.location.href = '/register/register.html';
           });
         }
+      } else {
+        if (localStorage.getItem('email') && localStorage.getItem('avatar')) {
+          const emailUser = localStorage.getItem('email');
+          const image = localStorage.getItem('avatar');
+          const avatar = document.createElement('img');
+          const nameUser = document.createElement('h5');
+          const logout = document.createElement('img');
+
+          logout.src = '/icons/logout.svg';
+          logout.classList.add('logout');
+          logout.addEventListener('click', () => {
+            localStorage.removeItem('email');
+            localStorage.removeItem('avatar');
+            logOut();
+            window.location.reload();
+          });
+
+          avatar.style.borderRadius = '50px';
+          avatar.style.width = '32px';
+          avatar.style.height = '32px';
+          avatar.classList.add('avatar_user');
+          nameUser.classList.add('name_user');
+          avatar.src = image;
+          nameUser.textContent = emailUser;
+          profile.appendChild(avatar);
+          profile.appendChild(nameUser);
+          profile.appendChild(logout);
+        }
+        else {
+          profile.innerHTML = `
+      <button class="login">Вход</button>
+      <button class="register">Регистрация</button>
+    `;
+          const loginButton = profile.querySelector('.login');
+          const registerButton = profile.querySelector('.register');
+          if (loginButton) {
+            loginButton.addEventListener('click', () => {
+              window.location.href = '/login/login.html';
+            });
+          }
+
+          if (registerButton) {
+            registerButton.addEventListener('click', () => {
+              window.location.href = '/register/register.html';
+            });
+          }
+        }
       }
     });
-
-
     fetch(`${base_url}news/?limit=5&offset=0`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'X-CSRFToken': csrfToken,
       }
     }).then(res => res.json()).then(data => {
       const newsContainer = document.querySelector('.news');

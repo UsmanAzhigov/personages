@@ -88,7 +88,7 @@
           if (!response.ok) {
             return response.json();
           }
-          window.location.href = '/index.html';
+          window.location.href = '/';
           return { success: true };
         })
         .then((data) => {
@@ -97,14 +97,28 @@
             showToast('Неправильный логин или пароль', 'error');
           } else {
             window.location.href = '/home/home.html';
-            localStorage.setItem('login', email);
+            fetch(`${base_url}accounts/profile/`, {
+              method: 'GET',
+              headers: {
+                'X-CSRFToken': csrfToken,
+              },
+            }).then((response) => {
+              response.json().then((data) => {
+                const image = data.avatar;
+                const username = data.username;
+                return { image, username };
+              }).then(({ image, username }) => {
+                localStorage.setItem('username', username);
+                localStorage.setItem('avatar', image);
+              });
+            })
             localStorage.setItem('isLoggedIn', isLoggedIn);
           }
         });
     }
     function handleErrors(data) {
       const inputs = ['password', 'login'];
-
+      console.log(data);
       inputs.forEach((el) => {
         const errorInput = document.querySelector(`#${el}`);
         const errorInputLabel = document.querySelector(`#${el}-error-label`);
