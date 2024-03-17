@@ -73,7 +73,7 @@
       let status;
 
       const formData = new FormData();
-      formData.append('login', email);
+      formData.append('login', email.toLowerCase());
       formData.append('password', password);
       const isLoggedIn = true;
       fetch(`${base_url}accounts/login/`, {
