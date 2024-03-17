@@ -118,13 +118,15 @@
             logOut();
             window.location.reload();
           });
-
+          if (image) {
+            avatar.src = image;
+          }
+          avatar.src = '/icons/userIcon.png';
           avatar.style.borderRadius = '50px';
           avatar.style.width = '32px';
           avatar.style.height = '32px';
           avatar.classList.add('avatar_user');
           nameUser.classList.add('name_user');
-          avatar.src = image;
           nameUser.textContent = emailUser;
           profile.appendChild(avatar);
           profile.appendChild(nameUser);
