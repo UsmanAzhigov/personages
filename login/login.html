@@ -80,6 +80,7 @@
         headers: {
           'X-CSRFToken': csrfToken,
         },
+        credentials: 'include',
         body: formData,
       })
         .then((response) => {

@@ -18,7 +18,7 @@
 }
 
 .register_header img {
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .description_register {
@@ -37,6 +37,7 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
+  cursor: pointer;
 }
 
 .add_avatar {
@@ -53,12 +54,12 @@
   position: relative;
   background-color: #ffffff;
   border: 0;
-  cursor: pointer;
   color: #595d62;
   width: 144px;
   height: 40px;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .add_btn:hover {
@@ -214,15 +215,15 @@
 
 .add-avatar {
   position: absolute;
-  width: 104px;
-  height: 104px;
+  width: 1px;
+  height: 1px;
   border-radius: 50%;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   opacity: 0;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .avatar {
@@ -233,7 +234,7 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 div > div > .error-input {
