@@ -5,6 +5,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   font-family: 'DM Sans', sans-serif;
+  position: relative;
 }
 
 .header {
@@ -55,7 +56,6 @@ body {
   padding: 8px 0 8px 0;
   border-bottom: 2px solid #eaeaea;
 }
-
 .menu {
   display: flex;
   gap: 24px;

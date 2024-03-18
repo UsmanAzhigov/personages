@@ -1,11 +1,11 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./index.css" />
-  <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
+  <title>Новости</title>
+  <link rel="icon" href="./icons/web-favicon.svg" type="image/x-icon" />
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     <div class="menu_block">
       <img width="86px" height="86px" src="/icons/Logo.svg" />
       <div class="menu">
-        <p>Персонажи</p>
+        <p class="personages">Персонажи</p>
         <p>О нас</p>
         <p>Справка</p>
         <p>Магазин</p>
@@ -67,7 +67,7 @@
 </div>
 `;
 
-
+    const personages = document.querySelector('.personages');
     document.addEventListener('DOMContentLoaded', () => {
       const profile = document.querySelector('.profile');
       const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
@@ -79,9 +79,7 @@
           },
         }).then((response) => {
           response.json();
-          const isLoggedOut = true;
-          localStorage.setItem('isLoggedOut', isLoggedOut);
-          window.location.href = '/';
+          localStorage.clear();
         })
       }
       if (isLoggedOut) {
@@ -116,6 +114,7 @@
             localStorage.removeItem('email');
             localStorage.removeItem('avatar');
             logOut();
+            localStorage.setItem('isLoggedOut', true);
             window.location.reload();
           });
           if (image) {
@@ -188,6 +187,15 @@
         newsContainer.appendChild(newsBlock);
       });
     })
+    personages.addEventListener('click', () => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (!isLoggedIn) {
+        alert('Вы должны войти в аккаунт чтобы получить доступ к персонажам!')
+      }
+      else {
+        window.location.href = '/home/home.html';
+      }
+    });
   </script>
 </body>
 

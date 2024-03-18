@@ -6,6 +6,7 @@
   <title>Главная</title>
   <link rel="stylesheet" href="./home.css" />
   <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="/components/addPersonage/addPersonage.css" />
 </head>
 
 <body>
@@ -119,10 +120,12 @@
       </div>
       <img class="add_details" width="36px" height="36px" src="/icons/addDetails.svg" />
     </div>
-
   </div>
+  <div id="addPersonageModal"></div>
   <script src="/scripts/index.js"></script>
   <script src="/scripts/token.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
     const logOut = document.querySelector('.logOut');
     const personagesList = ['Soldier 76', 'Tracer', 'Roadhog', 'Genji', 'Widowmaker'];
@@ -133,6 +136,7 @@
     const news = document.querySelector('.news');
     const changePersonage = document.querySelector('.change_personage');
     const detailsHeader = document.querySelector('.details_header');
+
 
     news.addEventListener('click', () => {
       window.location.href = '/';
@@ -155,13 +159,13 @@
       const nameUser = document.querySelector('.name_user');
       const avatar = document.querySelector('.avatar_user');
       const isLoggedOut = false;
+
+
       localStorage.setItem('isLoggedOut', isLoggedOut);
       if (image) {
         avatar.src = image;
       }
-      else {
-        avatar.src = '/icons/userIcon.png';
-      }
+      avatar.src = '/icons/userIcon.png';
       nameUser.textContent = username;
       localStorage.setItem('email', username);
       localStorage.setItem('avatar', image);
@@ -178,6 +182,15 @@
     const addPersonageImg = document.createElement('img');
     addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
     listPersonages.appendChild(addPersonageImg);
+    function handleClick(e) {
+      e.preventDefault();
+      $(function () {
+        $("#addPersonageModal").load("../components/addPersonage/addPersonage.html");
+      });
+    }
+
+    addPersonageImg.addEventListener('click', handleClick);
+
     function logout() {
       fetch(`${base_url}accounts/logout/`, {
         method: 'POST',
@@ -185,6 +198,7 @@
           'X-CSRFToken': csrfToken,
         },
       }).then((response) => {
+        localStorage.clear()
         const isLoggedOut = true;
         response.json();
         localStorage.setItem('isLoggedOut', isLoggedOut);

@@ -212,7 +212,7 @@
       formData.append('password', password);
       formData.append('password_confirm', password_confirm);
       formData.append('username', username);
-      formData.append('email', email);
+      formData.append('email', email.toLowerCase());
 
       let status;
 
@@ -229,7 +229,6 @@
             return response.json();
 
           }
-          window.location.href = '/send-verify-register/send-verify-register.html';
           hideSpinner();
           registerBtn.innerHTML = 'Зарегистрироваться'
           return { success: true };

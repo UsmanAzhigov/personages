@@ -71,11 +71,10 @@
       const email = document.querySelector('#login').value;
       const password = document.querySelector('#password').value;
       let status;
-
-      const formData = new FormData();
-      formData.append('login', email);
-      formData.append('password', password);
       const isLoggedIn = true;
+      const formData = new FormData();
+      formData.append('login', email.toLowerCase());
+      formData.append('password', password);
       fetch(`${base_url}accounts/login/`, {
         method: 'POST',
         headers: {
@@ -88,7 +87,6 @@
           if (!response.ok) {
             return response.json();
           }
-          window.location.href = '/';
           return { success: true };
         })
         .then((data) => {
@@ -96,7 +94,7 @@
             handleErrors(data);
             showToast('Неправильный логин или пароль', 'error');
           } else {
-            window.location.href = '/home/home.html';
+            localStorage.setItem('isLoggedIn', isLoggedIn);
             fetch(`${base_url}accounts/profile/`, {
               method: 'GET',
               headers: {
@@ -112,7 +110,6 @@
                 localStorage.setItem('avatar', image);
               });
             })
-            localStorage.setItem('isLoggedIn', isLoggedIn);
           }
         });
     }
