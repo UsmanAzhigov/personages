@@ -96,21 +96,7 @@
             showToast('Неправильный логин или пароль', 'error');
           } else {
             localStorage.setItem('isLoggedIn', isLoggedIn);
-            fetch(`${base_url}accounts/profile/`, {
-              method: 'GET',
-              headers: {
-                'X-CSRFToken': csrfToken,
-              },
-            }).then((response) => {
-              response.json().then((data) => {
-                const image = data.avatar;
-                const username = data.username;
-                return { image, username };
-              }).then(({ image, username }) => {
-                localStorage.setItem('username', username);
-                localStorage.setItem('avatar', image);
-              });
-            })
+            window.location.pathname = 'home/home.html'
           }
         });
     }
