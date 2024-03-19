@@ -227,8 +227,8 @@
           status = response.ok;
           if (!response.ok) {
             return response.json();
-
           }
+          window.location.href = '/send-verify-register/send-verify-register.html';
           hideSpinner();
           registerBtn.innerHTML = 'Зарегистрироваться'
           return { success: true };

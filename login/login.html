@@ -95,8 +95,22 @@
             handleErrors(data);
             showToast('Неправильный логин или пароль', 'error');
           } else {
+            window.location.href = '/home/home.html';
             localStorage.setItem('isLoggedIn', isLoggedIn);
-            window.location.pathname = 'home/home.html'
+            localStorage.removeItem('isLoggedOut');
+            fetch(`${base_url}accounts/profile/`, {
+              method: 'GET',
+              headers: {
+                'X-CSRFToken': csrfToken,
+              },
+              credentials: 'include',
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                localStorage.setItem('email', data.email);
+                localStorage.setItem('avatar', data.avatar);
+                localStorage.setItem('username', data.username);
+              });
           }
         });
     }
