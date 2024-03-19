@@ -48,8 +48,9 @@
       </h1>
     </div>
   </div>
-  <script src="/scripts/index.js"></script>
   <script src="/scripts/token.js"></script>
+  <script type="text/javascript" src="/scripts/index.js"></script>
+  <script type="text/javascript" src="/scripts/homeNews/homeNews.js"></script>
   <script>
     const newsTemplate = `
 <div class="news_block">
@@ -71,17 +72,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       const profile = document.querySelector('.profile');
       const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
-      function logOut() {
-        fetch(`${base_url}accounts/logout/`, {
-          method: 'POST',
-          headers: {
-            'X-CSRFToken': csrfToken,
-          },
-        }).then((response) => {
-          response.json();
-          localStorage.clear();
-        })
-      }
+
+
+
       if (isLoggedOut) {
         profile.innerHTML = `
       <button class="login">Вход</button>
@@ -106,14 +99,14 @@
           const image = localStorage.getItem('avatar');
           const avatar = document.createElement('img');
           const nameUser = document.createElement('h5');
-          const logout = document.createElement('img');
+          const logOut = document.createElement('img');
 
-          logout.src = '/icons/logout.svg';
-          logout.classList.add('logout');
-          logout.addEventListener('click', () => {
+          logOut.src = '/icons/logout.svg';
+          logOut.classList.add('logout');
+          logOut.addEventListener('click', () => {
             localStorage.removeItem('email');
             localStorage.removeItem('avatar');
-            logOut();
+            logout(base_url, headers);
             localStorage.setItem('isLoggedOut', true);
             window.location.reload();
           });
@@ -129,7 +122,7 @@
           nameUser.textContent = emailUser;
           profile.appendChild(avatar);
           profile.appendChild(nameUser);
-          profile.appendChild(logout);
+          profile.appendChild(logOut);
         }
         else {
           profile.innerHTML = `
@@ -154,9 +147,7 @@
     });
     fetch(`${base_url}news/?limit=5&offset=0`, {
       method: 'GET',
-      headers: {
-        'X-CSRFToken': csrfToken,
-      }
+      headers: headers
     }).then(res => res.json()).then(data => {
       const newsContainer = document.querySelector('.news');
       data.results.forEach(newsItem => {

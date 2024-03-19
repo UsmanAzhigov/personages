@@ -33,11 +33,6 @@ body {
   color: #828282;
 }
 
-.menu a {
-  text-decoration: none;
-  color: #828282;
-}
-
 .profile {
   display: flex;
   gap: 16px;

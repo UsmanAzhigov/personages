@@ -69,7 +69,7 @@
           <p>Я согласен на обработку и хранение персональных данных</p>
         </div>
       </div>
-      <button class="register_btn" disabled="true">
+      <button class="btn" disabled="true">
         Зарегистрироваться
       </button>
       <p class="forgot_block">Уже есть аккаунт <a href="/login/login.html"><span class="forgot_btn">Войти</span></a></p>
@@ -144,7 +144,7 @@
   <script>
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
-    const registerBtn = document.querySelector('.register_btn');
+    const registerBtn = document.querySelector('.btn');
     const conditions = document.querySelector('.conditions input');
     const selectedFile = document.querySelector('#add-avatar-input').files[0];
     const avatarImage = document.querySelector('.add_avatar img');
@@ -152,11 +152,10 @@
     const addAvatarDiv = document.querySelector('.add_avatar');
     const addAvatarTitle = document.querySelector('#add_avatar_title');
     let newSelectedFile;
-
     addAvatarDiv.addEventListener('click', (e) => {
       if (!e.target.classList.contains('add-avatar')) addAvatarInput.click();
     });
-
+    registerBtn.style.width = '100%';
     conditions.addEventListener('change', () => {
       if (conditions.checked) {
         registerBtn.disabled = false;
@@ -218,9 +217,7 @@
 
       fetch(`${base_url}accounts/register/`, {
         method: 'POST',
-        headers: {
-          'X-CSRFToken': csrfToken,
-        },
+        headers: headers,
         body: formData,
       })
         .then((response) => {

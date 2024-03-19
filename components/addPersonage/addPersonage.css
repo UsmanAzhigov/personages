@@ -3,7 +3,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  margin-bottom: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,31 +50,15 @@
 .add_image {
   padding-bottom: 44px;
 }
-.upload_image {
+
+.btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 150px;
-  height: 40px;
-  border: 0;
-  color: #ffffff;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
   gap: 8px;
+  justify-content: center;
 }
 
-.upload_image:hover {
-  box-shadow: 0 0 0 4px #ccc;
-}
-
-.upload_image:active {
-  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
-}
-
-.upload_image img {
+.btn img {
   padding-bottom: 3px;
 }
 

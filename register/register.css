@@ -17,10 +17,6 @@
   align-items: center;
 }
 
-.register_header img {
-  /* cursor: pointer; */
-}
-
 .description_register {
   width: 305px;
   color: #999ca0;
@@ -144,40 +140,6 @@
   gap: 8px;
   position: relative;
   width: 100%;
-}
-
-.register_btn,
-.crop-image-btn {
-  width: 100%;
-  height: 40px;
-  border: 0;
-  color: #ffffff;
-  border-radius: 8px;
-  padding: 8px 150px;
-  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.register_btn:disabled,
-.crop-image-btn:disabled {
-  background: linear-gradient(180deg, #d0e3ff 0%, #b3d1ff 100%);
-  cursor: not-allowed;
-}
-
-.register_btn:disabled:hover,
-.crop-image-btn:disabled:hover {
-  box-shadow: none;
-}
-
-.register_btn:hover,
-.crop-image-btn:hover {
-  box-shadow: 0 0 0 4px #ccc;
-}
-
-.register_btn:active,
-.crop-image-btn:active {
-  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
 }
 
 .forgot_btn {

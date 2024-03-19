@@ -39,25 +39,6 @@
   gap: 24px;
 }
 
-.main {
-  width: 167px;
-  height: 40px;
-  border: 0;
-  color: #ffffff;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #70a9fe 0%, #2d81fe 100%);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.main:hover {
-  box-shadow: 0 0 0 4px #ccc;
-}
-
-.main:active {
-  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
-}
-
 .main a {
   text-decoration: none;
   font-size: 14px;

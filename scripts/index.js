@@ -1,12 +1,12 @@
-const base_url = "https://shaoshur.endwork.today/api/v1/";
+const base_url = 'https://shaoshur.endwork.today/api/v1/';
 
 function translateError(text) {
   switch (text) {
-    case "This field may not be blank.":
-      return "Это поле не может быть пустым.";
+    case 'This field may not be blank.':
+      return 'Это поле не может быть пустым.';
       break;
     case "Passwords don't match":
-      return "Пароли не совпадают";
+      return 'Пароли не совпадают';
       break;
     default:
       return text;
@@ -15,16 +15,15 @@ function translateError(text) {
 }
 
 function showSpinner() {
-  var spinner = document.createElement("span");
-  spinner.classList.add("spinner");
-  document.querySelector(".register_btn").appendChild(spinner);
-  document.querySelector(".register_btn").disabled = true;
+  var spinner = document.createElement('span');
+  spinner.classList.add('spinner');
+  document.querySelector('.btn').appendChild(spinner);
 }
 
 function hideSpinner() {
-  var spinner = document.querySelector(".spinner");
+  var spinner = document.querySelector('.spinner');
   if (spinner) {
     spinner.parentNode.removeChild(spinner);
-    document.querySelector(".register_btn").disabled = false;
+    document.querySelector('.register_btn').disabled = false;
   }
 }

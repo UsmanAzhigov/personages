@@ -20,7 +20,7 @@
         </div>
         <div class="check_email">
           <img width="128px" height="128px" src="/icons/email-verify.png" />
-          <button class="main">
+          <button class="btn">
             <a href="/login/login.html">Перейти на главную</a>
           </button>
         </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="check_email">
           <img width="128px" height="128px" src="/icons/email-error.svg" />
-          <button class="main">
+          <button class="btn">
             <a href="/login/login.html">Перейти на главную</a>
           </button>
         </div>
@@ -56,14 +56,11 @@
 
     fetch(`${base_url}accounts/verify-registration/`, {
       method: 'POST',
-      headers: {
-        'X-CSRFToken': csrfToken,
-      },
+      headers: headers,
       body: formData,
     })
       .then((response) => {
         status = response.ok;
-
         console.log(response)
         if (!response.ok) {
           document.querySelector('body').innerHTML = htmlErrorFragment

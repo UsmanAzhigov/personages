@@ -38,7 +38,7 @@
             class="input-error-label none"></label>
           <span class="forgot_password">Забыл пароль?</span></a>
       </div>
-      <button class="login_btn">Войти</button>
+      <button class="btn">Войти</button>
       <p class="forgot_block">У вас еще нет аккаунта?
         <a href="/register/register.html">
           <span class="forgot_btn">Зарегистрироваться</span>
@@ -54,7 +54,9 @@
   <script>
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
-    const loginBtn = document.querySelector('.login_btn');
+    const loginBtn = document.querySelector('.btn');
+
+    loginBtn.style.width = '100%';
     eyeIcons.forEach((eyeIcon, index) => {
       eyeIcon.addEventListener('click', () => {
         if (inputPasswords[index].type === 'password') {
@@ -75,11 +77,10 @@
       const formData = new FormData();
       formData.append('login', email.toLowerCase());
       formData.append('password', password);
+
       fetch(`${base_url}accounts/login/`, {
         method: 'POST',
-        headers: {
-          'X-CSRFToken': csrfToken,
-        },
+        headers: headers,
         credentials: 'include',
         body: formData,
       })
@@ -100,9 +101,7 @@
             localStorage.removeItem('isLoggedOut');
             fetch(`${base_url}accounts/profile/`, {
               method: 'GET',
-              headers: {
-                'X-CSRFToken': csrfToken,
-              },
+              headers: headers,
               credentials: 'include',
             })
               .then((response) => response.json())

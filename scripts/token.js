@@ -6,8 +6,12 @@ function extractCsrfTokenFromCookie() {
       return value;
     }
   }
-  return null;
 }
 
 const csrfToken = extractCsrfTokenFromCookie();
 console.log('csrftoken:', csrfToken);
+
+const headers = {};
+if (csrfToken) {
+  headers['X-CSRFToken'] = csrfToken;
+}
