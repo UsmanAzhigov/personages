@@ -76,9 +76,9 @@
       <div id="avatarCropModal"></div>
     </div>
   </div>
-  <script src="/scripts/token.js"></script>
+  <script src="/js/token.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="/scripts/index.js"></script>
+  <script src="/js/index.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
@@ -92,6 +92,7 @@
     let source;
     let fileName;
 
+    //Функция для обрезки аватара
     function cropAvatar(src, fileName) {
       const avatarImage = document.querySelector('.add_avatar img');
       const image = document.getElementById('cropImage');
@@ -107,6 +108,7 @@
         },
       });
 
+      //Функция для открытия модального окна
       function handleClick(e) {
         e.preventDefault();
         $(function () {
@@ -119,6 +121,7 @@
 
         document.querySelector('#add-avatar-input').removeEventListener('click', handleClick);
       }
+
 
       document.querySelector('.crop-image-btn').addEventListener('click', function () {
         var croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
@@ -156,6 +159,7 @@
       if (!e.target.classList.contains('add-avatar')) addAvatarInput.click();
     });
     registerBtn.style.width = '100%';
+    //Проверка с политикой
     conditions.addEventListener('change', () => {
       if (conditions.checked) {
         registerBtn.disabled = false;
@@ -163,7 +167,7 @@
         registerBtn.disabled = true;
       }
     })
-
+    //Смена видимости пароля
     eyeIcons.forEach((eyeIcon, index) => {
       eyeIcon.addEventListener('click', () => {
         if (inputPasswords[index].type === 'password') {
@@ -176,6 +180,7 @@
       });
     });
 
+    //Добавление аватара
     addAvatarInput.addEventListener('change', () => {
       const selectedFile = addAvatarInput.files[0];
       newSelectedFile = selectedFile
@@ -195,6 +200,7 @@
       addAvatarInput.value = '';
     });
 
+    //Регистрация
     function register() {
 
       registerBtn.innerHTML = ''
@@ -232,7 +238,6 @@
         })
         .then((data) => {
           handleErrors(data);
-          localStorage.setItem('image', avatarUser.src);
         })
         .catch((error) => {
           hideSpinner();
@@ -241,6 +246,7 @@
         });
     }
 
+    //Обработка ошибок
     function handleErrors(data) {
       const inputs = ['password', 'username', 'email', 'password_confirm', 'image'];
       inputs.forEach((el) => {
@@ -278,16 +284,7 @@
       registerBtn.innerHTML = 'Зарегистрироваться'
     }
 
-    function showToast(message, type) {
-      Toastify({
-        text: message,
-        duration: 3000,
-        gravity: 'bottom',
-        position: 'right',
-        backgroundColor: type === 'success' ? '#4CAF50' : '#FF6347',
-      }).showToast();
-    }
-
+    //Активация регистрации
     registerBtn.addEventListener('click', register);
   </script>
 </body>

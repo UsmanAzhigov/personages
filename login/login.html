@@ -47,16 +47,17 @@
       <div id="includedContent"></div>
     </div>
   </div>
-  <script src="/scripts/token.js"></script>
-  <script src="../scripts/login.js"></script>
+  <script src="/js/token.js"></script>
+  <script src="../js/login.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="../scripts/index.js"></script>
+  <script src="../js/index.js"></script>
   <script>
     const eyeIcons = document.querySelectorAll('.eye_icon');
     const inputPasswords = document.querySelectorAll('.password_block input');
     const loginBtn = document.querySelector('.btn');
 
     loginBtn.style.width = '100%';
+    //Смена видимости пароля
     eyeIcons.forEach((eyeIcon, index) => {
       eyeIcon.addEventListener('click', () => {
         if (inputPasswords[index].type === 'password') {
@@ -68,7 +69,7 @@
         }
       });
     });
-
+    //Функция входа
     function login() {
       const email = document.querySelector('#login').value;
       const password = document.querySelector('#password').value;
@@ -92,6 +93,7 @@
           return { success: true };
         })
         .then((data) => {
+          //Проверка на ошибки
           if (!data.success) {
             handleErrors(data);
             showToast('Неправильный логин или пароль', 'error');
@@ -99,20 +101,10 @@
             window.location.href = '/home/home.html';
             localStorage.setItem('isLoggedIn', isLoggedIn);
             localStorage.removeItem('isLoggedOut');
-            fetch(`${base_url}accounts/profile/`, {
-              method: 'GET',
-              headers: headers,
-              credentials: 'include',
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                localStorage.setItem('email', data.email);
-                localStorage.setItem('avatar', data.avatar);
-                localStorage.setItem('username', data.username);
-              });
           }
         });
     }
+    //Обработка ошибок
     function handleErrors(data) {
       const inputs = ['password', 'login'];
       console.log(data);
@@ -135,16 +127,8 @@
         }
       });
     }
-    function showToast(message, type) {
-      Toastify({
-        text: message,
-        duration: 3000,
-        gravity: 'bottom',
-        position: 'right',
-        backgroundColor: type === 'success' ? '#4CAF50' : '#FF6347',
-      }).showToast();
-    }
 
+    //Обработка нажатия на кнопку
     loginBtn.addEventListener('click', () => {
       login();
     });

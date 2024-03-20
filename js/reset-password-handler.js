@@ -9,7 +9,10 @@ function handleResetPassword(
 ) {
   fetch(`${base_url}accounts/reset-password/`, {
     method: 'POST',
-    headers: headers,
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       user_id,
       timestamp,

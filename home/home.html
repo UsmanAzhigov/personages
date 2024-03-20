@@ -244,9 +244,9 @@
       </div>
     </div>
   </div>
-  <script src="/scripts/index.js"></script>
-  <script src="/scripts/token.js"></script>
-  <script type="text/javascript" src="/scripts/homeNews/homeNews.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/token.js"></script>
+  <script type="text/javascript" src="/js/homeNews/homeNews.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
@@ -260,10 +260,12 @@
     const news = document.querySelector('.news');
     const addPersonageModal = document.querySelector('#addPersonageModal');
     const closeModal = document.querySelector('.close');
+    //Перехол на страницу новостей
     news.addEventListener('click', () => {
       window.location.href = '/';
     })
 
+    //Добавление фонового изображения
     document.body.style.backgroundImage = '/icons/background.svg';
     document.body.style.backgroundRepeat = 'no-repeat';
     document.body.style.backgroundSize = 'cover';
@@ -271,7 +273,7 @@
     document.body.style.position = 'relative';
     document.body.style.display = 'block';
 
-
+    //Открытие и закрытие детального описания персонажа
     detailsBlocks.forEach((detailsBlock, index) => {
       const detailsHeader = detailsHeaders[index];
       const arrow = arrows[index];
@@ -290,28 +292,31 @@
         }
       });
     });
-
+    //Отображение профиля
     document.addEventListener('DOMContentLoaded', () => {
-      const username = localStorage.getItem('username');
-      const image = localStorage.getItem('avatar');
-      const nameUser = document.querySelector('.name_user');
-      const avatar = document.querySelector('.avatar_user');
       const isLoggedOut = false;
 
-      if (localStorage.getItem('isLoggedOut') === 'true') {
-        window.location.href = '/login/login.html';
-      }
-
+      fetch(`${base_url}accounts/profile/`, {
+        method: 'GET',
+        headers: headers,
+      }).then((response) => {
+        return response.json();
+      }).then((data) => {
+        const nameUser = document.querySelector('.name_user');
+        const avatar = document.querySelector('.avatar_user');
+        const { username, image } = data;
+        if (image) {
+          avatar.src = image;
+        }
+        avatar.src = '/icons/userIcon.png';
+        nameUser.textContent = username;
+        localStorage.setItem('email', username);
+        localStorage.setItem('avatar', image);
+      })
       localStorage.setItem('isLoggedOut', isLoggedOut);
-      if (image) {
-        avatar.src = image;
-      }
-      avatar.src = '/icons/userIcon.png';
-      nameUser.textContent = username;
-      localStorage.setItem('email', username);
-      localStorage.setItem('avatar', image);
     });
 
+    //Отображение списка персонажей
     personagesList.forEach(personageName => {
       const clone = personageTemplate.content.cloneNode(true);
       const personageElement = clone.querySelector('.personage');
@@ -321,18 +326,20 @@
     const addPersonageImg = document.createElement('img');
     addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
     listPersonages.appendChild(addPersonageImg);
+    //Функция для открытия модального окна
     function handleClick(e) {
       addPersonageModal.style.display = 'block';
     }
 
     addPersonageModal.style.display = 'none';
-
+    //Закрытие модального окна
     closeModal.addEventListener('click', () => {
       addPersonageModal.style.display = 'none';
     })
-
+    //Открытие модального окна
     addPersonageImg.addEventListener('click', handleClick);
 
+    //Выход
     logOut.addEventListener('click', () => {
       logout(base_url, headers);
     });

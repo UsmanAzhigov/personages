@@ -1,3 +1,4 @@
+//Выход
 function logout(base_url, headers) {
   fetch(`${base_url}accounts/logout/`, {
     method: 'POST',

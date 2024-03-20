@@ -48,10 +48,11 @@
       </h1>
     </div>
   </div>
-  <script src="/scripts/token.js"></script>
-  <script type="text/javascript" src="/scripts/index.js"></script>
-  <script type="text/javascript" src="/scripts/homeNews/homeNews.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/token.js"></script>
+  <script type="text/javascript" src="./js/homeNews/homeNews.js"></script>
   <script>
+    //Html элемент для показа новостей
     const newsTemplate = `
 <div class="news_block">
   <div class="new">
@@ -74,7 +75,7 @@
       const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
 
 
-
+      //Если я залогинен, то будет отображаться профиль, иначе кнопки для Входа и Регистрации
       if (isLoggedOut) {
         profile.innerHTML = `
       <button class="login">Вход</button>
@@ -82,6 +83,7 @@
     `;
         const loginButton = profile.querySelector('.login');
         const registerButton = profile.querySelector('.register');
+
         if (loginButton) {
           loginButton.addEventListener('click', () => {
             window.location.href = '/login/login.html';
@@ -103,6 +105,7 @@
 
           logOut.src = '/icons/logout.svg';
           logOut.classList.add('logout');
+          //Логаут
           logOut.addEventListener('click', () => {
             localStorage.removeItem('email');
             localStorage.removeItem('avatar');
@@ -145,11 +148,13 @@
         }
       }
     });
+    //Рендер новостей
     fetch(`${base_url}news/?limit=5&offset=0`, {
       method: 'GET',
-      headers: headers
+      headers: csrfToken
     }).then(res => res.json()).then(data => {
       const newsContainer = document.querySelector('.news');
+      //Форматирование даты
       data.results.forEach(newsItem => {
         const dateTime = new Date(newsItem.created_at);
         const day = dateTime.getDate();
@@ -167,17 +172,22 @@
         dateElements[0].textContent = timeWithoutSeconds;
         dateElements[1].textContent = formattedDate;
         const imageElement = newsBlock.querySelector('.image_new');
-        imageElement.src = newsItem.image;
-        if (newsItem.image === null) {
-          imageElement.src = "/icons/Image.png";
+        //Проверка на то, есть ли картинка или нет, если нет, то ее ссылка будет /icons/Image.png
+        if (newsItem.image) {
+          imageElement.src = newsItem.image || '/icons/Image.png';
+        }
+        else {
+          imageElement.src = '/icons/Image.png';
         }
         newsBlock.style.display = 'flex';
         newsBlock.style.paddingTop = '24px';
         newsBlock.style.width = '100%';
         newsBlock.style.justifyContent = 'space-between';
+        //Добавление новостей в контейнер
         newsContainer.appendChild(newsBlock);
       });
     })
+    //Проверка, залогинен ли пользователь или нет
     personages.addEventListener('click', () => {
       const isLoggedIn = localStorage.getItem('isLoggedIn');
       if (!isLoggedIn) {
