@@ -1,44 +1,14 @@
-//Глобальная ссылка на запросы
-const base_url = 'https://shaoshur.endwork.today/api/v1/';
+// Глобальные переменные
+window.API_URL = 'https://shaoshur.endwork.today/api/v1/';
 
-//Перевод ошибок
-function translateError(text) {
-  switch (text) {
-    case 'This field may not be blank.':
-      return 'Это поле не может быть пустым.';
-      break;
-    case "Passwords don't match":
-      return 'Пароли не совпадают';
-      break;
-    default:
-      return text;
-      break;
-  }
-}
+window.CSRF_TOKEN = null;
 
-//Отображение спиннера
-function showSpinner() {
-  var spinner = document.createElement('span');
-  spinner.classList.add('spinner');
-  document.querySelector('.btn').appendChild(spinner);
-}
+// API адресы
+const endpoints = {
+  PERSONAS: 'personas/',
+  LOGOUT: 'accounts/logout/',
+  REGISTER: 'accounts/register/',
+  NEWS: 'news/',
+};
 
-//Скрытие спиннера
-function hideSpinner() {
-  var spinner = document.querySelector('.spinner');
-  if (spinner) {
-    spinner.parentNode.removeChild(spinner);
-    document.querySelector('.register_btn').disabled = false;
-  }
-}
-
-//Показ уведомления
-function showToast(message, type) {
-  Toastify({
-    text: message,
-    duration: 3000,
-    gravity: 'bottom',
-    position: 'right',
-    backgroundColor: type === 'success' ? '#4CAF50' : '#FF6347',
-  }).showToast();
-}
+window.ENDPOINTS = endpoints;

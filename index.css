@@ -17,7 +17,7 @@ body {
 
 .content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding-top: 103px;
 }
 
@@ -52,7 +52,6 @@ body {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  margin-left: 170px;
 }
 
 .news h1 {
@@ -61,11 +60,16 @@ body {
   color: #000;
 }
 
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .news_block {
   display: flex;
   padding-top: 24px;
   border-top: 1px solid #e2e2e2;
-  width: 84.5%;
+  width: 100%;
   justify-content: space-between;
 }
 

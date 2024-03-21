@@ -1,0 +1,110 @@
+<div class="modal">
+  <div class="content">
+    <div class="register_header">
+      <p class="register_text">Добавить фото</p>
+      <img width="32px" height="32px" src="/icons/closeIcon.svg" id="close-avatar-modal" />
+    </div>
+    <div class="description_register">
+      <p>Выберите область для отображения</p>
+    </div>
+
+    <div class="image">
+      <img src="../../icons/userIcon.png" alt="" id="cropImage" />
+
+      <div class="image-info">
+        <div class="image-name">
+          <img src="../../icons/icon-attachment.svg" alt="" />
+          <p></p>
+        </div>
+
+        <div class="image-remove">
+          <img src="../../icons/icon-remove.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <button class="crop-image-btn">Сохранить изменения</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const cropImageBtn = document.querySelector('.crop-image-btn');
+    const imageRemoveBtn = document.querySelector('.image-remove');
+    const cropImage = document.getElementById('cropImage');
+    const avatarImage = document.querySelector('.add_avatar img');
+    const modal = document.querySelector('.modal');
+    const closeAvatarModal = document.querySelector('#close-avatar-modal');
+    const addAvatarBtnTitle = document.querySelector('#add_avatar_title');
+
+    /**
+     * Функция для закрытия модального окна
+     */
+    function closeModal() {
+      document.querySelector('#avatarCropModal').innerHTML = '';
+    }
+
+    /**
+     * Функция для открытия модального окна
+     */
+    function onClickOutsideModal(e) {
+      if (e.target.classList.contains('modal')) {
+        closeModal();
+      }
+    }
+
+    /**
+     * Функция для обрезки аватара
+     */
+    function onClickCropImage() {
+      // Берем обрезанное изображение и получаем локальную ссылку (blob)
+      const croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
+
+      // Вставляем эту ссылку в аватарку в форме регистрации
+      avatarImage.src = croppedImageDataURL;
+
+      // Сбрасываем состояние
+      addAvatarBtnTitle.innerHTML = 'Обновить фото';
+
+      // Закрываем модальное окно после обрезки фото
+      closeModal();
+    }
+
+    /**
+     * Функция для удаления аватара
+     */
+    function onClickRemoveImage() {
+      source = '';
+      fileName = '';
+      newSelectedFile = undefined;
+      document.querySelector('.add_avatar img').src = '/icons/userIcon.png';
+      addAvatarBtnTitle.innerHTML = 'Добавить фото';
+      closeModal();
+    }
+
+    // Отлавливаем клик на кнопку "Сохранить изменения"
+    cropImageBtn.addEventListener('click', onClickCropImage);
+
+    // Отлавливаем клик на кнопку удаления аватара
+    imageRemoveBtn.addEventListener('click', onClickRemoveImage);
+
+    // Отлавливаем клик за пределами модального окна
+    modal.addEventListener('click', onClickOutsideModal);
+
+    cropImage.src = source;
+
+    // Берем название файла и вставляем в <p>
+    document.querySelector('.image-name p').innerHTML = fileName;
+
+    // Отлавливаем клик на кнопку закрытия модального окна
+    closeAvatarModal.addEventListener('click', closeModal);
+
+    // Инициализируем обрезку фото
+    const cropper = new Cropper(cropImage, {
+      aspectRatio: 1,
+      autoCropArea: 1,
+      viewMode: 1,
+      width: 300,
+    });
+  })();
+</script>
