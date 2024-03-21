@@ -16,7 +16,6 @@
   </button>
 </div>
 <div class="line"></div>
-<script src="/js/homeNews/homeNews.js"></script>
 <script src="/js/token.js"></script>
 <script src="/js/index.js"></script>
 <script>
@@ -34,20 +33,22 @@
     fetch(`${base_url}accounts/profile/`, {
       method: 'GET',
       headers: headers,
-    }).then((response) => {
-      return response.json();
-    }).then((data) => {
-      const nameUser = document.querySelector('.name_user');
-      const avatar = document.querySelector('.avatar_user');
-      const { username, image } = data;
-      if (image) {
-        avatar.src = image;
-      }
-      avatar.src = '/icons/userIcon.png';
-      nameUser.textContent = username;
-      localStorage.setItem('username', username);
-      localStorage.setItem('avatar', image);
     })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const nameUser = document.querySelector('.name_user');
+        const avatar = document.querySelector('.avatar_user');
+        const { username, image } = data;
+        if (image) {
+          avatar.src = image;
+        }
+        avatar.src = '/icons/userIcon.png';
+        nameUser.textContent = username;
+        localStorage.setItem('username', username);
+        localStorage.setItem('avatar', image);
+      });
     localStorage.setItem('isLoggedOut', isLoggedOut);
   });
 
@@ -58,9 +59,8 @@
   personages.addEventListener('click', () => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-      alert('Вы должны войти в аккаунт чтобы получить доступ к персонажам!')
-    }
-    else {
+      alert('Вы должны войти в аккаунт чтобы получить доступ к персонажам!');
+    } else {
       window.location.href = '/home/home.html';
     }
   });
@@ -96,7 +96,7 @@
       <button class="logOut">
         <img src="/icons/logOut.svg" />
       </button>
-      `
+      `;
     }
   });
 </script>
