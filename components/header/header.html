@@ -1,6 +1,7 @@
 <div class="menu_block">
   <img width="86px" height="86px" src="/icons/Logo.svg" />
   <div class="menu">
+    <!-- Меню навигации -->
     <p class="personages">Персонажи</p>
     <p class="news">О нас</p>
     <p>Справка</p>
@@ -9,6 +10,7 @@
   </div>
 </div>
 <div class="profile">
+  <!-- Профиль пользователя -->
   <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
   <h5 class="name_user"></h5>
   <button class="logOut">
@@ -16,20 +18,27 @@
   </button>
 </div>
 <div class="line"></div>
+
+<!-- Скрипты -->
 <script src="/js/token.js"></script>
 <script src="/js/index.js"></script>
 <script>
+  // Получаем ссылки на элементы
   const news = document.querySelector('.news');
   const logOut = document.querySelector('.logOut');
   const personages = document.querySelector('.personages');
 
+  // Обработчик клика по элементу "О нас"
   news.addEventListener('click', () => {
     window.location.href = '/';
   });
 
+  // Событие при загрузке документа
   document.addEventListener('DOMContentLoaded', () => {
+    // Проверяем, залогинен ли пользователь
     const isLoggedOut = false;
 
+    // Запрос на получение профиля пользователя
     fetch(`${base_url}accounts/profile/`, {
       method: 'GET',
       headers: headers,
@@ -38,9 +47,11 @@
         return response.json();
       })
       .then((data) => {
+        // Получаем данные пользователя
         const nameUser = document.querySelector('.name_user');
         const avatar = document.querySelector('.avatar_user');
         const { username, image } = data;
+        // Устанавливаем имя и аватар пользователя
         if (image) {
           avatar.src = image;
         }
@@ -52,10 +63,32 @@
     localStorage.setItem('isLoggedOut', isLoggedOut);
   });
 
+  // Обработчик клика по кнопке выхода
   logOut.addEventListener('click', () => {
-    logout(base_url, headers);
+    const profile = document.querySelector('.profile');
+    const loginButton = document.createElement('button');
+    const registerButton = document.createElement('button');
+
+    // Создаем кнопки для входа и регистрации
+    loginButton.classList.add('login');
+    loginButton.textContent = 'Вход';
+    loginButton.addEventListener('click', () => {
+      window.location.href = '/login/login.html';
+    });
+
+    registerButton.classList.add('register');
+    registerButton.textContent = 'Регистрация';
+    registerButton.addEventListener('click', () => {
+      window.location.href = '/register/register.html';
+    });
+
+    // Заменяем профиль кнопками входа и регистрации
+    profile.innerHTML = '';
+    profile.appendChild(loginButton);
+    profile.appendChild(registerButton);
   });
 
+  // Обработчик клика по элементу "Персонажи"
   personages.addEventListener('click', () => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
@@ -65,11 +98,12 @@
     }
   });
 
+  // Событие при загрузке документа
   document.addEventListener('DOMContentLoaded', () => {
     const profile = document.querySelector('.profile');
-    const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
+    const isLoggedOut = localStorage.getItem('isLoggedOut') === true;
 
-    //Если я залогинен, то будет отображаться профиль, иначе кнопки для Входа и Регистрации
+    // Если пользователь вышел, отображаем кнопки входа и регистрации
     if (isLoggedOut) {
       profile.innerHTML = `
       <button class="login">Вход</button>
@@ -90,6 +124,7 @@
         });
       }
     } else {
+      // Иначе отображаем профиль пользователя
       profile.innerHTML = `
       <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
       <h5 class="name_user"></h5>

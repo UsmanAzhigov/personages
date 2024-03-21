@@ -2,7 +2,13 @@
   <div class="content">
     <div class="addPersonage_header">
       <p class="addPersonage_text">Создать карточку героя</p>
-      <img class="close" width="32px" height="32px" src="/icons/closeIcon.svg" id="close-personages-modal" />
+      <img
+        class="close"
+        width="32px"
+        height="32px"
+        src="/icons/closeIcon.svg"
+        id="close-personages-modal"
+      />
     </div>
     <div class="addPersonage_block">
       <div class="add_image">
@@ -39,7 +45,11 @@
         <div class="additional_information">
           <label>Дополнительная информация</label>
           <input id="additional_information" type="text" placeholder="Ваш текст..." />
-          <label id="additional_information-error-label" for="" class="input-error-label none"></label>
+          <label
+            id="additional_information-error-label"
+            for=""
+            class="input-error-label none"
+          ></label>
         </div>
         <div class="fraction">
           <input type="checkbox" />
@@ -52,8 +62,8 @@
 <script>
   const closeModal = document.querySelector('.close');
   const addPersonageModal = document.querySelector('.modal');
-  //Закрытие модального окна
+  // Закрытие модального окна
   closeModal.addEventListener('click', () => {
     addPersonageModal.style.display = 'none';
-  })
+  });
 </script>

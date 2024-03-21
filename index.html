@@ -2,9 +2,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Новости</title>
     <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" type="text/css" href="./global.css" />
-    <title>Новости</title>
     <link rel="icon" href="./icons/web-favicon.svg" type="image/x-icon" />
   </head>
 
@@ -42,6 +42,10 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      $(function () {
+        $('#header').load('../components/header/header.html');
+      });
+
       const newsContainer = document.querySelector('.news');
 
       //Html элемент для показа новостей

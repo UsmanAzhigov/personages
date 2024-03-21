@@ -171,7 +171,7 @@
         $('#header').load('../components/header/header.html');
       });
 
-      //Добавление фонового изображения
+      // Добавление фонового изображения
       document.body.style.backgroundImage = '/icons/background.svg';
       document.body.style.backgroundRepeat = 'no-repeat';
       document.body.style.backgroundSize = 'cover';
@@ -179,7 +179,7 @@
       document.body.style.position = 'relative';
       document.body.style.display = 'block';
 
-      //Открытие и закрытие детального описания персонажа
+      // Открытие и закрытие детального описания персонажа
       detailsBlocks.forEach((detailsBlock, index) => {
         const detailsHeader = detailsHeaders[index];
         const arrow = arrows[index];
@@ -199,7 +199,7 @@
         });
       });
 
-      //Отображение списка персонажей
+      // Отображение списка персонажей
       fetch(`${base_url}personas/`, {
         method: 'GET',
         headers: headers,
@@ -214,13 +214,13 @@
       const addPersonageImg = document.createElement('img');
       addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
       listPersonages.appendChild(addPersonageImg);
-      //Функция для открытия модального окна
+      // Функция для открытия модального окна
       function handleClick(e) {
         addPersonageModal.style.display = 'block';
       }
 
       addPersonageModal.style.display = 'none';
-      //Открытие модального окна
+      // Открытие модального окна
       addPersonageImg.addEventListener('click', handleClick);
     </script>
   </body>

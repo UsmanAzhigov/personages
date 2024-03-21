@@ -1,8 +1,10 @@
+/* Общие стили для блока ввода данных */
 .register_inputs {
   padding: 32px 0 24px 0;
   gap: 16px;
 }
 
+/* Стили для ссылки "Забыл пароль?" */
 .forgot_password {
   width: 25%;
   font-size: 14px;
@@ -10,22 +12,27 @@
   cursor: pointer;
 }
 
+/* Стили для иконки "глаза" */
 .eye_icon {
   position: absolute;
   right: 12px;
   cursor: pointer;
 }
+
+/* Стили для блока пароля */
 .password_block {
   display: flex;
   align-items: center;
 }
 
+/* Стили для ввода пароля */
 .password_block input {
   width: 476px;
   border-radius: 8px;
   padding: 8px 12px;
 }
 
+/* Стили для контейнера ввода пароля */
 .input_password {
   width: 100%;
   display: flex;
@@ -33,6 +40,7 @@
   position: relative;
 }
 
+/* Стили для блока пароля */
 .password {
   display: flex;
   flex-direction: column;
@@ -41,19 +49,24 @@
   margin-bottom: 8px;
 }
 
+/* Стили для ссылки "Забыл пароль?" в блоке ввода данных */
 .register_inputs a {
   text-decoration: none;
 }
 
+/* При наведении на ссылку "Забыл пароль?" */
 .forgot_password:hover {
   text-decoration: underline;
 }
 
+/* Стили для текста "Забыл пароль?" */
 .forgot_text {
-  color: '#999CA0';
-  font-size: '12px';
+  color: #999ca0;
+  font-size: 12px;
   font-weight: 400;
 }
+
+/* Общие стили для блока регистрации */
 .register_block {
   width: 500px;
   background-color: #ffffff;
@@ -62,36 +75,43 @@
   padding: 24px;
 }
 
+/* Стили для текста заголовка */
 .register_text {
   font-size: 20px;
   font-weight: 400;
 }
 
+/* Стили для заголовка с кнопкой */
 .register_header {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Стили для изображения в заголовке */
 .register_header img {
   cursor: pointer;
 }
 
+/* Стили для ввода данных */
 .register_inputs input {
   border: 1px solid #e2e2e2;
 }
 
+/* Стили для блока ввода электронной почты и имени */
 .email_name_block {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+/* Стили для ввода электронной почты и имени */
 .email_name_block input {
   border-radius: 8px;
   padding: 8px 12px;
 }
 
+/* Стили для блока ввода электронной почты */
 .email {
   display: flex;
   flex-direction: column;
@@ -100,6 +120,7 @@
   height: 48px;
 }
 
+/* Стили для блока имени */
 .name {
   display: flex;
   flex-direction: column;
@@ -107,6 +128,7 @@
   position: relative;
 }
 
+/* Стили для блока "Забыл пароль?" */
 .forgot_block {
   display: flex;
   justify-content: center;
@@ -114,15 +136,18 @@
   gap: 8px;
 }
 
+/* Стили для ссылки "Забыл пароль?" в блоке "Забыл пароль?" */
 .forgot_block a {
   text-decoration: none;
   color: #2d81fe;
 }
 
+/* При наведении на ссылку "Забыл пароль?" в блоке "Забыл пароль?" */
 .forgot_btn:hover {
   text-decoration: underline;
 }
 
+/* Стили для метки ошибки ввода */
 .input-error-label {
   font-size: 12px;
   color: rgba(130, 130, 130, 1);
@@ -130,9 +155,11 @@
   color: rgba(255, 78, 100, 1);
 }
 
+/* Стили для ошибок ввода */
 div > div > .error-input {
   border: 1px solid rgba(255, 78, 100, 1);
 }
+
 div > div > .error-input:focus {
   outline: none;
 }

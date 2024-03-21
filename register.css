@@ -3,6 +3,7 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 
+/* Стили для блока регистрации */
 .register_block {
   width: 500px;
   background-color: #ffffff;
@@ -11,11 +12,13 @@ body {
   padding: 24px;
 }
 
+/* Стили для текста заголовка регистрации */
 .register_text {
   font-size: 20px;
   font-weight: 400;
 }
 
+/* Стили для заголовка блока регистрации */
 .register_header {
   display: flex;
   justify-content: space-between;
@@ -26,16 +29,19 @@ body {
   cursor: pointer;
 }
 
+/* Стили для описания регистрации */
 .description_register {
   width: 305px;
   color: #999ca0;
   font-weight: 400;
   line-height: 16px;
 }
+
 .description_register p {
   font-size: 12px;
 }
 
+/* Стили для блока добавления аватара */
 .add_avatar {
   display: flex;
   justify-content: center;
@@ -43,6 +49,7 @@ body {
   align-items: center;
 }
 
+/* Стили для кнопки добавления аватара */
 .add_btn {
   position: relative;
   background-color: #ffffff;
@@ -54,24 +61,29 @@ body {
   border-radius: 8px;
   transition: all 0.4s;
 }
+
 .add_btn:hover {
   background-color: rgba(221, 221, 221, 1);
 }
+
 .add_btn h4 {
   margin: 0;
   font-size: 14px;
 }
 
+/* Стили для блока ввода данных регистрации */
 .register_inputs {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+/* Стили для полей ввода */
 .register_inputs input {
   border: 1px solid #e2e2e2;
 }
 
+/* Стили для блока email */
 .email_name_block {
   display: flex;
   flex-direction: column;
@@ -83,6 +95,7 @@ body {
   padding: 8px 12px;
 }
 
+/* Стили для блока пароля */
 .password_block {
   display: flex;
   flex-direction: row;
@@ -97,6 +110,7 @@ body {
   padding: 8px 12px;
 }
 
+/* Стили для условий регистрации */
 .conditions {
   display: flex;
   align-items: center;
@@ -113,6 +127,7 @@ body {
   cursor: pointer;
 }
 
+/* Стили для блока email */
 .email {
   display: flex;
   flex-direction: column;
@@ -120,6 +135,7 @@ body {
   position: relative;
 }
 
+/* Стили для блока имени */
 .name {
   display: flex;
   flex-direction: column;
@@ -127,6 +143,7 @@ body {
   position: relative;
 }
 
+/* Стили для блока пароля */
 .password {
   display: flex;
   flex-direction: column;
@@ -135,6 +152,7 @@ body {
   width: 100%;
 }
 
+/* Стили для блока повторного пароля */
 .password_repeat {
   display: flex;
   flex-direction: column;
@@ -143,6 +161,7 @@ body {
   width: 100%;
 }
 
+/* Стили для кнопки регистрации */
 .register_btn {
   display: flex;
   justify-content: center;
@@ -157,42 +176,37 @@ body {
   cursor: pointer;
 }
 
-#add_avatar_space {
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
+/* Стили для кнопки регистрации при наведении */
 .register_btn:hover {
   border: none;
   box-shadow: 0 0 0 4px #ccc;
 }
-.register_btn:disabled:hover {
-  border: none;
-}
 
+/* Стили для кнопки регистрации при активации */
 .register_btn:active {
   border: none;
   box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
 }
 
+/* Стили для кнопки "Забыл пароль" */
 .forgot_btn {
   color: #2d81fe;
   cursor: pointer;
 }
 
+/* Стили для кнопки "Забыл пароль" при наведении */
 .forgot_btn:hover {
   text-decoration: underline;
 }
 
+/* Стили для блока "Забыл пароль" */
 .forgot_block {
   text-align: center;
   font-size: 14px;
   font-weight: 400;
 }
 
+/* Стили для блока ввода пароля */
 .input_password {
   display: flex;
   align-items: center;
@@ -200,12 +214,14 @@ body {
   width: 100%;
 }
 
+/* Стили для иконки "глаза" */
 .eye_icon {
   position: absolute;
   right: 12px;
   cursor: pointer;
 }
 
+/* Стили для блока добавления аватара */
 .add-avatar {
   position: absolute;
   width: 104px;
@@ -219,10 +235,12 @@ body {
   cursor: pointer;
 }
 
+/* Стили для контейнера аватара */
 .avatar {
   position: relative;
 }
 
+/* Стили для картинки аватара */
 .add_avatar img {
   width: 64px;
   height: 64px;
@@ -230,9 +248,12 @@ body {
   cursor: pointer;
 }
 
+/* Стили для убирания рамки при фокусе на поле ввода */
 div > div > .error-input:focus {
   outline: none;
 }
+
+/* Стили для текста ошибки */
 .input-error-label {
   font-size: 12px;
   color: rgba(130, 130, 130, 1);
@@ -240,13 +261,18 @@ div > div > .error-input:focus {
   top: 68px;
   left: 12px;
 }
+
+/* Стили для скрытия элемента */
 .none {
   display: none;
 }
 
+/* Стили для инпута добавления аватара */
 #add-avatar-input {
   user-select: none;
 }
+
+/* Стили для блока добавления аватара */
 #add-avatar,
 #add-avatar h4,
 #add-avatar-input {
