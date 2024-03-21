@@ -1,0 +1,102 @@
+<div class="menu_block">
+  <img width="86px" height="86px" src="/icons/Logo.svg" />
+  <div class="menu">
+    <p class="personages">Персонажи</p>
+    <p class="news">О нас</p>
+    <p>Справка</p>
+    <p>Магазин</p>
+    <p>Дополнительно</p>
+  </div>
+</div>
+<div class="profile">
+  <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
+  <h5 class="name_user"></h5>
+  <button class="logOut">
+    <img src="/icons/logOut.svg" />
+  </button>
+</div>
+<div class="line"></div>
+<script src="/js/homeNews/homeNews.js"></script>
+<script src="/js/token.js"></script>
+<script src="/js/index.js"></script>
+<script>
+  const news = document.querySelector('.news');
+  const logOut = document.querySelector('.logOut');
+  const personages = document.querySelector('.personages');
+
+  news.addEventListener('click', () => {
+    window.location.href = '/';
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const isLoggedOut = false;
+
+    fetch(`${base_url}accounts/profile/`, {
+      method: 'GET',
+      headers: headers,
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      const nameUser = document.querySelector('.name_user');
+      const avatar = document.querySelector('.avatar_user');
+      const { username, image } = data;
+      if (image) {
+        avatar.src = image;
+      }
+      avatar.src = '/icons/userIcon.png';
+      nameUser.textContent = username;
+      localStorage.setItem('username', username);
+      localStorage.setItem('avatar', image);
+    })
+    localStorage.setItem('isLoggedOut', isLoggedOut);
+  });
+
+  logOut.addEventListener('click', () => {
+    logout(base_url, headers);
+  });
+
+  personages.addEventListener('click', () => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      alert('Вы должны войти в аккаунт чтобы получить доступ к персонажам!')
+    }
+    else {
+      window.location.href = '/home/home.html';
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const profile = document.querySelector('.profile');
+    const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
+
+    //Если я залогинен, то будет отображаться профиль, иначе кнопки для Входа и Регистрации
+    if (isLoggedOut) {
+      profile.innerHTML = `
+      <button class="login">Вход</button>
+      <button class="register">Регистрация</button>
+    `;
+      const loginButton = profile.querySelector('.login');
+      const registerButton = profile.querySelector('.register');
+
+      if (loginButton) {
+        loginButton.addEventListener('click', () => {
+          window.location.href = '/login/login.html';
+        });
+      }
+
+      if (registerButton) {
+        registerButton.addEventListener('click', () => {
+          window.location.href = '/register/register.html';
+        });
+      }
+    } else {
+      profile.innerHTML = `
+      <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
+      <h5 class="name_user"></h5>
+      <button class="logOut">
+        <img src="/icons/logOut.svg" />
+      </button>
+      `
+    }
+  });
+</script>

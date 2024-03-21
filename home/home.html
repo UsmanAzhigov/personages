@@ -50,31 +50,11 @@
 </div> -->
 
 <body>
-  <div class="header">
-    <div class="menu_block">
-      <img width="86px" height="86px" src="/icons/Logo.svg" />
-      <div class="menu">
-        <p>Персонажи</p>
-        <p class="news">О нас</p>
-        <p>Справка</p>
-        <p>Магазин</p>
-        <p>Дополнительно</p>
-      </div>
-    </div>
-    <div class="profile">
-      <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
-      <h5 class="name_user"></h5>
-      <button class="logOut">
-        <img src="/icons/logOut.svg" />
-      </button>
-    </div>
-    <div class="line"></div>
+  <div id="header" class="header">
   </div>
   <div class="home_block">
     <div class="list_personages">
-      <template id="personage-template">
-        <li class="personage"></li>
-      </template>
+      <li class="personage"></li>
     </div>
     <div class="main_block">
       <div class="change_block">
@@ -192,57 +172,7 @@
     </div>
   </div>
   <div id="addPersonageModal">
-    <div class="modal">
-      <div class="content">
-        <div class="addPersonage_header">
-          <p class="addPersonage_text">Создать карточку героя</p>
-          <img class="close" width="32px" height="32px" src="/icons/closeIcon.svg" id="close-personages-modal" />
-        </div>
-        <div class="addPersonage_block">
-          <div class="add_image">
-            <p class="add_image_text">Портрет персонажа</p>
-            <div class="image_block">
-              <img class="add_image" width="90px" height="80px" src="/icons/addImageSvg.svg" />
-              <button class="btn">
-                <input type="file" class="add-avatar" id="add-avatar-input" />
-                <img width="18px" height="16px" src="/icons/uploadImage.svg" /> Загрузить фото
-              </button>
-              <p class="order_text">Или перетащите файл сюда</p>
-            </div>
-          </div>
-          <div class="addPersonage_form">
-            <div class="namePersonage">
-              <label>Имя</label>
-              <input id="name" type="text" placeholder="Ваш заголовок" />
-              <label id="name-error-label" for="" class="input-error-label none"></label>
-            </div>
-            <label class="period_label">Период активности</label>
-            <div class="period">
-              <div class="start">
-                <input id="period" type="date" placeholder="Начало" />
-              </div>
-              <img width="12px" height="24px" src="/icons/minus.svg" />
-              <input id="period" type="date" placeholder="Конец" />
-              <label id="period-error-label" for="" class="input-error-label none"></label>
-            </div>
-            <div class="place">
-              <label>Место</label>
-              <input id="place" type="text" placeholder="Ваш текст..." />
-              <label id="place-error-label" for="" class="input-error-label none"></label>
-            </div>
-            <div class="additional_information">
-              <label>Дополнительная информация</label>
-              <input id="additional_information" type="text" placeholder="Ваш текст..." />
-              <label id="additional_information-error-label" for="" class="input-error-label none"></label>
-            </div>
-            <div class="fraction">
-              <input type="checkbox" />
-              <p>Отображать фракцию персонажа</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
   <script src="/js/index.js"></script>
   <script src="/js/token.js"></script>
@@ -251,19 +181,15 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
     const logOut = document.querySelector('.logOut');
-    const personagesList = ['Soldier 76', 'Tracer', 'Roadhog', 'Genji', 'Widowmaker'];
     const listPersonages = document.querySelector('.list_personages');
-    const personageTemplate = document.getElementById('personage-template');
     const arrows = document.querySelectorAll('.arrow');
     const detailsBlocks = document.querySelectorAll('.details');
     const detailsHeaders = document.querySelectorAll('.details_header');
-    const news = document.querySelector('.news');
     const addPersonageModal = document.querySelector('#addPersonageModal');
-    const closeModal = document.querySelector('.close');
-    //Перехол на страницу новостей
-    news.addEventListener('click', () => {
-      window.location.href = '/';
-    })
+
+    $(function () {
+      $("#header").load("../components/header/header.html");
+    });
 
     //Добавление фонового изображения
     document.body.style.backgroundImage = '/icons/background.svg';
@@ -292,37 +218,17 @@
         }
       });
     });
-    //Отображение профиля
-    document.addEventListener('DOMContentLoaded', () => {
-      const isLoggedOut = false;
-
-      fetch(`${base_url}accounts/profile/`, {
-        method: 'GET',
-        headers: headers,
-      }).then((response) => {
-        return response.json();
-      }).then((data) => {
-        const nameUser = document.querySelector('.name_user');
-        const avatar = document.querySelector('.avatar_user');
-        const { username, image } = data;
-        if (image) {
-          avatar.src = image;
-        }
-        avatar.src = '/icons/userIcon.png';
-        nameUser.textContent = username;
-        localStorage.setItem('email', username);
-        localStorage.setItem('avatar', image);
-      })
-      localStorage.setItem('isLoggedOut', isLoggedOut);
-    });
 
     //Отображение списка персонажей
-    personagesList.forEach(personageName => {
-      const clone = personageTemplate.content.cloneNode(true);
-      const personageElement = clone.querySelector('.personage');
-      personageElement.textContent = personageName;
-      listPersonages.appendChild(clone);
-    });
+    fetch(`${base_url}personas/`, {
+      method: 'GET',
+      headers: headers,
+    }).then((res) => {
+      res.json();
+    }).then((data) => {
+      console.log(data);
+      const personage = document.querySelector('.personage');
+    })
     const addPersonageImg = document.createElement('img');
     addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
     listPersonages.appendChild(addPersonageImg);
@@ -332,17 +238,10 @@
     }
 
     addPersonageModal.style.display = 'none';
-    //Закрытие модального окна
-    closeModal.addEventListener('click', () => {
-      addPersonageModal.style.display = 'none';
-    })
     //Открытие модального окна
     addPersonageImg.addEventListener('click', handleClick);
 
-    //Выход
-    logOut.addEventListener('click', () => {
-      logout(base_url, headers);
-    });
+
   </script>
 
 </body>

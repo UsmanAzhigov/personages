@@ -32,26 +32,6 @@ body {
   z-index: -1;
 }
 
-.header {
-  display: flex;
-  background-color: #fff;
-  align-items: center;
-  border-radius: 10px;
-  height: 120px;
-  padding: 0 24px 0 24px;
-  position: relative;
-  justify-content: space-between;
-  margin: 24px;
-}
-
-.line {
-  width: 93.7%;
-  border: 1px solid #eaeaea;
-  margin-top: 54px;
-  margin-left: 75px;
-  position: absolute;
-}
-
 .list_personages {
   display: flex;
   background-color: #fff;
@@ -70,35 +50,11 @@ body {
   cursor: pointer;
 }
 
-.avatar_user {
-  border-radius: 50px;
-}
-
 .list_personages li {
   width: 100%;
   text-align: center;
   padding: 8px 0 8px 0;
   border-bottom: 2px solid #eaeaea;
-}
-.menu {
-  display: flex;
-  gap: 24px;
-  color: #828282;
-}
-
-.menu p {
-  cursor: pointer;
-}
-
-.profile {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding-bottom: 32px;
-}
-
-.profile img {
-  cursor: pointer;
 }
 
 .home_block {

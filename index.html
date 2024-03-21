@@ -4,25 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" type="text/css" href="./global.css" />
   <title>Новости</title>
   <link rel="icon" href="./icons/web-favicon.svg" type="image/x-icon" />
 </head>
 
 <body>
-  <div class="header">
-    <div class="menu_block">
-      <img width="86px" height="86px" src="/icons/Logo.svg" />
-      <div class="menu">
-        <p class="personages">Персонажи</p>
-        <p>О нас</p>
-        <p>Справка</p>
-        <p>Магазин</p>
-        <p>Дополнительно</p>
-      </div>
-    </div>
-    <div class="profile">
-    </div>
-    <div class="line"></div>
+  <div id="header" class="header">
   </div>
   <div class="main_block">
     <div class="content">
@@ -51,6 +39,8 @@
   <script src="./js/index.js"></script>
   <script src="./js/token.js"></script>
   <script type="text/javascript" src="./js/homeNews/homeNews.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
     //Html элемент для показа новостей
     const newsTemplate = `
@@ -68,86 +58,7 @@
   <img class="image_new" width="468px" height="294px" />
 </div>
 `;
-
-    const personages = document.querySelector('.personages');
-    document.addEventListener('DOMContentLoaded', () => {
-      const profile = document.querySelector('.profile');
-      const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
-
-
-      //Если я залогинен, то будет отображаться профиль, иначе кнопки для Входа и Регистрации
-      if (isLoggedOut) {
-        profile.innerHTML = `
-      <button class="login">Вход</button>
-      <button class="register">Регистрация</button>
-    `;
-        const loginButton = profile.querySelector('.login');
-        const registerButton = profile.querySelector('.register');
-
-        if (loginButton) {
-          loginButton.addEventListener('click', () => {
-            window.location.href = '/login/login.html';
-          });
-        }
-
-        if (registerButton) {
-          registerButton.addEventListener('click', () => {
-            window.location.href = '/register/register.html';
-          });
-        }
-      } else {
-        if (localStorage.getItem('email') && localStorage.getItem('avatar')) {
-          const emailUser = localStorage.getItem('email');
-          const image = localStorage.getItem('avatar');
-          const avatar = document.createElement('img');
-          const nameUser = document.createElement('h5');
-          const logOut = document.createElement('img');
-
-          logOut.src = '/icons/logout.svg';
-          logOut.classList.add('logout');
-          //Логаут
-          logOut.addEventListener('click', () => {
-            localStorage.removeItem('email');
-            localStorage.removeItem('avatar');
-            logout(base_url, headers);
-            localStorage.setItem('isLoggedOut', true);
-            window.location.reload();
-          });
-          if (image) {
-            avatar.src = image;
-          }
-          avatar.src = '/icons/userIcon.png';
-          avatar.style.borderRadius = '50px';
-          avatar.style.width = '32px';
-          avatar.style.height = '32px';
-          avatar.classList.add('avatar_user');
-          nameUser.classList.add('name_user');
-          nameUser.textContent = emailUser;
-          profile.appendChild(avatar);
-          profile.appendChild(nameUser);
-          profile.appendChild(logOut);
-        }
-        else {
-          profile.innerHTML = `
-      <button class="login">Вход</button>
-      <button class="register">Регистрация</button>
-    `;
-          const loginButton = profile.querySelector('.login');
-          const registerButton = profile.querySelector('.register');
-          if (loginButton) {
-            loginButton.addEventListener('click', () => {
-              window.location.href = '/login/login.html';
-            });
-          }
-
-          if (registerButton) {
-            registerButton.addEventListener('click', () => {
-              window.location.href = '/register/register.html';
-            });
-          }
-        }
-      }
-    });
+    document.body.style.display = 'block';
     //Рендер новостей
     fetch(`${base_url}news/?limit=5&offset=0`, {
       method: 'GET',
@@ -183,20 +94,9 @@
         newsBlock.style.paddingTop = '24px';
         newsBlock.style.width = '100%';
         newsBlock.style.justifyContent = 'space-between';
-        //Добавление новостей в контейнер
         newsContainer.appendChild(newsBlock);
       });
     })
-    //Проверка, залогинен ли пользователь или нет
-    personages.addEventListener('click', () => {
-      const isLoggedIn = localStorage.getItem('isLoggedIn');
-      if (!isLoggedIn) {
-        alert('Вы должны войти в аккаунт чтобы получить доступ к персонажам!')
-      }
-      else {
-        window.location.href = '/home/home.html';
-      }
-    });
   </script>
 </body>
 
