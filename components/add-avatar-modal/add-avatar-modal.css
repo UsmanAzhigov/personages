@@ -26,6 +26,10 @@
   max-height: 350px;
 }
 
+#avatar {
+  border-radius: 50%;
+}
+
 .image-name {
   display: flex;
   gap: 8px;
@@ -71,6 +75,7 @@
 
 .crop-image-btn {
   margin-top: 24px;
+  width: 100%;
 }
 
 .cropper-wrap-box {

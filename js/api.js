@@ -11,21 +11,17 @@ window.onload = function () {
  * @param url - адрес API
  * @returns Возвращает ответ от сервера | null
  */
-async function apiRequest(path, options = { method: 'GET' }) {
+async function apiRequest(path, options = { method: "GET" }) {
   const resp = await fetch(`${window.API_URL}${path}`, {
     method: options.method,
     headers: {
-      'X-CSRFToken': window.CSRF_TOKEN,
+      "X-CSRFToken": window.CSRF_TOKEN,
       ...options.headers,
     },
     body: options.body,
   });
 
-  if (resp.ok) {
-    return await resp.json();
-  }
-
-  throw new Error('Ошибка при обращении к API');
+  return await resp.json();
 }
 
 /**
@@ -39,15 +35,27 @@ class ApiServices {
   }
 
   async logout() {
-    return apiRequest(window.ENDPOINTS.LOGOUT, { method: 'POST' });
+    return apiRequest(window.ENDPOINTS.LOGOUT, { method: "POST" });
   }
 
   async register(formData) {
-    return apiRequest(window.ENDPOINTS.REGISTER, { method: 'POST', body: formData });
+    return apiRequest(window.ENDPOINTS.REGISTER, {
+      method: "POST",
+      body: formData,
+    });
+  }
+
+  async login(formData) {
+    return apiRequest(window.ENDPOINTS.LOGIN, {
+      method: "POST",
+      body: formData,
+    });
   }
 
   async getNews(limit = 5, offset = 0) {
-    return apiRequest(window.ENDPOINTS.NEWS + `?limit=${limit}&offset=${offset}`);
+    return apiRequest(
+      window.ENDPOINTS.NEWS + `?limit=${limit}&offset=${offset}`
+    );
   }
 }
 
