@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./login.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
   <link rel="stylesheet" href="/global.css" />
   <title>Вход</title>
   <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
@@ -18,21 +18,10 @@
     </div>
     <div class="form_register">
       <div class="register_inputs">
-        <div class="email_name_block">
-          <div class="email">
-            <label>Email</label>
-            <input id="login" type="email" placeholder="Введите ваш Email" />
-          </div>
-          <label id="login-error-label" for="" class="input-error-label none"></label>
-          <div class="password_block">
-            <div class="password">
-              <label>Пароль</label>
-              <div class="input_password">
-                <input id="password" type="password" placeholder="Ваш пароль" />
-                <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
-              </div>
-            </div>
-          </div>
+        <div id="email_name_block" class="email_name_block">
+        </div>
+        <div id="password_name_block" class="password_block">
+
         </div>
         <a href="../password-reset/password-reset.html"> <label id="password-error-label" for=""
             class="input-error-label none"></label>
@@ -51,7 +40,18 @@
   <script src="/js/api.js"></script>
   <script src="/js/libs.js"></script>
   <script src="/js/index.js"></script>
-  <script src="./login.js">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="./login.js"></script>
+  <script>
+    const passwordBlock = document.querySelector('.password_block');
+    passwordBlock.style.marginTop = '24px';
+    $(function () {
+      $('#email_name_block').load('../components/emailInput/emailInput.html');
+    });
+    $(function () {
+      $('#password_name_block').load('../components/passwordInput/passwordInput.html');
+    });
   </script>
 </body>
 

@@ -1,6 +1,7 @@
 <div class="menu_block">
   <img width="86px" height="86px" src="/icons/Logo.svg" />
   <div class="menu">
+    <!-- Меню навигации -->
     <p class="personages">Персонажи</p>
     <a href="/"> О нас
     </a>
@@ -10,6 +11,7 @@
   </div>
 </div>
 <div class="profile">
+  <!-- Профиль пользователя -->
   <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
   <h5 class="name_user"></h5>
   <button class="logOut">
@@ -24,7 +26,9 @@
   const logOut = document.querySelector('.logOut');
   const personages = document.querySelector('.personages');
 
+  // Событие при загрузке документа
   document.addEventListener('DOMContentLoaded', () => {
+    // Проверяем, залогинен ли пользователь
     const isLoggedOut = false;
 
     window.api.getProfile().then((data) => {
@@ -42,32 +46,35 @@
     localStorage.setItem('isLoggedOut', isLoggedOut);
   });
 
+  // Обработчик клика по кнопке выхода
   logOut.addEventListener('click', () => {
     window.api.logout().then(() => {
-      const isLoggedOut = localStorage.getItem('isLoggedOut');
-      isLoggedOut = true;
-      localStorage.setItem('isLoggedOut', isLoggedOut);
+      localStorage.setItem('isLoggedOut', true);
       const profile = document.querySelector('.profile');
       const loginButton = document.createElement('button');
       const registerButton = document.createElement('button');
+      const isLoggedOut = localStorage.getItem('isLoggedOut') === true;
 
-      // Создаем кнопки для входа и регистрации
-      loginButton.classList.add('login');
-      loginButton.textContent = 'Вход';
-      loginButton.addEventListener('click', () => {
-        window.location.href = '/login/login.html';
-      });
+      // Если пользователь вышел, отображаем кнопки входа и регистрации
+      if (isLoggedOut) {
+        // Создаем кнопки для входа и регистрации
+        loginButton.classList.add('login');
+        loginButton.textContent = 'Вход';
+        loginButton.addEventListener('click', () => {
+          window.location.href = '/login/login.html';
+        });
 
-      registerButton.classList.add('register');
-      registerButton.textContent = 'Регистрация';
-      registerButton.addEventListener('click', () => {
-        window.location.href = '/register/register.html';
-      });
+        registerButton.classList.add('register');
+        registerButton.textContent = 'Регистрация';
+        registerButton.addEventListener('click', () => {
+          window.location.href = '/register/register.html';
+        });
 
-      // Заменяем профиль кнопками входа и регистрации
-      profile.innerHTML = '';
-      profile.appendChild(loginButton);
-      profile.appendChild(registerButton);
+        // Заменяем профиль кнопками входа и регистрации
+        profile.innerHTML = '';
+        profile.appendChild(loginButton);
+        profile.appendChild(registerButton);
+      }
     });
   });
 
@@ -79,11 +86,12 @@
     }
   });
 
+  // Событие при загрузке документа
   document.addEventListener('DOMContentLoaded', () => {
     const profile = document.querySelector('.profile');
-    const isLoggedOut = localStorage.getItem('isLoggedOut') === 'true';
+    const isLoggedOut = localStorage.getItem('isLoggedOut') === true;
 
-    //Если я залогинен, то будет отображаться профиль, иначе кнопки для Входа и Регистрации
+    // Если пользователь вышел, отображаем кнопки входа и регистрации
     if (isLoggedOut) {
       profile.innerHTML = `
       <button class="login">Вход</button>
@@ -104,6 +112,7 @@
         });
       }
     } else {
+      // Иначе отображаем профиль пользователя
       profile.innerHTML = `
       <img class="avatar_user" width="32px" height="32px" src="/icons/userIcon.png" />
       <h5 class="name_user"></h5>

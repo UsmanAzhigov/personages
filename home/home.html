@@ -173,10 +173,6 @@
       $('#header').load('../components/header/header.html');
     });
 
-    if (localStorage.getItem('isLoggedIn')) {
-      window.location.href = '../login/login.html';
-    }
-
     //Добавление фонового изображения
     document.body.style.backgroundImage = '/icons/background.svg';
     document.body.style.backgroundRepeat = 'no-repeat';

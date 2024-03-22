@@ -16,10 +16,6 @@
   padding-bottom: 48px;
 }
 
-.register_header img {
-  cursor: pointer;
-}
-
 .check_email {
   display: flex;
   flex-direction: column;

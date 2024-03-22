@@ -40,7 +40,17 @@ class ApiServices {
   }
 
   async register(formData) {
-    return apiRequest(window.ENDPOINTS.REGISTER, { method: 'POST', body: formData });
+    return apiRequest(window.ENDPOINTS.REGISTER, {
+      method: 'POST',
+      body: formData,
+    });
+  }
+
+  async login(formData) {
+    return apiRequest(window.ENDPOINTS.LOGIN, {
+      method: 'POST',
+      body: formData,
+    });
   }
 
   async getNews(limit = 5, offset = 0) {

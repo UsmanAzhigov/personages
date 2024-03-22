@@ -1,111 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="./register.css" />
-    <link rel="stylesheet" href="/global.css" />
-    <link rel="stylesheet" href="../components/add-avatar-modal/add-avatar-modal.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css"
-      rel="stylesheet"
-    />
-    <title>Personages</title>
-  </head>
 
-  <body>
-    <div class="register_block">
-      <div class="register_header">
-        <p class="register_text">Регистрация</p>
-      </div>
-      <div class="description_register">
-        <p>Заполните свои данные ниже, чтобы зарегитрироваться</p>
-      </div>
-      <div class="form_register">
-        <div class="add_avatar">
-          <div id="add_avatar_space">
-            <img width="64px" height="64px" id="avatar" src="/icons/userIcon.png" />
-            <button type="button" class="add_btn" id="add-avatar">
-              <h4 id="add_avatar_title">Добавить фото</h4>
-            </button>
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="./register.css" />
+  <link rel="stylesheet" href="/global.css" />
+  <link rel="stylesheet" href="../components/add-avatar-modal/add-avatar-modal.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" rel="stylesheet" />
+  <title>Personages</title>
+</head>
 
-        <input type="file" class="add-avatar" id="add-avatar-input" hidden />
-
-        <div class="register_inputs">
-          <div class="email_name_block">
-            <div class="email">
-              <label>Email</label>
-              <input id="email" type="email" placeholder="Введите ваш Email" />
-              <label id="email-error-label" for="" class="input-error-label none"></label>
-            </div>
-            <div class="name">
-              <label>Имя пользователя</label>
-              <input id="username" type="text" placeholder="Придумайте имя" />
-              <label id="username-error-label" for="" class="input-error-label none"></label>
-            </div>
-          </div>
-          <div class="password_block">
-            <div class="password">
-              <label>Пароль</label>
-              <div class="input_password">
-                <input id="password" type="password" placeholder="Ваш пароль" />
-                <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
-              </div>
-              <label id="password-error-label" for="" class="input-error-label none"></label>
-            </div>
-            <div class="password_repeat">
-              <label>Повторите пароль</label>
-              <div class="input_password">
-                <input id="password_confirm" type="password" placeholder="Ваш пароль" />
-                <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
-              </div>
-              <label
-                id="password_confirm-error-label"
-                for=""
-                class="input-error-label none"
-              ></label>
-            </div>
-          </div>
-          <div class="conditions">
-            <input type="checkbox" />
-            <p>Я согласен на обработку и хранение персональных данных</p>
-          </div>
-        </div>
-        <button class="btn register-btn" disabled="true">Зарегистрироваться</button>
-        <p class="forgot_block">
-          Уже есть аккаунт <a href="/login/login.html"><span class="forgot_btn">Войти</span></a>
-        </p>
-        <div id="avatarCropModal"></div>
-      </div>
+<body>
+  <div class="register_block">
+    <div class="register_header">
+      <p class="register_text">Регистрация</p>
     </div>
+    <div class="description_register">
+      <p>Заполните свои данные ниже, чтобы зарегитрироваться</p>
+    </div>
+    <div class="form_register">
+      <div class="add_avatar">
+        <div id="add_avatar_space">
+          <img width="64px" height="64px" id="avatar" src="/icons/userIcon.png" />
+          <button type="button" class="add_btn" id="add-avatar">
+            <h4 id="add_avatar_title">Добавить фото</h4>
+          </button>
+        </div>
+      </div>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" async></script>
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
+      <input type="file" class="add-avatar" id="add-avatar-input" hidden />
 
-    <script src="/js/libs.js"></script>
-    <script src="/js/api.js"></script>
-    <script src="/js/index.js"></script>
+      <div class="register_inputs">
+        <div class="email_name_block">
+          <div class="email">
+            <label>Email</label>
+            <input id="email" type="email" placeholder="Введите ваш Email" />
+            <label id="email-error-label" for="" class="input-error-label none"></label>
+          </div>
+          <div class="name">
+            <label>Имя пользователя</label>
+            <input id="username" type="text" placeholder="Придумайте имя" />
+            <label id="username-error-label" for="" class="input-error-label none"></label>
+          </div>
+        </div>
+        <div class="password_block">
+          <div class="password">
+            <label>Пароль</label>
+            <div class="input_password">
+              <input id="password" type="password" placeholder="Ваш пароль" />
+              <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
+            </div>
+            <label id="password-error-label" for="" class="input-error-label none"></label>
+          </div>
+          <div class="password_repeat">
+            <label>Повторите пароль</label>
+            <div class="input_password">
+              <input id="password_confirm" type="password" placeholder="Ваш пароль" />
+              <img class="eye_icon" width="24px" height="24px" src="/icons/closeEyeIcon.svg" />
+            </div>
+            <label id="password_confirm-error-label" for="" class="input-error-label none"></label>
+          </div>
+        </div>
+        <div class="conditions">
+          <input type="checkbox" />
+          <p>Я согласен на обработку и хранение персональных данных</p>
+        </div>
+      </div>
+      <button class="btn register-btn" disabled="true">Зарегистрироваться</button>
+      <p class="forgot_block">
+        Уже есть аккаунт <a href="/login/login.html"><span class="forgot_btn">Войти</span></a>
+      </p>
+      <div id="avatarCropModal"></div>
+    </div>
+  </div>
 
-    <script src="./register.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" async></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="/js/libs.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/index.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
-    <!-- <script> 
-    // В div с id #avatarCropModal будет добавлен файл modal.html
-    $(function(){
-      $("#avatarCropModal").load("../components/modal/modal.html");
-    });
-  </script> -->
-  </body>
+  <script src="./register.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+</body>
+
 </html>

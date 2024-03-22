@@ -23,16 +23,20 @@ function login() {
   formData.append('login', email.toLowerCase());
   formData.append('password', password);
 
-  window.api.login(formData).then((data) => {
-    window.location.href = '/home/home.html';
-    //Проверка на ошибки
-    if (!data.success) {
-      handleErrors(data);
+  window.api.login(formData).then((responseData) => {
+    try {
+      console.log(responseData);
+      if (responseData.detail === 'Login successful') {
+        localStorage.setItem('isLoggedIn', true);
+        window.location.href = '/home/home.html';
+      }
+      if (!responseData.success) {
+        handleErrors(responseData);
+      }
+    } catch (error) {
+      //Проверка на ошибки
+      console.log(error);
       showToast('Неправильный логин или пароль', 'error');
-    } else {
-      window.location.href = '/home/home.html';
-      localStorage.setItem('isLoggedIn', true);
-      localStorage.removeItem('isLoggedOut');
     }
   });
 }

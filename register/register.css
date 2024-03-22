@@ -1,13 +1,34 @@
+.register_block {
+  width: 500px;
+  background-color: #ffffff;
+  margin: 70px auto;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.register_text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.register_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .description_register {
   width: 305px;
   color: #999ca0;
   font-weight: 400;
   line-height: 16px;
 }
+
 .description_register p {
   font-size: 12px;
 }
 
+/* Стили для пространства добавления аватара */
 #add_avatar_space {
   display: flex;
   flex-direction: column;
@@ -17,6 +38,7 @@
   cursor: pointer;
 }
 
+/* Стили для блока добавления аватара */
 .add_avatar {
   display: flex;
   justify-content: center;
@@ -24,6 +46,7 @@
   align-items: center;
 }
 
+/* Стили для кнопки добавления */
 .add_btn {
   display: flex;
   align-items: center;
@@ -43,16 +66,19 @@
   background-color: #dddddd;
 }
 
+/* Стили для блока ввода регистрационных данных */
 .register_inputs {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+/* Стили для ввода данных */
 .register_inputs input {
   border: 1px solid #e2e2e2;
 }
 
+/* Стили для блока ввода электронной почты и имени */
 .email_name_block {
   display: flex;
   flex-direction: column;
@@ -64,19 +90,7 @@
   padding: 8px 12px;
 }
 
-.password_block {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 24px;
-}
-
-.password_block input {
-  width: 100%;
-  border-radius: 8px;
-  padding: 8px 12px;
-}
-
+/* Стили для блока условий */
 .conditions {
   display: flex;
   align-items: center;
@@ -93,6 +107,7 @@
   cursor: pointer;
 }
 
+/* Стили для блока ввода электронной почты */
 .email {
   display: flex;
   flex-direction: column;
@@ -100,6 +115,7 @@
   position: relative;
 }
 
+/* Стили для блока ввода имени */
 .name {
   display: flex;
   flex-direction: column;
@@ -107,22 +123,7 @@
   position: relative;
 }
 
-.password {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-  width: 100%;
-}
-
-.password_repeat {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-  width: 100%;
-}
-
+/* Стили для ссылки "Забыл пароль?" */
 .forgot_btn {
   color: #2d81fe;
   cursor: pointer;
@@ -133,6 +134,7 @@
   text-decoration: underline;
 }
 
+/* Стили для блока "Забыл пароль?" */
 .forgot_block {
   text-align: center;
   font-size: 14px;
@@ -143,39 +145,16 @@
   text-decoration: none;
 }
 
-.input_password {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 100%;
-}
-
+/* Стили для иконки глаза */
 .eye_icon {
   position: absolute;
   right: 12px;
   cursor: pointer;
 }
 
+/* Стили для блока добавления аватара */
 .add-avatar {
   position: absolute;
   width: 1px;
   height: 1px;
-  border-radius: 50%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  /* cursor: pointer; */
-}
-
-.avatar {
-  position: relative;
-}
-
-.add_avatar img {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  /* cursor: pointer; */
 }

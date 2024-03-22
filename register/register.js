@@ -3,6 +3,7 @@ let fileName;
 let newSelectedFile;
 
 window.onload = function () {
+  // Массив всех проверяемых полей
   const inputs = ['password', 'username', 'email', 'password_confirm', 'image'];
 
   const registerHeader = document.querySelector('.register_header');
@@ -13,6 +14,13 @@ window.onload = function () {
   const addAvatarInput = document.querySelector('#add-avatar-input');
   const selectedFile = addAvatarInput.files[0];
   const addAvatarDiv = document.querySelector('.add_avatar');
+  const passwordBlock = document.querySelector('.password_block');
+
+  $(function () {
+    $('#email_name_block').load('../components/emailInput/emailInput.html');
+  });
+
+  passwordBlock.style.flexDirection = 'row';
 
   registerHeader.style.justifyContent = 'flex-start';
 
@@ -107,9 +115,10 @@ window.onload = function () {
     formData.append('email', email.toLowerCase());
 
     try {
-      await window.api.register(formData);
+      const data = await window.api.register(formData);
+      handleErrors(data);
       hideSpinner();
-      window.location.href = '/send-verify-register/send-verify-register.html';
+      // window.location.href = "/send-verify-register/send-verify-register.html";
     } catch (error) {
       handleErrors(error);
       hideSpinner();
@@ -126,6 +135,7 @@ window.onload = function () {
    * @param {*} data - объект с ошибками
    */
   function handleErrors(data) {
+    // Цикл для проверки полей на ошибки
     inputs.forEach((el) => {
       const errorInput = document.querySelector(`#${el}`);
       const errorInputLabel = document.querySelector(`#${el}-error-label`);
@@ -150,6 +160,7 @@ window.onload = function () {
       } else {
         if (errorInput) {
           errorInput?.classList?.remove('error-input');
+          errorInputLabel.textContent = '';
           errorInputLabel?.classList?.add('none');
         }
         if (el === 'password' && conditions) {
@@ -157,6 +168,8 @@ window.onload = function () {
         }
       }
     });
+
+    // Показываем текст кнопки и скрываем спиннер
     hideSpinner();
     registerBtn.innerHTML = 'Зарегистрироваться';
   }
