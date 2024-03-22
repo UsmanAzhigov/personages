@@ -5,6 +5,7 @@ let newSelectedFile;
 window.onload = function () {
   const inputs = ['password', 'username', 'email', 'password_confirm', 'image'];
 
+  const registerHeader = document.querySelector('.register_header');
   const eyeIcons = document.querySelectorAll('.eye_icon');
   const inputPasswords = document.querySelectorAll('.password_block input');
   const registerBtn = document.querySelector('.btn');
@@ -12,6 +13,8 @@ window.onload = function () {
   const addAvatarInput = document.querySelector('#add-avatar-input');
   const selectedFile = addAvatarInput.files[0];
   const addAvatarDiv = document.querySelector('.add_avatar');
+
+  registerHeader.style.justifyContent = 'flex-start';
 
   registerBtn.style.width = '100%';
 
@@ -108,6 +111,7 @@ window.onload = function () {
       hideSpinner();
       window.location.href = '/send-verify-register/send-verify-register.html';
     } catch (error) {
+      handleErrors(error);
       hideSpinner();
       console.log('Request failed', error);
     } finally {

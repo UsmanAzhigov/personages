@@ -1,20 +1,4 @@
 /**
- * Выхода из аккаунта
- */
-function logout() {
-  fetch(`${base_url}accounts/logout/`, {
-    method: 'POST',
-    headers: headers,
-  }).then((response) => {
-    localStorage.clear();
-    const isLoggedOut = true;
-    response.json();
-    localStorage.setItem('isLoggedOut', isLoggedOut);
-    window.location.href = '/';
-  });
-}
-
-/**
  * Сброс пароля
  */
 function resetPassword(user_id, timestamp, signature, password, headers, base_url, handleErrors) {

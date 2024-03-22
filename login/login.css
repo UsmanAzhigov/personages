@@ -54,28 +54,6 @@
   font-size: '12px';
   font-weight: 400;
 }
-.register_block {
-  width: 500px;
-  background-color: #ffffff;
-  margin: 70px auto;
-  border-radius: 10px;
-  padding: 24px;
-}
-
-.register_text {
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.register_header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.register_header img {
-  cursor: pointer;
-}
 
 .register_inputs input {
   border: 1px solid #e2e2e2;
@@ -121,18 +99,4 @@
 
 .forgot_btn:hover {
   text-decoration: underline;
-}
-
-.input-error-label {
-  font-size: 12px;
-  color: rgba(130, 130, 130, 1);
-  left: 12px;
-  color: rgba(255, 78, 100, 1);
-}
-
-div > div > .error-input {
-  border: 1px solid rgba(255, 78, 100, 1);
-}
-div > div > .error-input:focus {
-  outline: none;
 }

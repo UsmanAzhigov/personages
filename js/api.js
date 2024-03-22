@@ -1,6 +1,7 @@
 /**
  * При загрузке страницы получаем предварительно csrfToken
  */
+
 window.onload = function () {
   window.CSRF_TOKEN = extractCsrfTokenFromCookie();
 };
@@ -21,11 +22,7 @@ async function apiRequest(path, options = { method: 'GET' }) {
     body: options.body,
   });
 
-  if (resp.ok) {
-    return await resp.json();
-  }
-
-  throw new Error('Ошибка при обращении к API');
+  return await resp.json();
 }
 
 /**
@@ -48,6 +45,28 @@ class ApiServices {
 
   async getNews(limit = 5, offset = 0) {
     return apiRequest(window.ENDPOINTS.NEWS + `?limit=${limit}&offset=${offset}`);
+  }
+  async getProfile() {
+    return apiRequest(window.ENDPOINTS.PROFILE, { method: 'GET' });
+  }
+  async login(formData) {
+    return apiRequest(window.ENDPOINTS.LOGIN, { method: 'POST', body: formData });
+  }
+
+  async forgotPassword(formData) {
+    return apiRequest(window.ENDPOINTS.FORGOT_PASSWORD, { method: 'POST', body: formData });
+  }
+
+  async resetPassword(formData) {
+    return apiRequest(window.ENDPOINTS.RESET_PASSWORD, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify(formData),
+    });
+  }
+
+  async verifyRegister(formData) {
+    return apiRequest(window.ENDPOINTS.VERIFY_REGISTER, { method: 'POST', body: formData });
   }
 }
 

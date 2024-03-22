@@ -50,10 +50,12 @@
   </div>
 </div>
 <script>
-  const closeModal = document.querySelector('.close');
-  const addPersonageModal = document.querySelector('.modal');
-  //Закрытие модального окна
-  closeModal.addEventListener('click', () => {
-    addPersonageModal.style.display = 'none';
-  })
+
+  const closeModalBtn = document.querySelector('#close-personages-modal');
+  function closeModal() {
+    document.querySelector('#addPersonageModal').innerHTML = '';
+    document.querySelector('#addPersonageModal').style.display = 'none';
+  }
+
+  closeModalBtn.addEventListener('click', closeModal);
 </script>

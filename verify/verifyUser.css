@@ -10,17 +10,6 @@
   padding: 24px;
 }
 
-.register_text {
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.register_header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .register_header p {
   font-size: 20px;
   font-weight: 400;

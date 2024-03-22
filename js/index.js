@@ -9,6 +9,11 @@ const endpoints = {
   LOGOUT: 'accounts/logout/',
   REGISTER: 'accounts/register/',
   NEWS: 'news/',
+  PROFILE: 'accounts/profile/',
+  LOGIN: 'accounts/login/',
+  FORGOT_PASSWORD: 'accounts/send-reset-password-link/',
+  RESET_PASSWORD: 'accounts/reset-password/',
+  VERIFY_REGISTER: 'accounts/verify-registration/',
 };
 
 window.ENDPOINTS = endpoints;

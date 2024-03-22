@@ -12,6 +12,8 @@
 </head>
 
 <body>
+  <script src="/js/api.js"></script>
+  <script src="/js/libs.js"></script>
   <script>
     const htmlSuccessFragment = `
       <div class="register_block">
@@ -54,21 +56,13 @@
     formData.append('timestamp', timestamp);
     formData.append('signature', signature);
 
-    fetch(`${base_url}accounts/verify-registration/`, {
-      method: 'POST',
-      headers: headers,
-      body: formData,
+    window.api.verifyRegister(formData).then((response) => {
+      if (response.success) {
+        document.body.innerHTML = htmlSuccessFragment;
+      } else {
+        document.body.innerHTML = htmlErrorFragment;
+      }
     })
-      .then((response) => {
-        status = response.ok;
-        console.log(response)
-        if (!response.ok) {
-          document.querySelector('body').innerHTML = htmlErrorFragment
-        } else {
-          document.querySelector('body').innerHTML = htmlSuccessFragment
-        }
-
-      })
   </script>
 </body>
 
