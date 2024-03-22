@@ -42,7 +42,7 @@
             <span class="forgot_password">Забыл пароль?</span></a
           >
         </div>
-        <button class="btn">Войти</button>
+        <button style="width: 100%" class="btn">Войти</button>
         <p class="forgot_block">
           У вас еще нет аккаунта?
           <a href="/register/register.html">
@@ -53,90 +53,12 @@
       </div>
     </div>
     <script src="/js/token.js"></script>
-    <script src="../js/login.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/js/libs.js"></script>
+    <script src="/js/api.js"></script>
     <script src="../js/index.js"></script>
-    <script>
-      const eyeIcons = document.querySelectorAll('.eye_icon');
-      const inputPasswords = document.querySelectorAll('.password_block input');
-      const loginBtn = document.querySelector('.btn');
 
-      loginBtn.style.width = '100%';
-      // Смена видимости пароля
-      eyeIcons.forEach((eyeIcon, index) => {
-        eyeIcon.addEventListener('click', () => {
-          if (inputPasswords[index].type === 'password') {
-            inputPasswords[index].type = 'text';
-            eyeIcon.src = '/icons/eyeIcon.svg';
-          } else {
-            inputPasswords[index].type = 'password';
-            eyeIcon.src = '/icons/closeEyeIcon.svg';
-          }
-        });
-      });
-      // Функция входа
-      function login() {
-        const email = document.querySelector('#login').value;
-        const password = document.querySelector('#password').value;
-        let status;
-        const isLoggedIn = true;
-        const formData = new FormData();
-        formData.append('login', email.toLowerCase());
-        formData.append('password', password);
-
-        fetch(`${base_url}accounts/login/`, {
-          method: 'POST',
-          headers: headers,
-          credentials: 'include',
-          body: formData,
-        })
-          .then((response) => {
-            status = response.ok;
-            if (!response.ok) {
-              return response.json();
-            }
-            return { success: true };
-          })
-          .then((data) => {
-            // Проверка на ошибки
-            if (!data.success) {
-              handleErrors(data);
-              showToast('Неправильный логин или пароль', 'error');
-            } else {
-              window.location.href = '/home/home.html';
-              localStorage.setItem('isLoggedIn', isLoggedIn);
-              localStorage.removeItem('isLoggedOut');
-            }
-          });
-      }
-      // Обработка ошибок
-      function handleErrors(data) {
-        const inputs = ['password', 'login'];
-        console.log(data);
-        inputs.forEach((el) => {
-          const errorInput = document.querySelector(`#${el}`);
-          const errorInputLabel = document.querySelector(`#${el}-error-label`);
-          const forgotPassword = document.querySelector('.forgot_password');
-          if (data[el]) {
-            if (errorInput) {
-              errorInput.classList.add('error-input');
-              errorInputLabel?.classList.remove('none');
-              errorInputLabel.textContent = translateError(data[el][0]);
-              forgotPassword.textContent = 'Восстановить';
-            }
-          } else {
-            if (errorInput) {
-              errorInput?.classList?.remove('error-input');
-              errorInputLabel?.classList?.add('none');
-            }
-          }
-        });
-      }
-
-      // Обработка нажатия на кнопку
-      loginBtn.addEventListener('click', () => {
-        login();
-      });
-    </script>
+    <script src="./login.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>
