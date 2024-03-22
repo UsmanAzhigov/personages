@@ -183,3 +183,32 @@ div > div > .error-input:focus {
     transform: rotate(360deg);
   }
 }
+
+/* Стили для блока регистрации */
+
+.register_block {
+  width: 500px;
+  background-color: #ffffff;
+  margin: 70px auto;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+/* Стили для текста регистрации */
+
+.register_text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* Стили для заголовка с кнопкой */
+.register_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Стили для изображения в заголовке */
+.register_header img {
+  cursor: pointer;
+}
