@@ -129,14 +129,9 @@
     const detailsHeaders = document.querySelectorAll('.details_header');
     const addPersonageModal = document.querySelector('#addPersonageModal');
 
-
-
     if (localStorage.getItem('isLoggedOut') === 'true') {
-      window.location.href = '/'
+      window.location.href = '/login/login.html'
     }
-
-
-
     //Добавление фонового изображения
     document.body.style.backgroundImage = '/icons/background.svg';
     document.body.style.backgroundRepeat = 'no-repeat';

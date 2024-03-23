@@ -49,6 +49,9 @@
   // Обработчик клика по кнопке выхода
   logOut.addEventListener('click', () => {
     window.api.logout().then(() => {
+      if (window.location.pathname === '/home/home.html') {
+        window.location.href = '/';
+      }
       localStorage.setItem('isLoggedIn', false);
       localStorage.setItem('isLoggedOut', true);
       const profile = document.querySelector('.profile');

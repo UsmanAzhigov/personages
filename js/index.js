@@ -5,7 +5,7 @@ window.CSRF_TOKEN = null;
 
 // API адресы
 const endpoints = {
-  PERSONAS: 'personas/',
+  CREATE_PERSONAS: 'personas/',
   LOGOUT: 'accounts/logout/',
   REGISTER: 'accounts/register/',
   NEWS: 'news/',

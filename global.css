@@ -10,6 +10,7 @@ body {
 
 /* Стили для кнопок */
 .btn {
+  position: relative;
   width: 195px;
   height: 40px;
   padding: 8px;
@@ -41,14 +42,14 @@ body {
 }
 
 .btn:active {
-  box-shadow: 0 0 0 2px white, 0 0 0 6px #ccc;
+  box-shadow: 0 0 0 2px white, 0 0 0 5px #ccc;
 }
 
 .open_mail {
   width: 241px;
   font-size: 14px;
   font-weight: 700;
-  padding: 14px;
+  padding: 12px;
   border: 0;
   background-color: #ffffff;
   cursor: pointer;
@@ -59,6 +60,20 @@ body {
 
 .open_mail:hover {
   background-color: #dddddd;
+}
+
+.open_mail:disabled {
+  color: #b3b3b3;
+  cursor: not-allowed;
+}
+
+.open_mail:active {
+  box-shadow: 0 0 0 2px white, 0 0 0 5px #ccc;
+}
+
+.open_mail:disabled:hover {
+  background-color: #ffffff;
+  box-shadow: none;
 }
 
 .btn a {

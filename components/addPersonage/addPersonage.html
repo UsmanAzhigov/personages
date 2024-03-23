@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="./addPersonage.css">
+<link rel="stylesheet" href="/global.css">
 <div class="modal">
   <div class="content">
     <div class="addPersonage_header">
@@ -19,7 +21,7 @@
       <div class="addPersonage_form">
         <div class="namePersonage">
           <label>Имя</label>
-          <input id="name" type="text" placeholder="Ваш заголовок" />
+          <input value="" id="name" type="text" placeholder="Ваш заголовок" />
           <label id="name-error-label" for="" class="input-error-label none"></label>
         </div>
         <label class="period_label">Период активности</label>
@@ -47,10 +49,48 @@
         </div>
       </div>
     </div>
+    <div class="btn_block">
+      <button class="open_mail" id="cancelPersonageBtn">Сбросить</button>
+      <button class="btn" id="addPersonageBtn">Сохранить</button>
+    </div>
   </div>
 </div>
 <script>
+  const savePersonageBtn = document.querySelector('#addPersonageBtn');
+  const cancelPersonageBtn = document.querySelector('#cancelPersonageBtn');
+  const nameInput = document.querySelector('#name');
+  const imageBlock = document.querySelector('.image_block');
+  const addAvatarInput = document.querySelector('#add-avatar-input');
 
+  // Функция для загрузки изображения
+  function uploadImage(event) {
+    const selectedFile = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const image = document.createElement('img');
+      image.classList.add('img');
+      image.src = reader.result;
+      imageBlock.innerHTML = '';
+      imageBlock.appendChild(image);
+    };
+
+    reader.readAsDataURL(selectedFile);
+  }
+
+  // Привязка функции uploadImage к событию изменения input[type="file"]
+  addAvatarInput.addEventListener('change', uploadImage);
+
+  nameInput.addEventListener('input', (event) => {
+    savePersonageBtn.disabled = event.target.value.trim() === ''
+    cancelPersonageBtn.disabled = event.target.value.trim() === ''
+  });
+
+  savePersonageBtn.disabled = true
+  cancelPersonageBtn.disabled = true
+
+  savePersonageBtn.style.width = '111px'
+  cancelPersonageBtn.style.width = '111px'
   const closeModalBtn = document.querySelector('#close-personages-modal');
   function closeModal() {
     document.querySelector('#addPersonageModal').innerHTML = '';

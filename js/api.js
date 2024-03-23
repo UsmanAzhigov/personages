@@ -78,6 +78,10 @@ class ApiServices {
   async verifyRegister(formData) {
     return apiRequest(window.ENDPOINTS.VERIFY_REGISTER, { method: 'POST', body: formData });
   }
+
+  async createPersonas(formData) {
+    return apiRequest(window.ENDPOINTS.CREATE_PERSONAS, { method: 'POST', body: formData });
+  }
 }
 
 window.api = new ApiServices();
