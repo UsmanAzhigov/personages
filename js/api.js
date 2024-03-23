@@ -32,7 +32,7 @@ async function apiRequest(path, options = { method: 'GET' }) {
  */
 class ApiServices {
   async getPersonas() {
-    return apiRequest(window.ENDPOINTS.PERSONAS);
+    return apiRequest(window.ENDPOINTS.CREATE_PERSONAS, { method: 'GET' });
   }
 
   async logout() {
