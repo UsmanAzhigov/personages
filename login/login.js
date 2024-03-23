@@ -17,7 +17,7 @@ eyeIcons.forEach((eyeIcon, index) => {
 });
 //Функция входа
 function login() {
-  const email = document.querySelector('#login').value;
+  const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
   const formData = new FormData();
   formData.append('login', email.toLowerCase());
@@ -29,9 +29,11 @@ function login() {
       if (responseData.detail === 'Login successful') {
         localStorage.setItem('isLoggedIn', true);
         window.location.href = '/home/home.html';
+        localStorage.setItem('isLoggedOut', false);
       }
       if (!responseData.success) {
         handleErrors(responseData);
+        showToast('Неправильный логин или пароль', 'error');
       }
     } catch (error) {
       //Проверка на ошибки

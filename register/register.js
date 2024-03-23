@@ -118,7 +118,7 @@ window.onload = function () {
       const data = await window.api.register(formData);
       handleErrors(data);
       hideSpinner();
-      // window.location.href = "/send-verify-register/send-verify-register.html";
+      window.location.href = '/send-verify-register/send-verify-register.html';
     } catch (error) {
       handleErrors(error);
       hideSpinner();

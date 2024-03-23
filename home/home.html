@@ -10,45 +10,6 @@
   <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
   <link rel="stylesheet" href="/components/addPersonage/addPersonage.css" />
 </head>
-<!-- <div class="header">
-  <div class="menu_block">
-    <img width="86px" height="86px" src="/icons/Logo.svg" />
-    <div class="menu">
-      <p class="personages">Персонажи</p>
-      <p>О нас</p>
-      <p>Справка</p>
-      <p>Магазин</p>
-      <p>Дополнительно</p>
-    </div>
-  </div>
-  <div class="profile">
-  </div>
-  <div class="line"></div>
-</div>
-<div class="main_block">
-  <div class="content">
-    <div class='title'>
-      <h1>
-        Заголовок
-      </h1>
-      <h4>
-        Подзаголовок
-      </h4>
-      <p>
-        The brutal leader of Null Sector will stop at nothing to see his vision for the world realized. Ramattra was
-        never designed to co-exist with humanity. The Ravager omnic series was created early in the Omnic Crisis, part
-        of a commander class of omnics whose role was to guide units into combat and adapt various strategic protocols
-        to battlefield condition changes in real time.
-      </p>
-    </div>
-    <img width="483px" height="483px" src="/icons/personage.png" />
-  </div>
-  <div class="news">
-    <h1>
-      Новости
-    </h1>
-  </div>
-</div> -->
 
 <body>
   <div id="header" class="header"></div>
@@ -162,16 +123,19 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
-    const logOut = document.querySelector('.logOut');
     const listPersonages = document.querySelector('.list_personages');
     const arrows = document.querySelectorAll('.arrow');
     const detailsBlocks = document.querySelectorAll('.details');
     const detailsHeaders = document.querySelectorAll('.details_header');
     const addPersonageModal = document.querySelector('#addPersonageModal');
 
-    $(function () {
-      $('#header').load('../components/header/header.html');
-    });
+
+
+    if (localStorage.getItem('isLoggedOut') === 'true') {
+      window.location.href = '/'
+    }
+
+
 
     //Добавление фонового изображения
     document.body.style.backgroundImage = '/icons/background.svg';
@@ -201,6 +165,10 @@
       });
     });
 
+    $(function () {
+      $('#header').load('../components/header/header.html');
+    });
+
     //Отображение списка персонажей
     const addPersonageImg = document.createElement('img');
     addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
@@ -220,6 +188,8 @@
 
     //Открытие модального окна
     addPersonageImg.addEventListener('click', handleClick);
+
+
   </script>
 </body>
 

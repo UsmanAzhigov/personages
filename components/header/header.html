@@ -49,6 +49,7 @@
   // Обработчик клика по кнопке выхода
   logOut.addEventListener('click', () => {
     window.api.logout().then(() => {
+      localStorage.setItem('isLoggedIn', false);
       localStorage.setItem('isLoggedOut', true);
       const profile = document.querySelector('.profile');
       const loginButton = document.createElement('button');
@@ -79,7 +80,7 @@
   });
 
   personages.addEventListener('click', () => {
-    if (localStorage.getItem('isLoggedOut')) {
+    if (localStorage.getItem('isLoggedOut') === 'true') {
       alert('Вы должны войти в аккаунт чтобы получить доступ к персонажам!');
     } else {
       window.location.href = '/home/home.html';
@@ -122,6 +123,5 @@
       `;
     }
   });
-
 
 </script>
