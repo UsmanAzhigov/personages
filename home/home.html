@@ -120,8 +120,6 @@
   <script src="/js/index.js"></script>
   <script src="/js/libs.js"></script>
   <script src="/js/api.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
     const listPersonages = document.querySelector('.list_personages');
     const arrows = document.querySelectorAll('.arrow');
@@ -160,9 +158,16 @@
       });
     });
 
-    $(function () {
-      $('#header').load('../components/header/header.html');
-    });
+    function loadHeader() {
+      const header = document.querySelector('#header');
+      fetch('/components/header/header.html').then((response) => {
+        response.text().then((data) => {
+          header.innerHTML = data;
+        });
+      })
+    };
+
+    loadHeader()
 
     //Отображение списка персонажей
     const addPersonageImg = document.createElement('img');

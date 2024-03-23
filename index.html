@@ -38,8 +38,6 @@
   <script src="./js/index.js"></script>
   <script src="./js/libs.js"></script>
   <script src="./js/api.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
     const newsContainer = document.querySelector('.news');
 
@@ -58,9 +56,16 @@
   <img class="image_new" width="468px" height="294px" />
 `;
 
-    $(function () {
-      $('#header').load('../components/header/header.html');
-    });
+    function loadHeader() {
+      const header = document.querySelector('#header');
+      fetch('/components/header/header.html').then((response) => {
+        response.text().then((data) => {
+          header.innerHTML = data;
+        });
+      })
+    };
+
+    loadHeader()
 
     function formatDate(time) {
       const dateTime = new Date(time);
