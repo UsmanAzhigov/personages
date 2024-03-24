@@ -1,119 +1,130 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Главная</title>
+    <link rel="stylesheet" type="text/css" href="/global.css" />
+    <link rel="stylesheet" href="./home.css" />
+    <link rel="stylesheet" href="/components/header/header.css" />
+    <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="/components/addPersonage/addPersonage.css" />
+    <link rel="jquery" href="https://code.jquery.com/jquery-3.7.1.min.js" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Главная</title>
-  <link rel="stylesheet" type="text/css" href="/global.css" />
-  <link rel="stylesheet" href="./home.css" />
-  <link rel="stylesheet" href="/components/header/header.css" />
-  <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="/components/addPersonage/addPersonage.css" />
-  <link rel="jquery" href="https://code.jquery.com/jquery-3.7.1.min.js" />
-</head>
-
-<body>
-  <div id="header" class="header"></div>
-  <div class="home_block">
-    <div class="list_personages">
-      <li class="personage"></li>
-    </div>
-    <div class="main_block">
-      <div class="change_block">
-        <button class="change_personage">
-          <img width="24px" height="24px" src="/icons/changePersonage.svg" />
-          <p>Войти в режим редактирования</p>
-        </button>
+  <body>
+    <div id="header" class="header"></div>
+    <div class="home_block">
+      <div class="list_personages">
+        <li class="personage"></li>
       </div>
-      <div class="personage_block">
-        <div class="personage_image">
-          <div class="null_sector">Null Sector</div>
-          <img width="550px" height="550px" src="/icons/personage.png" />
-          <img class="attainment" width="120px" height="120px" src="/icons/attainment.png" />
-        </div>
-        <div class="personage_info">
-          <p class="name_personage">Rammatra</p>
-          <div class="activity">
-            <label> Период активности </label>
-            <p>27 feb 2020 — 14 nov 2024</p>
+      <div class="main_block">
+        <div class="change_block">
+          <div class="change_personage_block">
+            <button class="change_personage_btn">
+              <img width="18px" height="18px" src="/icons/cancelChange.svg" />
+              <p>Отменить изменения</p>
+            </button>
+            <button class="change_personage_btn">
+              <img width="18px" height="18px" src="/icons/save.svg" />
+              <p>Сохранить</p>
+            </button>
           </div>
-          <div class="place">
-            <label> Место </label>
-            <p>Shambali Monastery, Nepal (formerly)</p>
-          </div>
-          <p class="description">
-            The brutal leader of Null Sector will stop at nothing to see his vision for the world
-            realized. Ramattra was never designed to co-exist with humanity. The Ravager omnic
-            series was
-          </p>
+          <button class="change_personage">
+            <img width="24px" height="24px" src="/icons/changePersonage.svg" />
+            <p>Войти в режим редактирования</p>
+          </button>
         </div>
-      </div>
-      <div class="details">
-        <div class="details_header">
-          <div class="date_details">
-            <p>Origin</p>
-            <p class="date">28 Feb. 2024 - 28 Feb. 2024</p>
+        <div class="personage_block">
+          <div class="personage_image">
+            <div class="null_sector">Null Sector</div>
+            <img width="550px" height="550px" src="/icons/personage.png" />
+            <img class="attainment" width="120px" height="120px" src="/icons/attainment.png" />
           </div>
-          <img class="arrow" width="14px" height="14px" src="/icons/arrowBottom.svg" />
+          <div class="personage_info">
+            <p class="name_personage">Rammatra</p>
+            <div class="activity">
+              <label> Период активности </label>
+              <p>27 feb 2020 — 14 nov 2024</p>
+            </div>
+            <div class="place">
+              <label> Место </label>
+              <p>Shambali Monastery, Nepal (formerly)</p>
+            </div>
+            <p class="description">
+              The brutal leader of Null Sector will stop at nothing to see his vision for the world
+              realized. Ramattra was never designed to co-exist with humanity. The Ravager omnic
+              series was
+            </p>
+          </div>
         </div>
-        <div class="details_content">
-          <p class="details_description">
-            After the Crisis, Ramattra heard rumors of a mysterious omnic named Aurora—the first
-            of their kind. Intrigued and seeking direction, Ramattra embarked on a pilgrimage to
-            the Shambali Monastery in Nepal, a place where Aurora was said to have resided.
-            Ramattra survived the harsh journey and was welcomed by Tekhartha Mondatta. Choosing
-            to become a monk of the Shambali, Ramattra studied under Mondatta for years, learning
-            about the Iris—the mysterious phenomenon at the heart of the monks’ teachings—and the
-            importance of coexisting with humans. Years later, Ramattra began venturing outside
-            the temple seeking enlightenment. It was on one of his journeys that he met an omnic
-            named Zenyatta whom he guided to Shambali, in hopes the omnic would find purpose there
-            as he did. However, as time wore on, Ramattra failed to see true progress in the
-            monks’ mission of peace. The Shambali urged Ramattra to be patient, but all around
-            him, Ramattra saw his people dying . . . and no one taking action.
-          </p>
-          <div class="details_img">
-            <img width="680px" height="360px" src="/icons/detailsImage.png" />
-            <div class="img_description">
-              <label>Shambali Monastery, Nepal</label>
-              <p>28 Feb. 2024</p>
+        <div class="details">
+          <div class="details_header">
+            <div class="date_details">
+              <p>Origin</p>
+              <p class="date">28 Feb. 2024 - 28 Feb. 2024</p>
+            </div>
+            <img class="arrow" width="14px" height="14px" src="/icons/arrowBottom.svg" />
+          </div>
+          <div class="details_content">
+            <p class="details_description">
+              After the Crisis, Ramattra heard rumors of a mysterious omnic named Aurora—the first
+              of their kind. Intrigued and seeking direction, Ramattra embarked on a pilgrimage to
+              the Shambali Monastery in Nepal, a place where Aurora was said to have resided.
+              Ramattra survived the harsh journey and was welcomed by Tekhartha Mondatta. Choosing
+              to become a monk of the Shambali, Ramattra studied under Mondatta for years, learning
+              about the Iris—the mysterious phenomenon at the heart of the monks’ teachings—and the
+              importance of coexisting with humans. Years later, Ramattra began venturing outside
+              the temple seeking enlightenment. It was on one of his journeys that he met an omnic
+              named Zenyatta whom he guided to Shambali, in hopes the omnic would find purpose there
+              as he did. However, as time wore on, Ramattra failed to see true progress in the
+              monks’ mission of peace. The Shambali urged Ramattra to be patient, but all around
+              him, Ramattra saw his people dying . . . and no one taking action.
+            </p>
+            <div class="details_img">
+              <img width="680px" height="360px" src="/icons/detailsImage.png" />
+              <div class="img_description">
+                <label>Shambali Monastery, Nepal</label>
+                <p>28 Feb. 2024</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="details">
-        <div class="details_header">
-          <div class="date_details">
-            <p>Origin</p>
-            <p class="date">28 Feb. 2024 - 28 Feb. 2024</p>
+        <div class="details">
+          <div class="details_header">
+            <div class="date_details">
+              <p>Origin</p>
+              <p class="date">28 Feb. 2024 - 28 Feb. 2024</p>
+            </div>
+            <img class="arrow" width="14px" height="14px" src="/icons/arrowBottom.svg" />
           </div>
-          <img class="arrow" width="14px" height="14px" src="/icons/arrowBottom.svg" />
-        </div>
-        <div class="details_content">
-          <p class="details_description">
-            After the Crisis, Ramattra heard rumors of a mysterious omnic named Aurora—the first
-            of their kind. Intrigued and seeking direction, Ramattra embarked on a pilgrimage to
-            the Shambali Monastery in Nepal, a place where Aurora was said to have resided.
-            Ramattra survived the harsh journey and was welcomed by Tekhartha Mondatta. Choosing
-            to become a monk of the Shambali, Ramattra studied under Mondatta for years, learning
-            about the Iris—the mysterious phenomenon at the heart of the monks’ teachings—and the
-            importance of coexisting with humans. Years later, Ramattra began venturing outside
-            the temple seeking enlightenment. It was on one of his journeys that he met an omnic
-            named Zenyatta whom he guided to Shambali, in hopes the omnic would find purpose there
-            as he did. However, as time wore on, Ramattra failed to see true progress in the
-            monks’ mission of peace. The Shambali urged Ramattra to be patient, but all around
-            him, Ramattra saw his people dying . . . and no one taking action.
-          </p>
-          <div class="details_img">
-            <img width="680px" height="360px" src="/icons/detailsImage.png" />
-            <div class="img_description">
-              <label>Shambali Monastery, Nepal</label>
-              <p>28 Feb. 2024</p>
+          <div class="details_content">
+            <p class="details_description">
+              After the Crisis, Ramattra heard rumors of a mysterious omnic named Aurora—the first
+              of their kind. Intrigued and seeking direction, Ramattra embarked on a pilgrimage to
+              the Shambali Monastery in Nepal, a place where Aurora was said to have resided.
+              Ramattra survived the harsh journey and was welcomed by Tekhartha Mondatta. Choosing
+              to become a monk of the Shambali, Ramattra studied under Mondatta for years, learning
+              about the Iris—the mysterious phenomenon at the heart of the monks’ teachings—and the
+              importance of coexisting with humans. Years later, Ramattra began venturing outside
+              the temple seeking enlightenment. It was on one of his journeys that he met an omnic
+              named Zenyatta whom he guided to Shambali, in hopes the omnic would find purpose there
+              as he did. However, as time wore on, Ramattra failed to see true progress in the
+              monks’ mission of peace. The Shambali urged Ramattra to be patient, but all around
+              him, Ramattra saw his people dying . . . and no one taking action.
+            </p>
+            <div class="details_img">
+              <img width="680px" height="360px" src="/icons/detailsImage.png" />
+              <div class="img_description">
+                <label>Shambali Monastery, Nepal</label>
+                <p>28 Feb. 2024</p>
+              </div>
             </div>
           </div>
         </div>
+        <img class="add_details" width="36px" height="36px" src="/icons/addDetails.svg" />
       </div>
-      <img class="add_details" width="36px" height="36px" src="/icons/addDetails.svg" />
     </div>
+
   </div>
   <div id="addPersonageModal">
     <img class="close" width="32px" height="32px" src="/icons/closeIcon.svg" id="close-personages-modal" />
@@ -130,39 +141,62 @@
     const detailsBlocks = document.querySelectorAll('.details');
     const detailsHeaders = document.querySelectorAll('.details_header');
     const addPersonageModal = document.querySelector('#addPersonageModal');
+     const editPersonageButton = document.querySelector('.change_personage');
+      const iconEditButton = editPersonageButton.querySelector('img');
+      const changePersonageBlock = document.querySelector('.change_personage_block');
+      const changeBlock = document.querySelector('.change_block');
     const headerScript = document.querySelector('.headerScript');
     const addPersonageScript = document.querySelector('.addPersonageScript');
 
-    if (localStorage.getItem('isLoggedOut') === 'true') {
-      window.location.href = '/login/login.html';
-    }
-    //Добавление фонового изображения
-    document.body.style.backgroundImage = '/icons/background.svg';
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundAttachment = 'fixed';
-    document.body.style.position = 'relative';
-    document.body.style.display = 'block';
 
-    //Открытие и закрытие детального описания персонажа
-    detailsBlocks.forEach((detailsBlock, index) => {
-      const detailsHeader = detailsHeaders[index];
-      const arrow = arrows[index];
+      if (localStorage.getItem('isLoggedOut') === 'true') {
+        window.location.href = '/login/login.html';
+      }
+      // Добавление фонового изображения
+      document.body.style.backgroundImage = '/icons/background.svg';
+      document.body.style.backgroundRepeat = 'no-repeat';
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundAttachment = 'fixed';
+      document.body.style.position = 'relative';
+      document.body.style.display = 'block';
 
-      detailsBlock.querySelector('.details_content').classList.add('closed');
-      detailsHeader.classList.add('closed');
+      // Входи в режим редактирования
 
-      arrow.addEventListener('click', () => {
-        const detailsContent = detailsBlock.querySelector('.details_content');
-        detailsContent.classList.toggle('closed');
-        detailsHeader.classList.toggle('closed');
-        if (detailsContent.classList.contains('closed')) {
-          arrow.src = '/icons/arrowBottom.svg';
+      editPersonageButton.addEventListener('click', () => {
+        const buttonText = editPersonageButton.querySelector('p');
+
+        if (buttonText.textContent.trim() === 'Войти в режим редактирования') {
+          buttonText.textContent = 'Завершить редактирование';
+          iconEditButton.style.display = 'none'; // Скрыть иконку
+          changePersonageBlock.style.display = 'flex';
+          changeBlock.style.justifyContent = 'space-between';
         } else {
-          arrow.src = '/icons/arrowTop.svg';
+          buttonText.textContent = 'Войти в режим редактирования';
+          iconEditButton.style.display = 'block'; // Показать иконку
+          changePersonageBlock.style.display = 'none';
         }
       });
-    });
+
+
+      // Открытие и закрытие детального описания персонажа
+      detailsBlocks.forEach((detailsBlock, index) => {
+        const detailsHeader = detailsHeaders[index];
+        const arrow = arrows[index];
+
+        detailsBlock.querySelector('.details_content').classList.add('closed');
+        detailsHeader.classList.add('closed');
+
+        arrow.addEventListener('click', () => {
+          const detailsContent = detailsBlock.querySelector('.details_content');
+          detailsContent.classList.toggle('closed');
+          detailsHeader.classList.toggle('closed');
+          if (detailsContent.classList.contains('closed')) {
+            arrow.src = '/icons/arrowBottom.svg';
+          } else {
+            arrow.src = '/icons/arrowTop.svg';
+          }
+        });
+      });
 
     function loadHeader() {
       const header = document.querySelector('#header');
@@ -176,37 +210,39 @@
     }
     loadHeader();
 
-    //Отображение списка персонажей
-    const addPersonageImg = document.createElement('img');
-    addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
-    listPersonages.appendChild(addPersonageImg);
-    //Функция для открытия модального окна
-    function handleClick(e) {
-      e.preventDefault();
-      function addPersonage() {
-        const header = document.querySelector('#addPersonageModal');
-        fetch('../components/addPersonage/addPersonage.html').then((response) => {
-          response.text().then((data) => {
-            header.innerHTML = data;
-            addPersonageScript.src = '/components/addPersonage/addPersonage.js';
-            document.head.appendChild(addPersonageScript);
+
+
+
+      //Отображение списка персонажей
+      const addPersonageImg = document.createElement('img');
+      addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
+      listPersonages.appendChild(addPersonageImg);
+      //Функция для открытия модального окна
+      function handleClick(e) {
+        e.preventDefault();
+        function addPersonage() {
+          const header = document.querySelector('#addPersonageModal');
+          fetch('../components/addPersonage/addPersonage.html').then((response) => {
+            response.text().then((data) => {
+              header.innerHTML = data;
+            });
           });
-        });
+        }
+        addPersonageModal.style.display = 'block';
+        addPersonage();
+
       }
-      addPersonageModal.style.display = 'block';
-      addPersonage();
-    }
 
-    addPersonageModal.style.display = 'none';
+      addPersonageModal.style.display = 'none';
 
-    //Открытие модального окна
-    addPersonageImg.addEventListener('click', handleClick);
-    window.api.getPersonas().then((data) => {
-      if (!data.success) {
-        console.log(data);
-      }
-    });
-  </script>
-</body>
-
+      //Открытие модального окна
+      addPersonageImg.addEventListener('click', handleClick);
+      window.api.getPersonas().then((data) => {
+        if (!data.success) {
+          console.log(data);
+          alert('Произошла ошибка, повторите попытку позже');
+        }
+      });
+    </script>
+  </body>
 </html>
