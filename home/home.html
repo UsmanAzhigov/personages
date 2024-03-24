@@ -122,12 +122,16 @@
   <script src="/js/libs.js"></script>
   <script src="/js/api.js"></script>
   <script src="/js/home.js"></script>
+  <script class="addPersonageScript"></script>
+  <script class="headerScript"></script>
   <script>
     const listPersonages = document.querySelector('.list_personages');
     const arrows = document.querySelectorAll('.arrow');
     const detailsBlocks = document.querySelectorAll('.details');
     const detailsHeaders = document.querySelectorAll('.details_header');
     const addPersonageModal = document.querySelector('#addPersonageModal');
+    const headerScript = document.querySelector('.headerScript');
+    const addPersonageScript = document.querySelector('.addPersonageScript');
 
     if (localStorage.getItem('isLoggedOut') === 'true') {
       window.location.href = '/login/login.html';
@@ -165,10 +169,11 @@
       fetch('/components/header/header.html').then((response) => {
         response.text().then((data) => {
           header.innerHTML = data;
+          headerScript.src = '/components/header/header.js';
+          document.head.appendChild(headerScript);
         });
-      });
+      })
     }
-
     loadHeader();
 
     //Отображение списка персонажей
@@ -183,6 +188,8 @@
         fetch('../components/addPersonage/addPersonage.html').then((response) => {
           response.text().then((data) => {
             header.innerHTML = data;
+            addPersonageScript.src = '/components/addPersonage/addPersonage.js';
+            document.head.appendChild(addPersonageScript);
           });
         });
       }
@@ -197,7 +204,6 @@
     window.api.getPersonas().then((data) => {
       if (!data.success) {
         console.log(data);
-        alert('Произошла ошибка, повторите попытку позже');
       }
     });
   </script>
