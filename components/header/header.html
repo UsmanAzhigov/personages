@@ -25,7 +25,6 @@
 <script>
   const logOut = document.querySelector('.logOut');
   const personages = document.querySelector('.personages');
-
   // Событие при загрузке документа
   document.addEventListener('DOMContentLoaded', () => {
     // Проверяем, залогинен ли пользователь
@@ -83,7 +82,7 @@
   });
 
   personages.addEventListener('click', () => {
-    if (localStorage.getItem('isLoggedOut') === 'true') {
+    if (localStorage.getItem('isLoggedOut')) {
       alert('Вы должны войти в аккаунт чтобы получить доступ к персонажам!');
     } else {
       window.location.href = '/home/home.html';

@@ -44,7 +44,7 @@
           <label id="additional_information-error-label" for="" class="input-error-label none"></label>
         </div>
         <div class="fraction">
-          <input type="checkbox" />
+          <input id="fraction" type="checkbox" />
           <p>Отображать фракцию персонажа</p>
         </div>
       </div>
@@ -55,10 +55,18 @@
     </div>
   </div>
 </div>
+<script src="/js/api.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/libs.js"></script>
 <script>
   const savePersonageBtn = document.querySelector('#addPersonageBtn');
   const cancelPersonageBtn = document.querySelector('#cancelPersonageBtn');
   const nameInput = document.querySelector('#name');
+  const activePeriod = document.querySelector('.start input');
+  const endPeriod = document.querySelector('#period');
+  const placeInput = document.querySelector('#place');
+  const additionalInformationInput = document.querySelector('#additional_information');
+  const fractionInput = document.querySelector('#fraction');
   const imageBlock = document.querySelector('.image_block');
   const addAvatarInput = document.querySelector('#add-avatar-input');
 
@@ -92,10 +100,33 @@
   savePersonageBtn.style.width = '111px'
   cancelPersonageBtn.style.width = '111px'
   const closeModalBtn = document.querySelector('#close-personages-modal');
+
+
   function closeModal() {
     document.querySelector('#addPersonageModal').innerHTML = '';
     document.querySelector('#addPersonageModal').style.display = 'none';
   }
 
+  function savePersonage() {
+    try {
+      const formData = new FormData();
+      formData.append('name', nameInput.value);
+      formData.append('active_start_date', activePeriod.value);
+      formData.append('active_end_date', endPeriod.value);
+      formData.append('place', placeInput.value);
+      formData.append('show_public', 1);
+      formData.append('show_fraction', fractionInput.value);
+      window.api.createPersonas(formData).then(res => {
+        if (res.success) {
+          alert('Пользователь создан');
+          window.location.reload();
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  savePersonageBtn.addEventListener('click', savePersonage);
   closeModalBtn.addEventListener('click', closeModal);
 </script>
