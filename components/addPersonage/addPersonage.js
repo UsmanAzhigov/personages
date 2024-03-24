@@ -52,8 +52,8 @@ function savePersonage() {
     formData.append('active_start_date', activePeriod.value);
     formData.append('active_end_date', endPeriod.value);
     formData.append('place', placeInput.value);
-    formData.append('show_public', 1);
-    formData.append('show_fraction', fractionInput.value);
+    formData.append('show_fraction', 1);
+    formData.append('show_public', true);
     window.api.createPersonas(formData).then((res) => {
       if (res.success) {
         alert('Пользователь создан');
