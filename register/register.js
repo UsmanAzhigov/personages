@@ -122,9 +122,9 @@ window.onload = function () {
             handleErrors(data);
             hideSpinner();
           }
-          if (formData) {
+
+          if (email && password && password_confirm && username)
             window.location.href = '/send-verify-register/send-verify-register.html';
-          }
         })
         .catch((error) => {
           handleErrors(error);

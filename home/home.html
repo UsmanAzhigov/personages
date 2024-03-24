@@ -262,6 +262,12 @@
       if (!data.success) {
         console.log(data);
       }
+      data.results.forEach((items) => {
+        const personageName = document.querySelectorAll('.personage');
+        personageName.forEach((personage) => {
+          personage.textContent = items.name
+        });
+      });
     });
   </script>
 </body>
