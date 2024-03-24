@@ -21,7 +21,6 @@
         <div id="email_name_block" class="email_name_block">
         </div>
         <div id="password_name_block" class="password_block">
-
         </div>
         <a href="../password-reset/password-reset.html"> <label id="password-error-label" for=""
             class="input-error-label none"></label>
@@ -40,18 +39,32 @@
   <script src="/js/api.js"></script>
   <script src="/js/libs.js"></script>
   <script src="/js/index.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script class="passwordScript"></script>
   <script src="./login.js"></script>
   <script>
     const passwordBlock = document.querySelector('.password_block');
+    const passwordScript = document.querySelector('.passwordScript');
     passwordBlock.style.marginTop = '24px';
-    $(function () {
-      $('#email_name_block').load('../components/emailInput/emailInput.html');
-    });
-    $(function () {
-      $('#password_name_block').load('../components/passwordInput/passwordInput.html');
-    });
+    function loadEmail() {
+      const email = document.querySelector('.email_name_block');
+      fetch('/components/emailInput/emailInput.html').then((response) => {
+        response.text().then((data) => {
+          email.innerHTML = data;
+        });
+      })
+    }
+    loadEmail();
+
+    function loadPassword() {
+      const password = document.querySelector('#password_name_block');
+      fetch('/components/passwordInput/passwordInput.html').then((response) => {
+        response.text().then((data) => {
+          password.innerHTML = data;
+          passwordScript.src = '/components/passwordInput/passwordInput.js';
+        });
+      })
+    }
+    loadPassword();
   </script>
 </body>
 

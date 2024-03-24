@@ -8,6 +8,7 @@ const additionalInformationInput = document.querySelector('#additional_informati
 const fractionInput = document.querySelector('#fraction');
 const imageBlock = document.querySelector('.image_block');
 const addAvatarInput = document.querySelector('#add-avatar-input');
+const allInputs = document.querySelectorAll('.addPersonage_form input');
 
 // Функция для загрузки изображения
 function uploadImage(event) {
@@ -28,9 +29,11 @@ function uploadImage(event) {
 // Привязка функции uploadImage к событию изменения input[type="file"]
 addAvatarInput.addEventListener('change', uploadImage);
 
-nameInput.addEventListener('input', (event) => {
-  savePersonageBtn.disabled = event.target.value.trim() === '';
-  cancelPersonageBtn.disabled = event.target.value.trim() === '';
+allInputs.forEach((input) => {
+  input.addEventListener('input', (event) => {
+    savePersonageBtn.disabled = event.target.value.trim() === '';
+    cancelPersonageBtn.disabled = event.target.value.trim() === '';
+  });
 });
 
 savePersonageBtn.disabled = true;
@@ -52,13 +55,10 @@ function savePersonage() {
     formData.append('active_start_date', activePeriod.value);
     formData.append('active_end_date', endPeriod.value);
     formData.append('place', placeInput.value);
-    formData.append('show_public', 1);
-    formData.append('show_fraction', fractionInput.value);
+    formData.append('description', additionalInformationInput.value);
+    formData.append('show_fraction', 1);
     window.api.createPersonas(formData).then((res) => {
-      if (res.success) {
-        alert('Пользователь создан');
-        window.location.reload();
-      }
+      window.location.reload();
     });
   } catch (error) {
     console.log(error);

@@ -70,7 +70,7 @@ body {
 }
 
 .change_block {
-  width: 100%;
+  width: 98.4%;
   background-color: #fff;
   border-radius: 10px;
   margin: 24px;
@@ -163,6 +163,16 @@ body {
   margin-bottom: 24px;
 }
 
+.date_block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-left: 2px solid #eaeaea;
+  border-right: 2px solid #eaeaea;
+  height: 24px;
+  padding: 0 12px 0 12px;
+}
+
 .activity label {
   font-size: 12px;
   color: #828282;
@@ -203,7 +213,8 @@ body {
 
 .date_details {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 12px;
 }
 
 .date {
@@ -213,9 +224,31 @@ body {
   padding: 0 6px 0 6px;
 }
 
+.changeDetailsBlock {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-right: 24px;
+}
+
+.eyeIcon {
+  border-left: 2px solid #eaeaea;
+  padding-left: 12px;
+}
+
+.movingArrows {
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  border-left: 2px solid #eaeaea;
+  height: 24px;
+  padding: 0 6px 0 12px;
+}
+
 .details_header img {
   cursor: pointer;
-  padding-right: 24px;
 }
 
 .details_description {
