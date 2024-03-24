@@ -46,6 +46,12 @@
   cursor: pointer;
 }
 
+.register_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .cropper-crop-box,
 .cropper-view-box {
   border-radius: 50%;

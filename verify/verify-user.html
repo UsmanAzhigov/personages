@@ -57,7 +57,7 @@
     formData.append('signature', signature);
 
     window.api.verifyRegister(formData).then((response) => {
-      if (response.success) {
+      if (response.detail === 'User verified successfully') {
         document.body.innerHTML = htmlSuccessFragment;
       } else {
         document.body.innerHTML = htmlErrorFragment;

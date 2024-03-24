@@ -17,7 +17,7 @@ eyeIcons.forEach((eyeIcon, index) => {
 });
 //Функция входа
 function login() {
-  const email = document.querySelector('#email').value;
+  const email = document.querySelector('#login').value;
   const password = document.querySelector('#password').value;
   const formData = new FormData();
   formData.append('login', email.toLowerCase());
@@ -45,17 +45,14 @@ function login() {
 //Обработка ошибок
 function handleErrors(data) {
   const inputs = ['password', 'login'];
-  console.log(data);
   inputs.forEach((el) => {
     const errorInput = document.querySelector(`#${el}`);
     const errorInputLabel = document.querySelector(`#${el}-error-label`);
-    const forgotPassword = document.querySelector('.forgot_password');
     if (data[el]) {
       if (errorInput) {
         errorInput.classList.add('error-input');
         errorInputLabel?.classList.remove('none');
         errorInputLabel.textContent = translateError(data[el][0]);
-        forgotPassword.textContent = 'Восстановить';
       }
     } else {
       if (errorInput) {

@@ -123,10 +123,48 @@
     document.body.style.position = 'relative';
     document.body.style.display = 'block';
 
-    movingArrows.forEach(arrow => arrow.style.display = 'none');
-    deleteIcons.forEach(icon => icon.style.display = 'none');
-    eyeIcons.forEach(icon => icon.style.display = 'none');
-    // Функция для рендеринга деталей
+    function hideDetailIcons() {
+      const eyeIcons = document.querySelectorAll('.eyeIcon');
+      const movingArrows = document.querySelectorAll('.movingArrows img');
+      const deleteIcons = document.querySelectorAll('.deleteIcon');
+      eyeIcons.forEach(icon => icon.style.display = 'none');
+      movingArrows.forEach(arrow => arrow.style.display = 'none');
+      deleteIcons.forEach(icon => icon.style.display = 'none');
+      const changeDetails = document.querySelectorAll('.change_detail_img');
+      changeDetails.forEach(changeDetail => changeDetail.style.display = 'none');
+    }
+
+    // Функция для отображения иконок редактирования деталей
+    function showDetailIcons() {
+      const eyeIcons = document.querySelectorAll('.eyeIcon');
+      const movingArrows = document.querySelectorAll('.movingArrows img');
+      const deleteIcons = document.querySelectorAll('.deleteIcon');
+      eyeIcons.forEach(icon => icon.style.display = 'block');
+      movingArrows.forEach(arrow => arrow.style.display = 'block');
+      deleteIcons.forEach(icon => icon.style.display = 'block');
+      const changeDetails = document.querySelectorAll('.change_detail_img');
+      changeDetails.forEach(changeDetail => changeDetail.style.display = 'block');
+    }
+
+    // Вход в режим редактирования
+    editPersonageButton.addEventListener('click', () => {
+      const buttonText = editPersonageButton.querySelector('p');
+      if (buttonText.textContent.trim() === 'Войти в режим редактирования') {
+        buttonText.textContent = 'Завершить редактирование';
+        iconEditButton.style.display = 'none'; // Скрыть иконку
+        changePersonageBlock.style.display = 'flex';
+        changeBlock.style.justifyContent = 'space-between';
+        showDetailIcons(); // Отобразить иконки редактирования деталей
+      } else {
+        buttonText.textContent = 'Войти в режим редактирования';
+        iconEditButton.style.display = 'block'; // Показать иконку
+        changePersonageBlock.style.display = 'none';
+        changeBlock.style.justifyContent = 'flex-start';
+        hideDetailIcons(); // Скрыть иконки редактирования деталей
+      }
+    });
+
+    // Функция для рендеринга блока деталей
     function renderDetailBlock(detail) {
       const detailsHtmlFragment = `
     <div class="details">
@@ -138,7 +176,7 @@
             -
             <p class="date_to">${detail.date_to}</p>
           </div>
-          <img width="24px" height="24px" src="/icons/changeDetail.svg" />
+          <img class="change_detail_img" width="24px" height="24px" src="/icons/changeDetail.svg" />
         </div>
         <div class="changeDetailsBlock">
           <img class="eyeIcon" width="24px" height="24px" src="/icons/eyeIcon.svg" />
@@ -162,7 +200,33 @@
       </div>
     </div>
   `;
-      return detailsHtmlFragment;
+
+      const detailsElement = document.createElement('div');
+      detailsElement.innerHTML = detailsHtmlFragment;
+
+      const eyeIcon = detailsElement.querySelector('.eyeIcon');
+      const movingArrows = detailsElement.querySelectorAll('.movingArrows img');
+      const deleteIcon = detailsElement.querySelector('.deleteIcon');
+      const arrow = detailsElement.querySelector('.arrow');
+      const changeDetail = detailsElement.querySelector('.change_detail_img');
+
+      eyeIcon.style.display = 'none';
+      movingArrows.forEach(arrow => arrow.style.display = 'none');
+      deleteIcon.style.display = 'none';
+      changeDetail.style.display = 'none';
+
+      arrow.addEventListener('click', () => {
+        const detailsContent = detailsElement.querySelector('.details_content');
+        detailsContent.classList.toggle('closed');
+        detailsElement.querySelector('.details_header').classList.toggle('closed');
+        if (detailsContent.classList.contains('closed')) {
+          arrow.src = '/icons/arrowBottom.svg';
+        } else {
+          arrow.src = '/icons/arrowTop.svg';
+        }
+      });
+
+      return detailsElement.innerHTML;
     }
 
     function renderDetails(detailsData) {
@@ -196,29 +260,6 @@
         }
       });
     });
-    // Входи в режим редактирования
-    editPersonageButton.addEventListener('click', () => {
-      const buttonText = editPersonageButton.querySelector('p');
-      if (buttonText.textContent.trim() === 'Войти в режим редактирования') {
-        buttonText.textContent = 'Завершить редактирование';
-        iconEditButton.style.display = 'none'; // Скрыть иконку
-        changePersonageBlock.style.display = 'flex';
-        changeBlock.style.justifyContent = 'space-between';
-        movingArrows.forEach(arrow => arrow.style.display = 'block');
-        deleteIcons.forEach(icon => icon.style.display = 'block');
-        eyeIcons.forEach(icon => icon.style.display = 'block');
-      } else {
-        buttonText.textContent = 'Войти в режим редактирования';
-        iconEditButton.style.display = 'block'; // Показать иконку
-        changePersonageBlock.style.display = 'none';
-        changeBlock.style.justifyContent = 'flex-start';
-        movingArrows.forEach(arrow => arrow.style.display = 'none');
-        deleteIcons.forEach(icon => icon.style.display = 'none');
-        eyeIcons.forEach(icon => icon.style.display = 'none');
-      }
-    });
-
-
 
     function loadHeader() {
       const header = document.querySelector('#header');

@@ -15,10 +15,7 @@ window.onload = function () {
   const selectedFile = addAvatarInput.files[0];
   const addAvatarDiv = document.querySelector('.add_avatar');
   const passwordBlock = document.querySelector('.password_block');
-
-  $(function () {
-    $('#email_name_block').load('../components/emailInput/emailInput.html');
-  });
+  registerHeader.style.justifyContent = 'space-between';
 
   passwordBlock.style.flexDirection = 'row';
 

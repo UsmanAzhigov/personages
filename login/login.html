@@ -50,6 +50,8 @@
       fetch('/components/emailInput/emailInput.html').then((response) => {
         response.text().then((data) => {
           email.innerHTML = data;
+          document.getElementById('email').id = 'login';
+          document.getElementById('email-error-label').id = 'login-error-label';
         });
       })
     }
