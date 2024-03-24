@@ -33,12 +33,16 @@
         </div>
       </div>
     </div>
-    <script src="./js/index.js"></script>
-    <script src="./js/libs.js"></script>
-    <script src="./js/api.js"></script>
 
-    <script>
-      const newsContainer = document.querySelector('.news');
+  </div>
+  <script src="./js/index.js"></script>
+  <script src="./js/libs.js"></script>
+  <script src="./js/api.js"></script>
+  <script class="headerScript"></script>
+  <script>
+    const newsContainer = document.querySelector('.news');
+    const headerScript = document.querySelector('.headerScript');
+
 
       //Html элемент для показа новостей
       const newsTemplate = `
@@ -54,32 +58,7 @@
   </div>
   <img class="image_new" width="468px" height="294px" />
 `;
-      function loadHeader() {
-        const header = document.querySelector('#header');
-        fetch('/components/header/header.html').then((response) => {
-          response.text().then((data) => {
-            header.innerHTML = data;
-          });
-        });
-      }
-      loadHeader();
 
-      function formatDate(time) {
-        const dateTime = new Date(time);
-        const day = dateTime.getDate();
-        const month = dateTime.toLocaleString('ru-RU', { month: 'short' });
-        const year = dateTime.getFullYear();
-        const formattedDate = `${day} ${month}. ${year}`;
-        const timeWithoutSeconds = dateTime.toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-        });
-
-        return {
-          formattedDate,
-          timeWithoutSeconds,
-        };
-      }
 
       /**
        * Рендер одной новости
@@ -119,6 +98,30 @@
       //Рендер новостей
       window.api.getNews().then((data) => {
         data.results.forEach(renderNewsBlock);
+
+
+    function loadHeader() {
+      const header = document.querySelector('#header');
+      fetch('/components/header/header.html').then((response) => {
+        response.text().then((data) => {
+          header.innerHTML = data;
+          headerScript.src = '/components/header/header.js';
+          document.head.appendChild(headerScript);
+        });
+      })
+    }
+    loadHeader();
+
+    function formatDate(time) {
+      const dateTime = new Date(time);
+      const day = dateTime.getDate();
+      const month = dateTime.toLocaleString('ru-RU', { month: 'short' });
+      const year = dateTime.getFullYear();
+      const formattedDate = `${day} ${month}. ${year}`;
+      const timeWithoutSeconds = dateTime.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+
       });
     </script>
   </body>

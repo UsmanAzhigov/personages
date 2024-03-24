@@ -124,29 +124,30 @@
         <img class="add_details" width="36px" height="36px" src="/icons/addDetails.svg" />
       </div>
     </div>
-    <div id="addPersonageModal">
-      <img
-        class="close"
-        width="32px"
-        height="32px"
-        src="/icons/closeIcon.svg"
-        id="close-personages-modal"
-      />
-    </div>
-    <script src="/js/index.js"></script>
-    <script src="/js/libs.js"></script>
-    <script src="/js/api.js"></script>
-    <script src="/js/home.js"></script>
-    <script>
-      const arrows = document.querySelectorAll('.arrow');
-      const detailsBlocks = document.querySelectorAll('.details');
-      const listPersonages = document.querySelector('.list_personages');
-      const detailsHeaders = document.querySelectorAll('.details_header');
-      const addPersonageModal = document.querySelector('#addPersonageModal');
-      const editPersonageButton = document.querySelector('.change_personage');
+
+  </div>
+  <div id="addPersonageModal">
+    <img class="close" width="32px" height="32px" src="/icons/closeIcon.svg" id="close-personages-modal" />
+  </div>
+  <script src="/js/index.js"></script>
+  <script src="/js/libs.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/home.js"></script>
+  <script class="addPersonageScript"></script>
+  <script class="headerScript"></script>
+  <script>
+    const listPersonages = document.querySelector('.list_personages');
+    const arrows = document.querySelectorAll('.arrow');
+    const detailsBlocks = document.querySelectorAll('.details');
+    const detailsHeaders = document.querySelectorAll('.details_header');
+    const addPersonageModal = document.querySelector('#addPersonageModal');
+     const editPersonageButton = document.querySelector('.change_personage');
       const iconEditButton = editPersonageButton.querySelector('img');
       const changePersonageBlock = document.querySelector('.change_personage_block');
       const changeBlock = document.querySelector('.change_block');
+    const headerScript = document.querySelector('.headerScript');
+    const addPersonageScript = document.querySelector('.addPersonageScript');
+
 
       if (localStorage.getItem('isLoggedOut') === 'true') {
         window.location.href = '/login/login.html';
@@ -176,6 +177,7 @@
         }
       });
 
+
       // Открытие и закрытие детального описания персонажа
       detailsBlocks.forEach((detailsBlock, index) => {
         const detailsHeader = detailsHeaders[index];
@@ -196,16 +198,20 @@
         });
       });
 
-      function loadHeader() {
-        const header = document.querySelector('#header');
-        fetch('/components/header/header.html').then((response) => {
-          response.text().then((data) => {
-            header.innerHTML = data;
-          });
+    function loadHeader() {
+      const header = document.querySelector('#header');
+      fetch('/components/header/header.html').then((response) => {
+        response.text().then((data) => {
+          header.innerHTML = data;
+          headerScript.src = '/components/header/header.js';
+          document.head.appendChild(headerScript);
         });
-      }
+      })
+    }
+    loadHeader();
 
-      loadHeader();
+
+
 
       //Отображение списка персонажей
       const addPersonageImg = document.createElement('img');
@@ -224,6 +230,7 @@
         }
         addPersonageModal.style.display = 'block';
         addPersonage();
+
       }
 
       addPersonageModal.style.display = 'none';
