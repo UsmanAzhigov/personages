@@ -115,13 +115,22 @@ window.onload = function () {
     formData.append('email', email.toLowerCase());
 
     try {
-      const data = await window.api.register(formData);
-      handleErrors(data);
-      hideSpinner();
-      window.location.href = '/send-verify-register/send-verify-register.html';
+      await window.api
+        .register(formData)
+        .then((data) => {
+          if (!data.success) {
+            handleErrors(data);
+            hideSpinner();
+          }
+          if (formData) {
+            window.location.href = '/send-verify-register/send-verify-register.html';
+          }
+        })
+        .catch((error) => {
+          handleErrors(error);
+          hideSpinner();
+        });
     } catch (error) {
-      handleErrors(error);
-      hideSpinner();
       console.log('Request failed', error);
     } finally {
       registerBtn.innerHTML = 'Зарегистрироваться';

@@ -13,10 +13,15 @@ window.onload = function () {
  * @returns Возвращает ответ от сервера | null
  */
 async function apiRequest(path, options = { method: 'GET' }) {
+  const headers = {};
+
+  if (window.CSRF_TOKEN) {
+    headers['X-CSRFToken'] = window.CSRF_TOKEN;
+  }
   const resp = await fetch(`${window.API_URL}${path}`, {
     method: options.method,
     headers: {
-      'X-CSRFToken': window.CSRF_TOKEN,
+      ...headers,
       ...options.headers,
     },
     body: options.body,
