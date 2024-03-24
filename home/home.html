@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/components/header/header.css" />
   <link rel="icon" href="/icons/web-favicon.svg" type="image/x-icon" />
   <link rel="stylesheet" href="/components/addPersonage/addPersonage.css" />
+  <link rel="jquery" href="https://code.jquery.com/jquery-3.7.1.min.js" />
 </head>
 
 <body>
@@ -120,8 +121,7 @@
   <script src="/js/index.js"></script>
   <script src="/js/libs.js"></script>
   <script src="/js/api.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="/js/home.js"></script>
   <script>
     const listPersonages = document.querySelector('.list_personages');
     const arrows = document.querySelectorAll('.arrow');
@@ -130,7 +130,7 @@
     const addPersonageModal = document.querySelector('#addPersonageModal');
 
     if (localStorage.getItem('isLoggedOut') === 'true') {
-      window.location.href = '/login/login.html'
+      window.location.href = '/login/login.html';
     }
     //Добавление фонового изображения
     document.body.style.backgroundImage = '/icons/background.svg';
@@ -160,9 +160,16 @@
       });
     });
 
-    $(function () {
-      $('#header').load('./components/header/header.html');
-    })
+    function loadHeader() {
+      const header = document.querySelector('#header');
+      fetch('/components/header/header.html').then((response) => {
+        response.text().then((data) => {
+          header.innerHTML = data;
+        });
+      });
+    }
+
+    loadHeader();
 
     //Отображение списка персонажей
     const addPersonageImg = document.createElement('img');
@@ -171,20 +178,28 @@
     //Функция для открытия модального окна
     function handleClick(e) {
       e.preventDefault();
-      $(function () {
-        $('#addPersonageModal').load('../components/addPersonage/addPersonage.html');
-      });
+      function addPersonage() {
+        const header = document.querySelector('#addPersonageModal');
+        fetch('../components/addPersonage/addPersonage.html').then((response) => {
+          response.text().then((data) => {
+            header.innerHTML = data;
+          });
+        });
+      }
       addPersonageModal.style.display = 'block';
+      addPersonage();
     }
 
     addPersonageModal.style.display = 'none';
 
-
-
     //Открытие модального окна
     addPersonageImg.addEventListener('click', handleClick);
-
-
+    window.api.getPersonas().then((data) => {
+      if (!data.success) {
+        console.log(data);
+        alert('Произошла ошибка, повторите попытку позже');
+      }
+    });
   </script>
 </body>
 
