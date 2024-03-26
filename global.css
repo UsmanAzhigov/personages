@@ -81,6 +81,28 @@ body {
   color: #fff;
 }
 
+.btn_block {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.addPersonage_text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
 /* Стили для поля с ошибкой */
 div > div > .error-input {
   border: 1px solid rgba(255, 78, 100, 1);

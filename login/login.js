@@ -55,10 +55,9 @@ function handleErrors(data) {
         errorInputLabel.textContent = translateError(data[el][0]);
       }
     } else {
-      if (errorInput) {
-        errorInput?.classList?.remove('error-input');
-        errorInputLabel?.classList?.add('none');
-      }
+      errorInput?.classList?.remove('error-input');
+      errorInputLabel?.classList?.add('none');
+      errorInputLabel.textContent = '';
     }
   });
 }

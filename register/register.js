@@ -112,28 +112,14 @@ window.onload = function () {
     formData.append('email', email.toLowerCase());
 
     try {
-      await window.api
-        .register(formData)
-        .then((data) => {
-          if (!data.success) {
-            handleErrors(data);
-            hideSpinner();
-          }
-
-          if (
-            email &&
-            email.includes('@') &&
-            password &&
-            password_confirm &&
-            password === password_confirm &&
-            username
-          )
-            window.location.href = '/send-verify-register/send-verify-register.html';
-        })
-        .catch((error) => {
-          handleErrors(error);
-          hideSpinner();
-        });
+      await window.api.register(formData).then((response) => {
+        if (!response.success) {
+          handleErrors(response);
+        }
+        if (response.ok === true) {
+          window.location.href = '/send-verify-register/send-verify-register.html';
+        }
+      });
     } catch (error) {
       console.log('Request failed', error);
     } finally {
@@ -166,6 +152,7 @@ window.onload = function () {
         } else {
           errorInput?.classList?.remove('error-input');
           errorInputLabel?.classList?.add('none');
+          errorInputLabel.textContent = '';
         }
         if (el === 'password' && conditions) {
           conditionsBlock.style = 'margin-top: 15px;';

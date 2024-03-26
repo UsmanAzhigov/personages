@@ -1,28 +1,12 @@
-.modal {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-}
-
-.addPersonage_text {
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.close {
-  cursor: pointer;
-}
-
 .content {
   width: 882px;
   background: #ffffff;
   padding: 24px;
   border-radius: 10px;
+}
+
+.close {
+  cursor: pointer;
 }
 
 .addPersonage_header {
@@ -189,10 +173,4 @@
 
 .fraction input {
   cursor: pointer;
-}
-
-.btn_block {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
 }
