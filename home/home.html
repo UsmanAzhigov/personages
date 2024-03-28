@@ -167,39 +167,39 @@
     // Функция для рендеринга блока деталей
     function renderDetailBlock(detail) {
       const detailsHtmlFragment = `
-    <div class="details">
-      <div class="details_header">
-        <div class="date_details">
-          <p class="nameDetail">${detail.name}</p>
-          <div class="date_block">
-            <p class="date_from">${detail.date_from}</p>
-            -
-            <p class="date_to">${detail.date_to}</p>
+        <div class="details">
+          <div class="details_header">
+            <div class="date_details">
+              <p class="nameDetail">${detail.name}</p>
+              <div class="date_block">
+                <p class="date_from">${detail.date_from}</p>
+                -
+                <p class="date_to">${detail.date_to}</p>
+              </div>
+              <img class="change_detail_img" width="24px" height="24px" src="/icons/changeDetail.svg" />
+            </div>
+            <div class="changeDetailsBlock">
+              <img class="eyeIcon" width="24px" height="24px" src="/icons/eyeIcon.svg" />
+              <div class="movingArrows">
+                <img class="arrowDown" width="24px" height="24px" src="/icons/Arrow_Down_SM.svg" />
+                <img class="arrowUp" width="24px" height="24px" src="/icons/Arrow_Up_SM.svg" />
+              </div>
+              <img class="deleteIcon" width="24px" height="24px" src="/icons/Trash_Full.svg" />
+              <img class="arrow" width="14px" height="14px" src="/icons/arrowBottom.svg" />
+            </div>
           </div>
-          <img class="change_detail_img" width="24px" height="24px" src="/icons/changeDetail.svg" />
-        </div>
-        <div class="changeDetailsBlock">
-          <img class="eyeIcon" width="24px" height="24px" src="/icons/eyeIcon.svg" />
-          <div class="movingArrows">
-            <img class="arrowDown" width="24px" height="24px" src="/icons/Arrow_Down_SM.svg" />
-            <img class="arrowUp" width="24px" height="24px" src="/icons/Arrow_Up_SM.svg" />
-          </div>
-          <img class="deleteIcon" width="24px" height="24px" src="/icons/Trash_Full.svg" />
-          <img class="arrow" width="14px" height="14px" src="/icons/arrowBottom.svg" />
-        </div>
-      </div>
-      <div class="details_content">
-        <p class="details_description"></p>
-        <div class="details_img">
-          <img class="img" width="680px" height="360px" src="${detail.detailed_details[0].image}" />
-          <div class="img_description">
-            <label class="img_description_label"></label>
-            <p class="img_description_date">${detail.detailed_details[0].date}</p>
+          <div class="details_content">
+            <p class="details_description"></p>
+            <div class="details_img">
+              <img class="img" width="680px" height="360px" src="${detail.detailed_details[0].image}" />
+              <div class="img_description">
+                <label class="img_description_label"></label>
+                <p class="img_description_date">${detail.detailed_details[0].date}</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  `;
+      `;
 
       const detailsElement = document.createElement('div');
       detailsElement.innerHTML = detailsHtmlFragment;
