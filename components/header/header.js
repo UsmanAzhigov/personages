@@ -19,6 +19,10 @@ personages.addEventListener('click', () => {
   }
 });
 
+// Кнопки для входа и регистрации
+const loginButton = document.createElement('button');
+const registerButton = document.createElement('button');
+
 // Отображаем профиль пользователя
 window.api.getProfile().then((data) => {
   if (data.ok) {
