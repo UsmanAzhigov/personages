@@ -67,6 +67,4 @@ function extractCsrfTokenFromCookie() {
       return value;
     }
   }
-
-  return null;
 }

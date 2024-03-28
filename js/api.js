@@ -25,6 +25,7 @@ async function apiRequest(path, options = { method: 'GET' }) {
       ...options.headers,
     },
     body: options.body,
+    credentials: 'include',
   });
 
   const { ok, status } = resp;
@@ -40,7 +41,7 @@ async function apiRequest(path, options = { method: 'GET' }) {
  */
 class ApiServices {
   async getPersonas() {
-    return apiRequest(window.ENDPOINTS.CREATE_PERSONAS, { method: 'GET' });
+    return apiRequest(window.ENDPOINTS.CREATE_PERSONAS + 'my_personas/', { method: 'GET' });
   }
 
   async logout() {

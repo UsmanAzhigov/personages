@@ -27,9 +27,7 @@ function login() {
     try {
       console.log(responseData);
       if (responseData.detail === 'Login successful') {
-        localStorage.setItem('isLoggedIn', true);
         window.location.href = '/home/home.html';
-        localStorage.setItem('isLoggedOut', false);
       }
       if (!responseData.success) {
         handleErrors(responseData);

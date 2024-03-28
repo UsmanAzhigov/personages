@@ -16,7 +16,6 @@
   <div id="header" class="header"></div>
   <div class="home_block">
     <div class="list_personages">
-      <li class="personage"></li>
     </div>
     <div class="main_block">
       <div class="change_block">
@@ -119,6 +118,10 @@
     document.body.style.backgroundAttachment = 'fixed';
     document.body.style.position = 'relative';
     document.body.style.display = 'block';
+
+    if (window.api.getProfile() === null) {
+      window.location.href = '/login/login.html';
+    }
 
     function hideDetailIcons() {
       const eyeIcons = document.querySelectorAll('.eyeIcon');
@@ -270,10 +273,6 @@
     }
     loadHeader();
 
-    //Отображение списка персонажей
-    const addPersonageImg = document.createElement('img');
-    addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
-    listPersonages.appendChild(addPersonageImg);
     //Функция для открытия модального окна
     function handleClick(e) {
       e.preventDefault();
@@ -284,29 +283,47 @@
             header.innerHTML = data;
             addPersonageScript.src = '../components/addPersonage/addPersonage.js';
             document.head.appendChild(addPersonageScript);
+            const closeModalBtn = document.querySelector('#close-personages-modal');
+
+            function closeModal() {
+              document.querySelector('#addPersonageModal').innerHTML = '';
+              document.querySelector('#addPersonageModal').style.display = 'none';
+            }
+            closeModalBtn.addEventListener('click', closeModal);
           });
         });
       }
       addPersonageModal.style.display = 'block';
       addPersonage();
-
     }
 
     addPersonageModal.style.display = 'none';
 
-    //Открытие модального окна
-    addPersonageImg.addEventListener('click', handleClick);
+    //Загрузка списка персонажей
+    function renderPersonageBlock(item) {
+      // Создаем элемент списка
+      const personageList = document.createElement('li');
+      personageList.classList.add('personage');
+      personageList.textContent = item.name;
+      // Добавляем элемент списка в контейнер персонажей
+      listPersonages.appendChild(personageList);
+    }
+
     window.api.getPersonas().then((data) => {
-      if (!data.success) {
-        console.log(data);
-      }
-      data.results.forEach((items) => {
-        const personageName = document.querySelectorAll('.personage');
-        personageName.forEach((personage) => {
-          personage.textContent = items.name
-        });
+      data.results.forEach((item) => {
+        renderPersonageBlock(item);
       });
+      //Отображение списка персонажей
+      const addPersonageImg = document.createElement('img');
+      addPersonageImg.setAttribute('src', '/icons/addPersonage.png');
+      listPersonages.appendChild(addPersonageImg);
+
+      //Открытие модального окна
+      addPersonageImg.addEventListener('click', handleClick);
+    }).catch((error) => {
+      console.error("Произошла ошибка при получении персонажей:", error);
     });
+
   </script>
 </body>
 

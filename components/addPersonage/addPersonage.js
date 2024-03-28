@@ -10,6 +10,12 @@ const imageBlock = document.querySelector('.image_block');
 const addAvatarInput = document.querySelector('#add-avatar-input');
 const allInputs = document.querySelectorAll('.addPersonage_form input');
 
+cancelPersonageBtn.addEventListener('click', () => {
+  allInputs.forEach((input) => {
+    input.value = '';
+  });
+});
+
 // Функция для загрузки изображения
 function uploadImage(event) {
   const selectedFile = event.target.files[0];
@@ -41,12 +47,6 @@ cancelPersonageBtn.disabled = true;
 
 savePersonageBtn.style.width = '111px';
 cancelPersonageBtn.style.width = '111px';
-const closeModalBtn = document.querySelector('#close-personages-modal');
-
-function closeModal() {
-  document.querySelector('#addPersonageModal').innerHTML = '';
-  document.querySelector('#addPersonageModal').style.display = 'none';
-}
 
 function savePersonage() {
   try {
@@ -58,7 +58,9 @@ function savePersonage() {
     formData.append('description', additionalInformationInput.value);
     formData.append('show_fraction', 1);
     window.api.createPersonas(formData).then((res) => {
-      window.location.reload();
+      if (!res.success) {
+        alert(res.message);
+      }
     });
   } catch (error) {
     console.log(error);
@@ -66,4 +68,3 @@ function savePersonage() {
 }
 
 savePersonageBtn.addEventListener('click', savePersonage);
-closeModalBtn.addEventListener('click', closeModal);
